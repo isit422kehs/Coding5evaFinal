@@ -17,3 +17,8 @@ $(document).on('pagebeforeshow ', '#home-page', function () {
 });
 
 
+//sign-in
+$(document).on('pagebeforeshow ', '#signin-page', function () {
+
+    $('p').append('<strong>heya sign in</strong>');
+});
