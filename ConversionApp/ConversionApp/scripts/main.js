@@ -22,3 +22,15 @@ $(document).on('pagebeforeshow ', '#signin-page', function () {
 
     $('p').append('<strong>heya sign in</strong>');
 });
+
+//recents
+$(document).on('pagebeforeshow ', '#recents-page', function () {
+
+    $('p').append('<strong> recents</strong>');
+});
+
+//favorites
+$(document).on('pagebeforeshow ', '#favorites-page', function () {
+
+    $('p').append('<strong> favorites</strong>');
+});
