@@ -23,6 +23,12 @@ $(document).on('pagebeforeshow ', '#signin-page', function () {
     $('p').append('<strong>heya sign in</strong>');
 });
 
+//convert
+$(document).on('pagebeforeshow ', '#convert-page', function () {
+
+    $('p').append('<strong>heya convert</strong>');
+});
+
 //recents
 $(document).on('pagebeforeshow ', '#recents-page', function () {
 
