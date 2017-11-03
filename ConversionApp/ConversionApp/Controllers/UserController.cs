@@ -11,7 +11,7 @@ namespace ConversionApp.Controllers
 {
     public class UserController : ApiController
     {
-        MongoDatabase userMongo = MongoConnectUser.GetUserMongoDb();
+        MongoDatabase mongoDb = MongoConnect.GetMongoDb();
 
 
     }
