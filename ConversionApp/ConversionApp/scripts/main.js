@@ -6,6 +6,7 @@ $(document).ready(function () {
         '<div data-role="navbar"><ul>' +
         '<li><a data-role="button" href="#home-page">Home</a></li>' +
         '<li><a data-role="button" href="#signin-page">Sign in</a></li>' +
+        '<li><a data-role="button" href="#signup-page">Sign up</a></li>' +
         '<li><a data-role="button" href="#convert-page">Convert</a></li>' +
         '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
         '<li><a data-role="button" href="#favorites-page">Favorites</a></li>' +
@@ -14,6 +15,7 @@ $(document).ready(function () {
 
 });
 
+var url='api/signup-page';
 //home
 $(document).on('pagebeforeshow ', '#home-page', function () {  
     
@@ -25,6 +27,12 @@ $(document).on('pagebeforeshow ', '#home-page', function () {
 $(document).on('pagebeforeshow ', '#signin-page', function () {
 
     $('#signin-page p').append('<strong>heya sign in</strong>');
+});
+
+//sign-up
+$(document).on('pagebeforeshow ', '#signup-page', function () {
+
+    $('#signup-page p').append('<strong> sign up</strong>');
 });
 
 //convert
@@ -44,3 +52,26 @@ $(document).on('pagebeforeshow ', '#favorites-page', function () {
 
     $('#favorites-page p').append('<strong> favorites</strong>');
 });
+
+//add users
+function addUsers() {
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var email = $('#email').val();
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            "UserName": username,
+            "Password": password,
+            "Email": email
+        },
+        success: function () {
+            $('#addUsers').text('Successfully added new user ' + username);
+        }
+    });
+    $('#username').val('');
+    $('#password').val('');
+    $('#email').val('');
+}

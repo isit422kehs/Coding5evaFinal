@@ -31,7 +31,7 @@
 
     <div data-role="page" id="signin-page" data-theme="a">
         <div data-role="header"></div>
-        <h2>Signin Page</h2>
+        <h2>Sign in Page</h2>
         <div data-role="content">
             <p>signin stuffs</p>
         </div>
@@ -41,9 +41,26 @@
         </div>
     </div>
 
+    <div data-role="page" id="signup-page" data-theme="a">
+        <div data-role="header"></div>
+        <h2>Sign up Page</h2>
+        <div data-role="content">
+            Username : <input type="text" id="username" /><br />
+            Password : <input type="text" id="password" /><br />
+            Email : <input type="text" id="email" /><br />
+
+            <input type="button" data-icon="plus" data-theme="c" id="addBtn" value="Sign Up" onclick="addUsers()" />
+            <p id="addUsers" />
+        </div>
+
+        <div data-role="footer">
+            <h1>copyright Coding5eva 2017</h1>
+        </div>
+    </div>
+
     <div data-role="page" id="convert-page" data-theme="a">
         <div data-role="header"></div>
-        <h2>Signin Page</h2>
+        <h2>Convert Page</h2>
         <div data-role="content">
             <p>convert stuffs</p>
         </div>

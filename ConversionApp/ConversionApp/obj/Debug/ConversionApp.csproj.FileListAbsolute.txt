@@ -163,3 +163,12 @@ C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\Sys
 C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\obj\Debug\ConversionApp.csprojResolveAssemblyReference.cache
 C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\obj\Debug\ConversionApp.dll
 C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\obj\Debug\ConversionApp.pdb
+C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Bson.dll
+C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.Core.dll
+C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.dll
+C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.Legacy.dll
+C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Bson.xml
+C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.xml
+C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.Core.xml
+C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.Legacy.xml
