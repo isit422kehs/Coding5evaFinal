@@ -15,33 +15,19 @@ namespace ConversionApp.Controllers
     public class UserController : ApiController
     {
          MongoDatabase mongoDb = MongoConnect.GetMongoDb();
-       
+
         [HttpPost]
-        public void addUsers(Users newUser)
+        public void AddUsers(Users newUser)
         {
             mongoDb = GetMongoDb();
             var collection = mongoDb.GetCollection<Users>("Users");
             WriteConcernResult result;
-            bool hasError = false;
-
-            if (string.IsNullOrEmpty(newUser.UserName))
-            {
-                newUser.UserName = ObjectId.GenerateNewId().ToString();
-                result = collection.Insert<Users>(newUser);
-                hasError = result.HasLastErrorMessage;
-
-            }
-            else
-            {
-                IMongoQuery query = Query.EQ("_id", newUser.UserName);
-                IMongoUpdate update = Update
-                    .Set("UserName", newUser.UserName)
-                    .Set("Password", newUser.Password)
-                    .Set("Email", newUser.Email);
-                result = collection.Update(query, update);
-                hasError = result.HasLastErrorMessage;
-
-            }
+            IMongoUpdate update = Update
+                .Set("UserName", newUser.UserName)
+                .Set("Password", newUser.Password)
+                .Set("Email", newUser.Email);
+            result = collection.Insert<Users>(newUser);
+            
 
         }
 

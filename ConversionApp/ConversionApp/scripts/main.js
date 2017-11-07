@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 });
 
-var url='api/signup-page';
+var url='api/user';
 //home
 $(document).on('pagebeforeshow ', '#home-page', function () {  
     
@@ -55,10 +55,12 @@ $(document).on('pagebeforeshow ', '#favorites-page', function () {
 
 //add users
 function addUsers() {
+    
     var username = $('#username').val();
     var password = $('#password').val();
+    
     var email = $('#email').val();
-
+ 
     $.ajax({
         type: "POST",
         url: url,
@@ -69,9 +71,13 @@ function addUsers() {
         },
         success: function () {
             $('#addUsers').text('Successfully added new user ' + username);
-        }
+        },
+        error: function (status) {
+        $('#addUsers').text(status);
+    }
     });
-    $('#username').val('');
+    /*$('#username').val('');
     $('#password').val('');
-    $('#email').val('');
+    $('#email').val('');*/
+   
 }
