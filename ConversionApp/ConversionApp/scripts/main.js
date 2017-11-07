@@ -85,24 +85,27 @@ function Login() {
     var username = $('#usernameInput').val().trim();
     var pw = $('#passwordInput').val().trim();
 
-    function salt(user, pw) {
-        var data = user + ':' + pw;
+    function salt(username, pw) {
+        var data = username + ':' + pw;
         var hash = Base64.encode(data);
         return "Basic " + hash;
     }
 
-    if (username != '' && pw != '') {
+    if (username !== '' && pw !== '') {
         $.ajax({
-            url: url + 'userLogin',
+            url: url + 'login',
             type: 'POST',
             data: {
                 'UserName': username,
                 'Password': pw
             },
-            success: function (response) {
+            success: function () {
                 var msg = '';
                 window.location = 'home-page';
                 $('#login-page p').append(msg);
+            },
+            error: function (status) {
+                $('#login-page p').append(status);
             }
         });
     }

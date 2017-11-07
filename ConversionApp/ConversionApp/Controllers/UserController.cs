@@ -30,35 +30,42 @@ namespace ConversionApp.Controllers
             result = collection.Insert<Users>(newUser);
         }
 
+        List<Users> userList = new List<Users>();
+
         [HttpPost]
         [AllowAnonymous]
-        [Route("Login")]
-        public IHttpActionResult userLogin(string username, string pw, string email)  // make sure its string
+        [Route("login")]
+        public IHttpActionResult UserLogin(string user)  // make sure its string
         {
             mongoDb = GetMongoDb();
-            var collection = mongoDb.GetCollection<Users>("Users");
-            var user = new Users { UserName = username, Password = pw, Email = email };
-            var id = user._id;
-            IMongoQuery query = Query.EQ("_id", id);
-            var userFound = collection.FindOne(query);
 
-            if (query == null)
+            var mongoList = mongoDb.GetCollection("Users").FindAll().AsEnumerable();
+            userList = (from nextUser in mongoList
+                        select new Users
+                        {
+                            Id = nextUser["_id"].ToString(), //((ObjectId)nextNote["_id"]).ToString(), 
+                            UserName = nextUser["UserName"].AsString,
+                            Password = nextUser["Password"].AsString,
+                            Email = nextUser["Email"].AsString
+                        }).ToList();
+
+            if (user == null)
             {
                 return NotFound();
             }
-            return RedirectToRoute("index", "Home");
-        }
+            return Ok(user);
 
-        [HttpPost]
-        [Route("Logout")]
-        public IHttpActionResult Logout()
-        {
-            // delete user from cache
-            System.Web.HttpContext.Current.Cache.Remove(User.Identity.Name);
-            // delete authentication ticket & sign out
-            FormsAuthentication.SignOut();
+            //var collection = mongoDb.GetCollection<Users>("Users");
+            //user = new List<Users>();
+            //var id = user._id;
+            //IMongoQuery query = Query.EQ("_id", id);
+            //var userFound = collection.FindOne(query);
 
-            return RedirectToRoute("index", "Home");
+            //if (query == null)
+            //{
+            //    return NotFound();
+            //}
+            //return RedirectToRoute("index", "Home");
         }
 
         public static MongoDatabase GetMongoDb()
