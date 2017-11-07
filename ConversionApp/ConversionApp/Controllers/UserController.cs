@@ -17,17 +17,27 @@ namespace ConversionApp.Controllers
     {
         MongoDatabase mongoDb = MongoConnect.GetMongoDb();
 
+        public string ErrorMessage { get; private set; }
+
         [HttpPost]
         public void AddUsers(Users newUser)
         {
             mongoDb = GetMongoDb();
             var collection = mongoDb.GetCollection<Users>("Users");
             WriteConcernResult result;
-            IMongoUpdate update = Update
-                .Set("UserName", newUser.UserName)
-                .Set("Password", newUser.Password)
-                .Set("Email", newUser.Email);
-            result = collection.Insert<Users>(newUser);
+            bool hasError = false;
+
+            if (string.IsNullOrEmpty(newUser.Id))
+            {
+                newUser.Id = ObjectId.GenerateNewId().ToString();
+                result = collection.Insert<Users>(newUser);
+                hasError = result.HasLastErrorMessage;
+
+            }
+            else
+            {
+                ErrorMessage = "This username already exists, please try a different one";
+            }
         }
 
         public static MongoDatabase GetMongoDb()
