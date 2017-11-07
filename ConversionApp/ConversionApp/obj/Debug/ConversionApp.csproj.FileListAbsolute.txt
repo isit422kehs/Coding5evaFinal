@@ -172,3 +172,12 @@ C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\Mon
 C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.xml
 C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.Core.xml
 C:\Users\Misty\Documents\GIT\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.Legacy.xml
+C:\Users\tokki\Documents\isit422-fall2017\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Bson.dll
+C:\Users\tokki\Documents\isit422-fall2017\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.Core.dll
+C:\Users\tokki\Documents\isit422-fall2017\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.dll
+C:\Users\tokki\Documents\isit422-fall2017\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.Legacy.dll
+C:\Users\tokki\Documents\isit422-fall2017\Coding5evaFinal\ConversionApp\ConversionApp\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\tokki\Documents\isit422-fall2017\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Bson.xml
+C:\Users\tokki\Documents\isit422-fall2017\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.xml
+C:\Users\tokki\Documents\isit422-fall2017\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.Core.xml
+C:\Users\tokki\Documents\isit422-fall2017\Coding5evaFinal\ConversionApp\ConversionApp\bin\MongoDB.Driver.Legacy.xml

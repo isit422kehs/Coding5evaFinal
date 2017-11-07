@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('div[data-role="header"]').append(
         '<div data-role="navbar"><ul>' +
         '<li><a data-role="button" href="#home-page">Home</a></li>' +
-        '<li><a data-role="button" href="#signin-page">Sign in</a></li>' +
+        '<li><a data-role="button" href="#login-page">Sign in</a></li>' +
         '<li><a data-role="button" href="#signup-page">Sign up</a></li>' +
         '<li><a data-role="button" href="#convert-page">Convert</a></li>' +
         '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 });
 
-var url='api/user';
+var url='api/user/';
 //home
 $(document).on('pagebeforeshow ', '#home-page', function () {  
     
@@ -23,10 +23,10 @@ $(document).on('pagebeforeshow ', '#home-page', function () {
 });
 
 
-//sign-in
-$(document).on('pagebeforeshow ', '#signin-page', function () {
+//login
+$(document).on('pagebeforeshow ', '#login-page', function () {
 
-    $('#signin-page p').append('<strong>heya sign in</strong>');
+    $('#login-page p').append('<strong>heya sign in</strong>');
 });
 
 //sign-up
@@ -76,8 +76,41 @@ function addUsers() {
         $('#addUsers').text(status);
     }
     });
-    /*$('#username').val('');
-    $('#password').val('');
-    $('#email').val('');*/
    
+}
+
+// log in
+function Login() {
+
+    var username = $('#usernameInput').val().trim();
+    var pw = $('#passwordInput').val().trim();
+
+    function salt(user, pw) {
+        var data = user + ':' + pw;
+        var hash = Base64.encode(data);
+        return "Basic " + hash;
+    }
+
+    if (username != '' && pw != '') {
+        $.ajax({
+            url: url + 'userLogin',
+            type: 'POST',
+            data: {
+                'UserName': username,
+                'Password': pw
+            },
+            success: function (response) {
+                var msg = '';
+                window.location = 'home-page';
+                $('#login-page p').append(msg);
+            }
+        });
+    }
+}
+
+// log out
+function logout(req, res) {
+    res.clearCookie('UserName');
+    res.clearCookie('Password');
+    req.session.destroy(function (e) { res.status(200).send('ok'); });
 }
