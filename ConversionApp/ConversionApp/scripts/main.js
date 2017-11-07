@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('div[data-role="header"]').append(
         '<div data-role="navbar"><ul>' +
         '<li><a data-role="button" href="#home-page">Home</a></li>' +
-        '<li><a data-role="button" href="#login-page">Sign in</a></li>' +
+        '<li><a data-role="button" href="#login-page">Log in</a></li>' +
         '<li><a data-role="button" href="#signup-page">Sign up</a></li>' +
         '<li><a data-role="button" href="#convert-page">Convert</a></li>' +
         '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 });
 
-var url='api/user/';
+var url='api/user';
 //home
 $(document).on('pagebeforeshow ', '#home-page', function () {  
     
@@ -26,7 +26,7 @@ $(document).on('pagebeforeshow ', '#home-page', function () {
 //login
 $(document).on('pagebeforeshow ', '#login-page', function () {
 
-    $('#login-page p').append('<strong>heya sign in</strong>');
+    $('#login-page p').append('');
 });
 
 //sign-up
@@ -93,16 +93,22 @@ function Login() {
 
     if (username !== '' && pw !== '') {
         $.ajax({
-            url: url + 'login',
+            url: 'api/login',
             type: 'POST',
             data: {
                 'UserName': username,
                 'Password': pw
             },
             success: function () {
-                var msg = '';
-                window.location = 'home-page';
-                $('#login-page p').append(msg);
+                var msg = 'Hello ' + username;
+                window.location = '#home-page';
+                $('#home-page p').text(msg);
+
+                $('div[data-role="header"]').append(
+                    '<div data-role="navbar"><ul>' +
+                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>' +
+                    '</ul></div>'
+                );
             },
             error: function (status) {
                 $('#login-page p').append(status);
@@ -113,7 +119,5 @@ function Login() {
 
 // log out
 function logout(req, res) {
-    res.clearCookie('UserName');
-    res.clearCookie('Password');
-    req.session.destroy(function (e) { res.status(200).send('ok'); });
+    window.location.reload();
 }
