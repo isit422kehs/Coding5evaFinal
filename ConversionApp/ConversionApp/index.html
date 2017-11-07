@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+    <link rel="stylesheet" href="styles/style.css" />
 
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -17,10 +18,11 @@
    
 
     <!-- HOME/DETAILS -->
-    <div data-role="page" id="home-page" data-theme="a">
+    <div data-role="page" id="home-page" class="light">
         <div data-role="header"></div>
         <h2>Home Page with/for details</h2>
         <div data-role="content">
+            <p id="country"></p>
             <p>stuffs</p>
         </div>
 
@@ -29,7 +31,7 @@
         </div>
     </div>
 
-    <div data-role="page" id="login-page" data-theme="a">
+    <div data-role="page" id="login-page" class="light">
         <div data-role="header"></div>
         <h2>Log in Page</h2>
         <div data-role="content">
@@ -39,7 +41,7 @@
             <input type="button" data-theme="c" id="loginBtn" value="Log in" onclick="Login()" />
         </div>
 
-    <div data-role="page" id="signup-page" data-theme="a">
+    <div data-role="page" id="signup-page" class="light">
         <div data-role="header"></div>
         <h2>Sign up Page</h2>
         <div data-role="content">
@@ -56,7 +58,7 @@
         </div>
     </div>
 
-    <div data-role="page" id="convert-page" data-theme="a">
+    <div data-role="page" id="convert-page" class="light">
         <div data-role="header"></div>
         <h2>Convert Page</h2>
         <div data-role="content">
@@ -68,7 +70,7 @@
         </div>
     </div>
 
-    <div data-role="page" id="recents-page" data-theme="a">
+    <div data-role="page" id="recents-page" class="light">
         <div data-role="header"></div>
         <h2>Recents Page</h2>
         <div data-role="content">
@@ -80,7 +82,7 @@
         </div>
     </div>
 
-    <div data-role="page" id="favorites-page" data-theme="a">
+    <div data-role="page" id="favorites-page" class="light">
         <div data-role="header"></div>
         <h2>Favorites Page</h2>
         <div data-role="content">

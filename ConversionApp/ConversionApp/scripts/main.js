@@ -10,7 +10,7 @@ $(document).ready(function () {
         '<li><a data-role="button" href="#convert-page">Convert</a></li>' +
         '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
         '<li><a data-role="button" href="#favorites-page">Favorites</a></li>' +
-        '</ul></div>'
+        '</ul><img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" /></div>'
         );
 
 });
@@ -18,8 +18,8 @@ $(document).ready(function () {
 var url='api/user';
 //home
 $(document).on('pagebeforeshow ', '#home-page', function () {  
-    
-    $('#home-page p').append('<strong>heya</strong>');
+    getCountry();
+    $('#home-page [data-role=content]').append('<p><strong>heya</strong></p>');
 });
 
 
@@ -120,4 +120,35 @@ function Login() {
 // log out
 function logout(req, res) {
     window.location.reload();
+}
+
+function light() {
+    $('.dark').addClass('light').removeClass('dark');
+}
+
+function dark() {
+    $('.light').addClass('dark').removeClass('light');
+}
+
+function getCountry() {
+    let ip;
+    $.ajax({
+        url: 'http://www.stupidwebtools.com/api/my_ip.json',
+        dataType: 'json',
+        async: false,
+        success: function (result) {
+            ip = result.my_ip.ip;
+
+        }
+    });
+
+    $.ajax({
+        url: 'http://usercountry.com/v1.0/json/' + ip,
+        dataType: 'json',
+        async: false,
+        success: function (result) {
+            $('#country').text('I see you in ' + result.country.name);
+
+        }
+    });
 }
