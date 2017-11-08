@@ -30,13 +30,18 @@ namespace ConversionApp.Controllers
             if (string.IsNullOrEmpty(newUser.Id))
             {
                 newUser.Id = ObjectId.GenerateNewId().ToString();
+                IMongoUpdate update = Update
+                    .Set("UserName", newUser.UserName)
+                    .Set("Password", newUser.Password)
+                    .Set("Email", newUser.Email);
                 result = collection.Insert<Users>(newUser);
                 hasError = result.HasLastErrorMessage;
 
             }
             else
             {
-                ErrorMessage = "This username already exists, please try a different one";
+                IMongoQuery query = Query.EQ("_id", newUser.UserName);
+
             }
         }
 
