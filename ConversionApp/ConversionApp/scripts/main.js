@@ -39,6 +39,8 @@ $(document).on('pagebeforeshow ', '#signup-page', function () {
 $(document).on('pagebeforeshow ', '#convert-page', function () {
 
     $('#convert-page p').append('<strong>heya convert</strong>');
+
+
 });
 
 //recents
@@ -151,4 +153,8 @@ function getCountry() {
 
         }
     });
+}
+
+function convertWeight() {
+
 }
