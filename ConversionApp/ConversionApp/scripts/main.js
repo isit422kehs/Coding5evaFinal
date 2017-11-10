@@ -40,7 +40,12 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
 
     $('#convert-page p').append('<strong>heya convert</strong>');
 
-
+    $('#convert-page form').hide();
+    $('#convSelector').change(function () {
+        let val = $(this).val();
+        $('#weight').hide();
+        $('#' + val).show();
+    });
 });
 
 //recents
