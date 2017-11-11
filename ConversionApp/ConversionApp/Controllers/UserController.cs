@@ -26,13 +26,11 @@ namespace ConversionApp.Controllers
             WriteConcernResult result;
 
             var count = collection.Find(Query.EQ("UserName", newUser.UserName)).Count();
-
-
             if (count > 0)
             {
-                ErrorMessage = "This username already exists. Try a different one";
-                //throw new HttpResponseException(HttpStatusCode.NotAcceptable);
 
+                ErrorMessage = "This username already exists. Try a different one";
+                throw new ApplicationException(ErrorMessage);
             }
             else
             {
@@ -42,10 +40,13 @@ namespace ConversionApp.Controllers
                     .Set("Password", newUser.Password)
                     .Set("Email", newUser.Email);
                 result = collection.Insert<Users>(newUser);
+                       
 
             }
-
         }
+           
+
+        
 
 
         public static MongoDatabase GetMongoDb()
