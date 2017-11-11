@@ -44,6 +44,7 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
     $('#convSelector').change(function () {
         let val = $(this).val();
         $('#weight').hide();
+        $('#length').hide();
         $('#' + val).show();
     });
 });
@@ -62,12 +63,12 @@ $(document).on('pagebeforeshow ', '#favorites-page', function () {
 
 //add users
 function addUsers() {
-    
+
     var username = $('#username').val();
     var password = $('#password').val();
-    
+
     var email = $('#email').val();
- 
+
     $.ajax({
         type: "POST",
         url: url,
@@ -80,11 +81,16 @@ function addUsers() {
             $('#addUsers').text('Successfully added new user ' + username);
         },
         error: function (status) {
-        $('#addUsers').text(status);
-    }
+            $('#addUsers').text(status);
+        }
+
     });
-   
+    $('#username').val('');
+    $('#password').val('');
+    $('#email').val('');
+
 }
+
 
 // log in
 function Login() {
