@@ -43,12 +43,8 @@ namespace ConversionApp.Controllers
                        
 
             }
-        }
+            }
            
-
-        
-
-
         public static MongoDatabase GetMongoDb()
         {
             MongoUrl url = new MongoUrl("mongodb://admin:gummy@ds243285.mlab.com:43285/travelconverter");
