@@ -13,6 +13,13 @@ using System.Web.Security;
 
 namespace ConversionApp.Controllers
 {
+    public class UserException : Exception
+    {
+        public UserException(string message)
+           : base(message)
+        {
+        }
+    }
     public class UserController : ApiController
     {
         MongoDatabase mongoDb = MongoConnect.GetMongoDb();
@@ -27,8 +34,8 @@ namespace ConversionApp.Controllers
 
             if(count>0)
             {
-                throw new Exception("This username is already taken. Try a different one");
 
+                throw new UserException(String.Format("That username is already taken. Try a different one"));
             }
             else
             
@@ -40,7 +47,7 @@ namespace ConversionApp.Controllers
                     .Set("Email", newUser.Email);
                 result = collection.Insert<Users>(newUser);
             }
-                       
+                                   
          }
 
     }
