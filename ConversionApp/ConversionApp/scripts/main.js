@@ -61,14 +61,15 @@ $(document).on('pagebeforeshow ', '#favorites-page', function () {
     $('#favorites-page p').append('<strong> favorites</strong>');
 });
 
+
+
 //add users
 function addUsers() {
 
     var username = $('#username').val();
     var password = $('#password').val();
-
     var email = $('#email').val();
-
+    
     $.ajax({
         type: "POST",
         url: url,
