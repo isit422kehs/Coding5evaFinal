@@ -18,15 +18,20 @@ namespace ConversionApp.Controllers
         MongoDatabase mongoDb = MongoConnect.GetMongoDb();
 
         [HttpPost]
-        public void AddUsers(Users newUser, Exception ex)
+        public void AddUsers(Users newUser)
         {
             var collection = mongoDb.GetCollection<Users>("Users");
             WriteConcernResult result;
 
             var count = collection.Find(Query.EQ("UserName", newUser.UserName)).Count();
 
-           
-            try
+            if(count>0)
+            {
+                throw new Exception("This username is already taken. Try a different one");
+
+            }
+            else
+            
             {
                 newUser.Id = ObjectId.GenerateNewId().ToString();
                 IMongoUpdate update = Update
@@ -35,14 +40,8 @@ namespace ConversionApp.Controllers
                     .Set("Email", newUser.Email);
                 result = collection.Insert<Users>(newUser);
             }
-            catch
-            {
-                if (count > 0)
-                    throw new System.ApplicationException("alert('This username already exists. Try a different one');");
-            }
+                       
          }
-
-           
 
     }
 }
