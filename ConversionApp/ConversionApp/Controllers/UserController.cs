@@ -20,7 +20,6 @@ namespace ConversionApp.Controllers
         [HttpPost]
         public void AddUsers(Users newUser, Exception ex)
         {
-            mongoDb = GetMongoDb();
             var collection = mongoDb.GetCollection<Users>("Users");
             WriteConcernResult result;
 
@@ -41,17 +40,9 @@ namespace ConversionApp.Controllers
                 if (count > 0)
                     throw new System.ApplicationException("alert('This username already exists. Try a different one');");
             }
-            }
+         }
 
            
-        public static MongoDatabase GetMongoDb()
-        {
-            MongoUrl url = new MongoUrl("mongodb://admin:gummy@ds243285.mlab.com:43285/travelconverter");
-            MongoClient client = new MongoClient(url);
-            MongoServer server = client.GetServer();
-
-            return server.GetDatabase("travelconverter");
-        }
 
     }
 }

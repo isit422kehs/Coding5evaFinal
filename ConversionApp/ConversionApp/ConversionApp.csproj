@@ -132,6 +132,21 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="images\moon.png" />
+    <Content Include="images\plugs\A.jpg" />
+    <Content Include="images\plugs\B.jpg" />
+    <Content Include="images\plugs\C.jpg" />
+    <Content Include="images\plugs\D.jpg" />
+    <Content Include="images\plugs\E.jpg" />
+    <Content Include="images\plugs\F.jpg" />
+    <Content Include="images\plugs\G.jpg" />
+    <Content Include="images\plugs\H.jpg" />
+    <Content Include="images\plugs\I.jpg" />
+    <Content Include="images\plugs\J.jpg" />
+    <Content Include="images\plugs\K.jpg" />
+    <Content Include="images\plugs\L.jpg" />
+    <Content Include="images\plugs\M.jpg" />
+    <Content Include="images\plugs\N.jpg" />
+    <Content Include="images\plugs\O.jpg" />
     <Content Include="images\sun.png" />
     <Content Include="index.html" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />

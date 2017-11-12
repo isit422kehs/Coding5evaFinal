@@ -38,13 +38,12 @@ $(document).on('pagebeforeshow ', '#signup-page', function () {
 //convert
 $(document).on('pagebeforeshow ', '#convert-page', function () {
 
-    $('#convert-page p').append('<strong>heya convert</strong>');
-
     $('#convert-page form').hide();
     $('#convSelector').change(function () {
         let val = $(this).val();
         $('#weight').hide();
         $('#length').hide();
+        $('#currency').hide();
         $('#' + val).show();
     });
 });
@@ -167,6 +166,3 @@ function getCountry() {
     });
 }
 
-function convertWeight() {
-
-}
