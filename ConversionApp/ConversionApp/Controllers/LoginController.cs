@@ -1,5 +1,6 @@
 ﻿using ConversionApp.Models;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,42 +12,30 @@ namespace ConversionApp.Controllers
 {
     public class LoginController : ApiController
     {
-        MongoDatabase mongoDb = MongoConnect.GetMongoDb();
-
+        MongoDatabase mongoDb;
         List<Users> userList = new List<Users>();
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[Route("login")]
-        public IHttpActionResult UserLogin(List<string> user)  // make sure its string
+        [AllowAnonymous]
+        public IHttpActionResult UserLogin(Users user)  // make sure its string
         {
-            var mongoList = mongoDb.GetCollection("Users").FindAll().AsEnumerable();
-            userList = (from nextUser in mongoList
-                        select new Users
-                        {
-                            Id = nextUser["_id"].ToString(), //((ObjectId)nextNote["_id"]).ToString(), 
-                            UserName = nextUser["UserName"].AsString,
-                            Password = nextUser["Password"].AsString,
-                            Email = nextUser["Email"].AsString
-                        }).ToList();
+            mongoDb = MongoConnect.GetMongoDb();
+            var collection = mongoDb.GetCollection<Users>("Users");
 
-            if (user == null)
+            var tempName = user.UserName;
+            IMongoQuery query = Query.EQ("UserName", tempName);
+            var userFound = collection.FindOne(query);
+            var badlogin = "Username/password not found, please try again.";
+
+            if (userFound == null)
             {
-                return NotFound();
+                return Content(HttpStatusCode.BadRequest, badlogin);
             }
-            return Ok(user);
-
-            //var collection = mongoDb.GetCollection<Users>("Users");
-            //user = new List<Users>();
-            //var id = user._id;
-            //IMongoQuery query = Query.EQ("_id", id);
-            //var userFound = collection.FindOne(query);
-
-            //if (query == null)
-            //{
-            //    return NotFound();
-            //}
-            //return RedirectToRoute("index", "Home");
+            else if (userFound.Password == user.Password)
+            {
+                return Ok(userFound);
+            }
+            else
+                return Content(HttpStatusCode.BadRequest, badlogin);
         }
     }
 }

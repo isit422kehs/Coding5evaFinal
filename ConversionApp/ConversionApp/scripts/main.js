@@ -60,8 +60,6 @@ $(document).on('pagebeforeshow ', '#favorites-page', function () {
     $('#favorites-page p').append('<strong> favorites</strong>');
 });
 
-
-
 //add users
 function addUsers() {
 
@@ -92,18 +90,11 @@ function addUsers() {
 
 }
 
-
 // log in
 function Login() {
 
     var username = $('#usernameInput').val().trim();
     var pw = $('#passwordInput').val().trim();
-
-    function salt(username, pw) {
-        var data = username + ':' + pw;
-        var hash = Base64.encode(data);
-        return "Basic " + hash;
-    }
 
     if (username !== '' && pw !== '') {
         $.ajax({
@@ -113,19 +104,17 @@ function Login() {
                 'UserName': username,
                 'Password': pw
             },
-            success: function () {
-                var msg = 'Hello ' + username;
+            success: function (data) {
+                var msg = 'Hello ' + data.UserName + '! Your email is ' + data.Email + '.';
                 window.location = '#home-page';
                 $('#home-page p').text(msg);
 
                 $('div[data-role="header"]').append(
-                    '<div data-role="navbar"><ul>' +
-                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>' +
-                    '</ul></div>'
+                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>'
                 );
             },
-            error: function (status) {
-                $('#login-page p').append(status);
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#pLogin').text((jqXHR.responseText));
             }
         });
     }
@@ -166,4 +155,3 @@ function getCountry() {
         }
     });
 }
-
