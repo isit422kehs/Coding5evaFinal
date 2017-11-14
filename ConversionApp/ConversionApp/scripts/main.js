@@ -78,8 +78,9 @@ function addUsers() {
         success: function () {
             $('#addUsers').text('Successfully added new user ' + username);
         },
-        error: function (response) {
-            alert("This username is already taken. Try a different one");
+        error: function (status) {
+            $('#addUsers').text(status);
+          alert("This username is already taken. Try a different one");
         }
 
 

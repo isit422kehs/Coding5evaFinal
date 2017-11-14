@@ -29,17 +29,21 @@ namespace ConversionApp.Controllers
             if (count > 0)
             {
 
-                throw new Exception(String.Format("That username is already taken. Try a different one"));
+                //throw new Exception(String.Format("That username is already taken. Try a different one"));
+                HttpResponseMessage httpResponse = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                throw new HttpResponseException(httpResponse);
             }
             else
 
             {
                 newUser.Id = ObjectId.GenerateNewId().ToString();
+
                 IMongoUpdate update = Update
                     .Set("UserName", newUser.UserName)
                     .Set("Password", newUser.Password)
                     .Set("Email", newUser.Email);
                 result = collection.Insert<Users>(newUser);
+                
             }
 
         
