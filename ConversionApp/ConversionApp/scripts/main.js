@@ -4,13 +4,14 @@ $(document).ready(function () {
 
     $('div[data-role="header"]').append(
         '<div data-role="navbar"><ul>' +
+        '<img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />' +
         '<li><a data-role="button" href="#home-page">Home</a></li>' +
-        '<li><a data-role="button" href="#login-page">Log in</a></li>' +
-        '<li><a data-role="button" href="#signup-page">Sign up</a></li>' +
+        '<li class="rm"><a data-role="button" id="btnLogin" href="#login-page">Log in</a></li>' +
+        '<li class="rm"><a data-role="button" id="btnSignup" href="#signup-page">Sign up</a></li>' +
         '<li><a data-role="button" href="#convert-page">Convert</a></li>' +
         '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
         '<li><a data-role="button" href="#favorites-page">Favorites</a></li>' +
-        '</ul><img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" /></div>'
+        '</ul></div>'
         );
 
 });
@@ -22,9 +23,20 @@ $(document).on('pagebeforeshow ', '#home-page', function () {
     $('#home-page [data-role=content]').append('<p><strong>heya</strong></p>');
 });
 
-
 //login
 $(document).on('pagebeforeshow ', '#login-page', function () {
+
+    $("#usernameInput").keydown(function (e) {
+        if (e.which === 13) {
+            $("#loginBtn").click();
+        }
+    });
+
+    $("#passwordInput").keydown(function (e) {
+        if (e.which === 13) {
+            $("#loginBtn").click();
+        }
+    });
 
     $('#login-page p').append('');
 });
@@ -110,8 +122,11 @@ function Login() {
                 window.location = '#home-page';
                 $('#home-page p').text(msg);
 
-                $('div[data-role="header"]').append(
-                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>'
+                $('.rm').remove();
+                $('#btnSignup').remove();
+                $('#btnLogin').remove();
+                $('ul').append(
+                    '<li><a data-role="button" id="btnLogout" href="#logout" onclick="logout()">Logout</a></li>'
                 );
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -123,6 +138,7 @@ function Login() {
 
 // log out
 function logout(req, res) {
+    
     window.location.reload();
 }
 
