@@ -95,7 +95,6 @@ function addUsers() {
           alert("This username is already taken. Try a different one");
         }
 
-
     });
     $('#username').val('');
     $('#password').val('');
@@ -138,7 +137,6 @@ function Login() {
 
 // log out
 function logout(req, res) {
-    
     window.location.reload();
 }
 

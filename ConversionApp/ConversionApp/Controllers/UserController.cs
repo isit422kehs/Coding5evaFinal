@@ -44,10 +44,7 @@ namespace ConversionApp.Controllers
                     .Set("Email", newUser.Email);
                 result = collection.Insert<Users>(newUser);
                 
-            }
-
-        
-                                   
+            }                    
          }
 
     }
