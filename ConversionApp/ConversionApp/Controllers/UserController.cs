@@ -28,7 +28,6 @@ namespace ConversionApp.Controllers
 
             if (count > 0)
             {
-
                 //throw new Exception(String.Format("That username is already taken. Try a different one"));
                 HttpResponseMessage httpResponse = new HttpResponseMessage(HttpStatusCode.BadRequest);
                 throw new HttpResponseException(httpResponse);
