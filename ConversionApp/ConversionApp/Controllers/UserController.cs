@@ -19,7 +19,7 @@ namespace ConversionApp.Controllers
         MongoDatabase mongoDb = MongoConnect.GetMongoDb();
 
         [HttpPost]
-        public void AddUsers(Users newUser)
+        public void SignUp(Users newUser)
         {
             var collection = mongoDb.GetCollection<Users>("Users");
             WriteConcernResult result;

@@ -73,7 +73,7 @@ $(document).on('pagebeforeshow ', '#favorites-page', function () {
 });
 
 //add users
-function addUsers() {
+function signUp() {
 
     var username = $('#username').val();
     var password = $('#password').val();
@@ -88,10 +88,10 @@ function addUsers() {
             "Email": email
         },
         success: function () {
-            $('#addUsers').text('Successfully added new user ' + username);
+            $('#signUp').text('Successfully added new user ' + username);
         },
         error: function (status) {
-            $('#addUsers').text(status);
+            $('#signUp').text(status);
           alert("This username is already taken. Try a different one");
         }
 
