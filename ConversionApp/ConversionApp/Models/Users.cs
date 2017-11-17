@@ -18,5 +18,9 @@ namespace ConversionApp.Models
         public string Password { get; set; }
 
         public string Email { get; set; }
+
+        public List<List<string>> Favorites { get; set; }
+
+        public List<List<string>> Recents { get; set; }
     }
 }
