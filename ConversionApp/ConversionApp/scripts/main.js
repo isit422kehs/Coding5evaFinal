@@ -51,11 +51,22 @@ $(document).on('pagebeforeshow ', '#signup-page', function () {
 $(document).on('pagebeforeshow ', '#convert-page', function () {
 
     $('#convert-page form').hide();
+    $('#a').hide();
     $('#convSelector').change(function () {
         let val = $(this).val();
         $('#weight').hide();
         $('#length').hide();
         $('#currency').hide();
+        $('#volume').hide();
+        $('#volume-dry').hide();
+        $('#temperature').hide();
+        $('#area').hide();
+        $('#pressure').hide();
+        $('#energy').hide();
+        $('#power').hide();
+        $('#force').hide();
+        $('#time').hide();
+        $('#velocity').hide();
         $('#' + val).show();
     });
 });
