@@ -67,6 +67,18 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
         $('#force').hide();
         $('#time').hide();
         $('#velocity').hide();
+
+        $('#heat-transfer-coefficient').hide();
+        $('#flow').hide();
+        $('#flow-mass').hide();
+        $('#flow-molar').hide();
+        $('#surface-tension').hide();
+        $('#permeability').hide();
+        $('#sound').hide();
+        $('#digital-image-resolution').hide();
+        $('#charge').hide();
+        $('#current').hide();
+
         $('#' + val).show();
     });
 });
