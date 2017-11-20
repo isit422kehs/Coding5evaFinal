@@ -18,9 +18,8 @@ $(document).ready(function () {
 
 var url='api/user';
 //home
-$(document).on('pagebeforeshow ', '#home-page', function () {  
-    getCountry();
-    $('#home-page [data-role=content]').append('<p><strong>heya</strong></p>');
+$(document).on('pagebeforeshow ', '#home-page', function () {
+    getDetails();
 });
 
 //login
@@ -152,7 +151,7 @@ function Login() {
                 );
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $('#pLogin').text((jqXHR.responseText));
+                $('#pLogin').text(jqXHR.responseText);
             }
         });
     }
@@ -171,15 +170,64 @@ function dark() {
     $('.light').addClass('dark').removeClass('light');
 }
 
+function getDetails() {
+    const country = getCountry();
+
+    $.ajax({
+        url: 'api/details',
+        async: false,
+        type: 'POST',
+        data: {
+            'Name': country
+        },
+        success: function (result) {
+            const voltsArr = result.Volts.split(',');
+            const plugsArr = result.PlugType.toUpperCase().split(',');
+
+            let volts = processVolts(voltsArr);
+            let plugs = processPlugs(plugsArr);
+
+            $('#mongoDetails').html('Your Volt(s) are : ' + volts +
+                '<br />Here are your Plug(s) :<br/ >' + plugs);
+        },
+        error: function (status) {
+            $('#mongoDetails').html('Unable to Retrieve Data');
+        }
+    });
+}
+
+function processPlugs(plugsArr) {
+    let returnString = '';
+
+    $.each(plugsArr, function (index, val) {
+        val = val.trim();
+        returnString += 'Type : ' + val + '<br /><img src="images/plugs/' + val + '.jpg" /><br />';
+    });
+
+    return returnString;
+}
+
+function processVolts(voltsArr) {
+    let returnString = '';
+
+    $.each(voltsArr, function (index, val) {
+        const reg = new RegExp(/vV/, 'g');
+        val = val.trim().replace(reg, '');
+        returnString += val + 'V ';
+    });
+
+    return returnString;
+}
+
 function getCountry() {
     let ip;
+    let countryName;
     $.ajax({
         url: 'http://www.stupidwebtools.com/api/my_ip.json',
         dataType: 'json',
         async: false,
         success: function (result) {
             ip = result.my_ip.ip;
-
         }
     });
 
@@ -188,8 +236,17 @@ function getCountry() {
         dataType: 'json',
         async: false,
         success: function (result) {
-            $('#country').text('I see you in ' + result.country.name);
-
+            $('#apiDetails').html('I see you in ' + result.country.name +
+                '<br /> Continent Name : ' + result.continent.name +
+                '<br /> Currency Symbol : ' + result.currency.symbol +
+                '<br /> Currency Name : ' + result.currency.name +
+                '<br /> Currency Code : ' + result.currency.code +
+                '<br /> Language Name : ' + result.language.name +
+                '<br /> Timezone Name : ' + result.timezone.name +
+                '<br /> Timezone Code : ' + result.timezone.code);
+            countryName = result.country.name;
         }
     });
+
+    return countryName;
 }
