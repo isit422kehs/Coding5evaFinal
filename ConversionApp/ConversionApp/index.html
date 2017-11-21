@@ -70,7 +70,7 @@
             <p>convert stuffs</p>
 
             <div>
-                <select id="convSelector" name=left size=1 style="font-family:Tahoma;font-size:100%" onchange="getChoice(this);">
+                <select id="convSelector" name="select" size=1 style="font-family:Tahoma;font-size:100%">
                     <option value="" selected>Please select:</option>
                     <option value="weight">Weight</option>
                     <option value="length">Length</option>
@@ -433,7 +433,8 @@
                 </form>
                 <!-- CURRENT CONVERTER END -->
 
-
+                <button id="addFav" onclick="Favorite()">Favorite this</button>
+                <p id="pConv"></p>
 
             </div><!-- end div w/id of converterForm-->
         </div>

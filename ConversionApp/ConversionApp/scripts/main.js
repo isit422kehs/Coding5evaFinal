@@ -4,6 +4,7 @@ $(document).ready(function () {
 
     $('div[data-role="header"]').append(
         '<div data-role="navbar"><ul>' +
+        '<p id="logged"></p></br>' +
         '<img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />' +
         '<li><a data-role="button" href="#home-page">Home</a></li>' +
         '<li class="rm"><a data-role="button" id="btnLogin" href="#login-page">Log in</a></li>' +
@@ -24,6 +25,8 @@ $(document).on('pagebeforeshow ', '#home-page', function () {
 
 //login
 $(document).on('pagebeforeshow ', '#login-page', function () {
+
+    $('#pLogin').text('');
 
     $("#usernameInput").keydown(function (e) {
         if (e.which === 13) {
@@ -48,6 +51,9 @@ $(document).on('pagebeforeshow ', '#signup-page', function () {
 
 //convert
 $(document).on('pagebeforeshow ', '#convert-page', function () {
+
+    $('#pConv').text('');
+    $("#convSelector").val('').trigger('change');
 
     $('#convert-page form').hide();
     $('#a').hide();
@@ -124,6 +130,7 @@ function signUp() {
 
 }
 
+var loggedUser;
 // log in
 function Login() {
 
@@ -139,6 +146,7 @@ function Login() {
                 'Password': pw
             },
             success: function (data) {
+                loggedUser = data.UserName;
                 var msg = 'Hello ' + data.UserName + '! Your email is ' + data.Email + '.';
                 window.location = '#home-page';
                 $('#home-page p').text(msg);
@@ -154,7 +162,46 @@ function Login() {
                 $('#pLogin').text(jqXHR.responseText);
             }
         });
+    } else {
+        $('#pLogin').text('Please enter a valid login input.');
     }
+}
+
+function Favorite() {
+
+    var username = loggedUser;
+    var select = $("#convSelector").val();
+    var left = $('select[name="left"]').val();
+    var right = $('select[name="right"]').val();
+    var favs = [{ "From": left, "To": right }];
+
+    //if (username == undefined) {
+    //    $('#pConv').text('This feature is available after logging in.');
+    //} else if (select == '') {
+    //    $('#pConv').text('Please select a category.');
+    //} else if (left == right) {
+    //    $('#pConv').text('Please select two different units.');
+    //} else {
+    $.ajax({
+        type: "POST",
+        url: 'api/favorites',
+        traditional: true,
+        data: {
+            "UserName": username,
+            "Favorites": JSON.stringify(favs)
+        },
+        datatype: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+            $('#convert-page p').text('Successfully added new favorite conversion: ' + left + ' to ' + right);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#convert-page p').text(jqXHR.responseText);
+        }
+
+    });
+    //$('#pConv').text('favorite this hi');
+    //}
 }
 
 // log out

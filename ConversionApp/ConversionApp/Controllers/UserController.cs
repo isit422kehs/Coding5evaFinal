@@ -33,14 +33,15 @@ namespace ConversionApp.Controllers
                 throw new HttpResponseException(httpResponse);
             }
             else
-
             {
                 newUser.Id = ObjectId.GenerateNewId().ToString();
-                newUser.Favorites = new List<List<string>>() { new List<string>() { "From:", "To:" } };
+                newUser.FavOptions = new List<Favorites>() { new Favorites { From = "", To = "" } };
+                //newUser.Favorites = new List<List<string>>() { new List<string>() { "From", "To" } };
                 newUser.Recents = new List<List<string>>() { new List<string>() { "From:", "To:" } };
 
-                BsonArray favs = new BsonArray(newUser.Favorites);
-                BsonArray recent = new BsonArray(newUser.Favorites);
+                //BsonArray favs = new BsonArray(newUser.Favorites);
+                BsonArray favs = new BsonArray(newUser.FavOptions);
+                BsonArray recent = new BsonArray(newUser.Recents);
 
                 IMongoUpdate update = Update
                     .Set("UserName", newUser.UserName)
@@ -49,10 +50,7 @@ namespace ConversionApp.Controllers
                     .Set("Favorites", favs)
                     .Set("Recents", recent);
                 result = collection.Insert<Users>(newUser);
-
-
             }
         }
-
     }
 }

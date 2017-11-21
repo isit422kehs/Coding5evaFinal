@@ -19,8 +19,17 @@ namespace ConversionApp.Models
 
         public string Email { get; set; }
 
-        public List<List<string>> Favorites { get; set; }
+        public List<Favorites> FavOptions { get; set; }
+
+        //public List<List<string>> Favorites { get; set; }
 
         public List<List<string>> Recents { get; set; }
+    }
+
+    public class Favorites
+    {
+        [BsonId]
+        public string From { get; set; }
+        public string To { get; set; }
     }
 }
