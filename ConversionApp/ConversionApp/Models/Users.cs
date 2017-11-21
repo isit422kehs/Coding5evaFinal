@@ -18,12 +18,8 @@ namespace ConversionApp.Models
         public string Password { get; set; }
 
         public string Email { get; set; }
-
-        public List<Favorites> FavOptions { get; set; }
-
-        //public List<List<string>> Favorites { get; set; }
-
-        public List<List<string>> Recents { get; set; }
+        public BsonArray Recents { get; set; }
+        public BsonArray Favorites { get; set; }
     }
 
     public class Favorites
@@ -31,5 +27,15 @@ namespace ConversionApp.Models
         [BsonId]
         public string From { get; set; }
         public string To { get; set; }
+        public string user { get; set; }
+
+    }
+
+    public class Recents
+    {
+        [BsonId]
+        public string From { get; set; }
+        public string To { get; set; }
+        public string user { get; set; }
     }
 }

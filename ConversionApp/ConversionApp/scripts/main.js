@@ -1,10 +1,14 @@
 ﻿
 //adds the menu
 $(document).ready(function () {
+    var cookie = document.cookie;
+    var userIdIndex = cookie.indexOf("userId=");
+    var userName = cookie.substring(5, cookie.indexOf("; "));
+    var userId = cookie.substring(userIdIndex + 7);
 
     $('div[data-role="header"]').append(
+        '<h1>User ' + userName + ' signed in</h1>' +
         '<div data-role="navbar"><ul>' +
-        '<p id="logged"></p></br>' +
         '<img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />' +
         '<li><a data-role="button" href="#home-page">Home</a></li>' +
         '<li class="rm"><a data-role="button" id="btnLogin" href="#login-page">Log in</a></li>' +
@@ -14,10 +18,8 @@ $(document).ready(function () {
         '<li><a data-role="button" href="#favorites-page">Favorites</a></li>' +
         '</ul></div>'
         );
-
 });
 
-var url='api/user';
 //home
 $(document).on('pagebeforeshow ', '#home-page', function () {
     getDetails();
@@ -83,7 +85,16 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
         $('#digital-image-resolution').hide();
         $('#charge').hide();
         $('#current').hide();
-
+        $('#acceleration').hide();
+        $('#angle').hide();
+        $('#dataStorage').hide();
+        $('#density').hide();
+        $('#fuelConsumption').hide();
+        $('#heatDensity').hide();
+        $('#momentOfForce').hide();
+        $('#momentOfInertia').hide();
+        $('#numbers').hide();
+        $('#torque').hide();
         $('#' + val).show();
     });
 });
@@ -109,7 +120,7 @@ function signUp() {
     
     $.ajax({
         type: "POST",
-        url: url,
+        url: 'api/user',
         data: {
             "UserName": username,
             "Password": password,
@@ -146,7 +157,6 @@ function Login() {
                 'Password': pw
             },
             success: function (data) {
-                loggedUser = data.UserName;
                 var msg = 'Hello ' + data.UserName + '! Your email is ' + data.Email + '.';
                 window.location = '#home-page';
                 $('#home-page p').text(msg);
@@ -157,13 +167,16 @@ function Login() {
                 $('ul').append(
                     '<li><a data-role="button" id="btnLogout" href="#logout" onclick="logout()">Logout</a></li>'
                 );
+
+                document.cookie = "user=" + data.UserName;
+                document.cookie = "userId=" + data.Id;
+                window.location.reload();
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $('#pLogin').text(jqXHR.responseText);
+                $('#pLogin').text((jqXHR.responseText));
             }
+
         });
-    } else {
-        $('#pLogin').text('Please enter a valid login input.');
     }
 }
 
@@ -206,6 +219,10 @@ function Favorite() {
 
 // log out
 function logout(req, res) {
+    // Clear cookies
+    document.cookie = 'user=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'userId=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
     window.location.reload();
 }
 
@@ -297,3 +314,49 @@ function getCountry() {
 
     return countryName;
 }
+function getForm() {
+
+}
+function recents() {
+    var cookie = document.cookie;
+    var userIdIndex = cookie.indexOf("userId=");
+    var userId = cookie.substring(userIdIndex + 7);
+
+    /* a = document.body.appendChild(
+       document.createElement("a"));*/
+    if (document.cookie.indexOf('userId') > -1) {
+        //a.recents = "index.html";
+        //a.href = "data:text/html," + document.getElementById("content").innerHTML;
+        //a.click();
+        /*$('<a />').attr({
+            recents: '#recents-page',
+            href: "data:text/html," + $('#content').html()
+        })[0].click()*/
+        let form = getForm();
+
+        var left = $('#' + form + ' select[name="left"]').find(':selected').val();
+        var right = $('#' + form + ' select[name="right"]').find(':selected').val();
+        $.ajax({
+            type: "POST",
+            url: 'api/recents',
+            traditional: true,
+            data: {
+                "From": left,
+                "To": right,
+                "user": username
+            },
+            success: function (data) {
+                $('#convert-page p').text('Successfully added recent conversion: ' + left + ' to ' + right);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#convert-page p').text(jqXHR.responseText);
+            }
+
+        });
+    }
+    else {
+        window.alert("Please log in if you want to save to recents.");
+    }
+
+}
+

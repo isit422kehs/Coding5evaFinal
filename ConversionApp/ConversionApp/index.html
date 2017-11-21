@@ -96,7 +96,16 @@
                     <option value="digital-image-resolution">Digital Image Resolution</option>
                     <option value="charge">Charge</option>
                     <option value="current">Current</option>
-
+                    <option value="acceleration">Acceleration</option>
+                    <option value="angle">Angle</option>
+                    <option value="dataStorage">Data Storage</option>
+                    <option value="density">Density</option>
+                    <option value="fuelConsumption">Fuel Consumption</option>
+                    <option value="heatDensity">Heat Density</option>
+                    <option value="momentOfForce">Moment of Force</option>
+                    <option value="momentOfInertia">Moment of Inertia</option>
+                    <option value="numbers">Numbers</option>
+                    <option value="torque">Torque</option>
                 </select>
             </div>
 
@@ -431,12 +440,673 @@
                         </tr>
                     </table>
                 </form>
-                <!-- CURRENT CONVERTER END -->
 
-                <button id="addFav" onclick="Favorite()">Favorite this</button>
-                <p id="pConv"></p>
+                <form style="padding:0;margin:0" name="cat=Acceleration" id="acceleration">
+                    <table align="center" style="width:0;font-family:Tahoma;font-size:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=left;base=1"></td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=right"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="left" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="decimeter/square second" selected>decimeter/square second</option>
+                                    <option value="meter/square second">meter/square second</option>
+                                    <option value="kilometer/square second">kilometer/square second</option>
+                                    <option value="hectometer/square second">hectometer/square second</option>
+                                    <option value="dekameter/square second">dekameter/square second</option>
+                                    <option value="centimeter/square second">centimeter/square second</option>
+                                    <option value="millimeter/square second">millimeter/square second</option>
+                                    <option value="micrometer/square second">micrometer/square second</option>
+                                    <option value="nanometer/square second">nanometer/square second</option>
+                                    <option value="picometer/square second">picometer/square second</option>
+                                    <option value="femtometer/square second">femtometer/square second</option>
+                                    <option value="attometer/square second">attometer/square second</option>
+                                    <option value="gal">gal [Gal]</option>
+                                    <option value="galileo">galileo [Gal]</option>
+                                    <option value="mile/square second">mile/square second [mi/s^2]</option>
+                                    <option value="yard/square second">yard/square second [yd/s^2]</option>
+                                    <option value="foot/square second">foot/square second [ft/s^2]</option>
+                                    <option value="inch/square second">inch/square second [in/s^2]</option>
+                                    <option value="Acceleration of gravity">Acceleration of gravity [g]</option>
+                                </select>
+                            </td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="right" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="decimeter/square second" selected>decimeter/square second</option>
+                                    <option value="meter/square second">meter/square second</option>
+                                    <option value="kilometer/square second">kilometer/square second</option>
+                                    <option value="hectometer/square second">hectometer/square second</option>
+                                    <option value="dekameter/square second">dekameter/square second</option>
+                                    <option value="centimeter/square second">centimeter/square second</option>
+                                    <option value="millimeter/square second">millimeter/square second</option>
+                                    <option value="micrometer/square second">micrometer/square second</option>
+                                    <option value="nanometer/square second">nanometer/square second</option>
+                                    <option value="picometer/square second">picometer/square second</option>
+                                    <option value="femtometer/square second">femtometer/square second</option>
+                                    <option value="attometer/square second">attometer/square second</option>
+                                    <option value="gal">gal [Gal]</option>
+                                    <option value="galileo">galileo [Gal]</option>
+                                    <option value="mile/square second">mile/square second [mi/s^2]</option>
+                                    <option value="yard/square second">yard/square second [yd/s^2]</option>
+                                    <option value="foot/square second">foot/square second [ft/s^2]</option>
+                                    <option value="inch/square second">inch/square second [in/s^2]</option>
+                                    <option value="Acceleration of gravity">Acceleration of gravity [g]</option>
+                                </select>
+                            </td>
+                            </tr>
+                    </table>
+                </form>
+                <form style="padding:0;margin:0" name="cat=Angle" id="angle">
+                    <table align="center" style="width:0;font-family:Tahoma;font-size:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=left;base=1"></td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=right"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="left" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="degree" selected>degree [&#176;]</option>
+                                    <option value="radian">radian [rad]</option>
+                                    <option value="grad">grad [^g]</option>
+                                    <option value="gon">gon</option>
+                                    <option value="minute">minute [']</option>
+                                    <option value="second">second [&#34;]</option>
+                                    <option value="sign">sign</option>
+                                    <option value="mil">mil</option>
+                                    <option value="revolution">revolution [r]</option>
+                                    <option value="circle">circle</option>
+                                    <option value="turn">turn</option>
+                                    <option value="quadrant">quadrant</option>
+                                    <option value="right angle">right angle</option>
+                                    <option value="sextant">sextant</option>
+                                </select>
+                            </td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="right" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="degree" selected>degree [&#176;]</option>
+                                    <option value="radian">radian [rad]</option>
+                                    <option value="grad">grad [^g]</option>
+                                    <option value="gon">gon</option>
+                                    <option value="minute">minute [']</option>
+                                    <option value="second">second [&#34;]</option>
+                                    <option value="sign">sign</option>
+                                    <option value="mil">mil</option>
+                                    <option value="revolution">revolution [r]</option>
+                                    <option value="circle">circle</option>
+                                    <option value="turn">turn</option>
+                                    <option value="quadrant">quadrant</option>
+                                    <option value="right angle">right angle</option>
+                                    <option value="sextant">sextant</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form style="padding:0;margin:0" name="cat=Data_Storage" id="dataStorage">
+                    <table align="center" style="width:0;font-family:Tahoma;font-size:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=left;base=1"></td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=right"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="left" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="bit" selected>bit [b]</option>
+                                    <option value="nibble">nibble</option>
+                                    <option value="byte">byte [B]</option>
+                                    <option value="character">character</option>
+                                    <option value="word">word</option>
+                                    <option value="MAPM-word">MAPM-word</option>
+                                    <option value="quadruple-word">quadruple-word</option>
+                                    <option value="block">block</option>
+                                    <option value="kilobit">kilobit [kb]</option>
+                                    <option value="kilobyte">kilobyte [kB]</option>
+                                    <option value="kilobyte (10^3 bytes)">kilobyte (10^3 bytes)</option>
+                                    <option value="megabit">megabit [Mb]</option>
+                                    <option value="megabyte">megabyte [MB]</option>
+                                    <option value="megabyte (10^6 bytes)">megabyte (10^6 bytes)</option>
+                                    <option value="gigabit">gigabit [Gb]</option>
+                                    <option value="gigabyte">gigabyte [GB]</option>
+                                    <option value="gigabyte (10^9 bytes)">gigabyte (10^9 bytes)</option>
+                                    <option value="terabit">terabit [Tb]</option>
+                                    <option value="terabyte">terabyte [TB]</option>
+                                    <option value="terabyte (10^12 bytes)">terabyte (10^12 bytes)</option>
+                                    <option value="petabit">petabit [Pb]</option>
+                                    <option value="petabyte">petabyte [PB]</option>
+                                    <option value="petabyte (10^15 bytes)">petabyte (10^15 bytes)</option>
+                                    <option value="exabit">exabit [Eb]</option>
+                                    <option value="exabyte">exabyte [EB]</option>
+                                    <option value="exabyte (10^18 bytes)">exabyte (10^18 bytes)</option>
+                                    <option value="floppy disk (3.5%22, DD)">floppy disk (3.5&#34;, DD)</option>
+                                    <option value="floppy disk (3.5%22, HD)">floppy disk (3.5&#34;, HD)</option>
+                                    <option value="floppy disk (3.5%22, ED)">floppy disk (3.5&#34;, ED)</option>
+                                    <option value="floppy disk (5.25%22, DD)">floppy disk (5.25&#34;, DD)</option>
+                                    <option value="floppy disk (5.25%22, HD)">floppy disk (5.25&#34;, HD)</option>
+                                    <option value="Zip 100">Zip 100</option>
+                                    <option value="Zip 250">Zip 250</option>
+                                    <option value="Jaz 1GB">Jaz 1GB</option>
+                                    <option value="Jaz 2GB">Jaz 2GB</option>
+                                    <option value="CD (74 minute)">CD (74 minute)</option>
+                                    <option value="CD (80 minute)">CD (80 minute)</option>
+                                    <option value="DVD (1 layer, 1 side)">DVD (1 layer, 1 side)</option>
+                                    <option value="DVD (2 layer, 1 side)">DVD (2 layer, 1 side)</option>
+                                    <option value="DVD (1 layer, 2 side)">DVD (1 layer, 2 side)</option>
+                                    <option value="DVD (2 layer, 2 side)">DVD (2 layer, 2 side)</option>
+                                </select>
+                            </td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="right" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="bit" selected>bit [b]</option>
+                                    <option value="nibble">nibble</option>
+                                    <option value="byte">byte [B]</option>
+                                    <option value="character">character</option>
+                                    <option value="word">word</option>
+                                    <option value="MAPM-word">MAPM-word</option>
+                                    <option value="quadruple-word">quadruple-word</option>
+                                    <option value="block">block</option>
+                                    <option value="kilobit">kilobit [kb]</option>
+                                    <option value="kilobyte">kilobyte [kB]</option>
+                                    <option value="kilobyte (10^3 bytes)">kilobyte (10^3 bytes)</option>
+                                    <option value="megabit">megabit [Mb]</option>
+                                    <option value="megabyte">megabyte [MB]</option>
+                                    <option value="megabyte (10^6 bytes)">megabyte (10^6 bytes)</option>
+                                    <option value="gigabit">gigabit [Gb]</option>
+                                    <option value="gigabyte">gigabyte [GB]</option>
+                                    <option value="gigabyte (10^9 bytes)">gigabyte (10^9 bytes)</option>
+                                    <option value="terabit">terabit [Tb]</option>
+                                    <option value="terabyte">terabyte [TB]</option>
+                                    <option value="terabyte (10^12 bytes)">terabyte (10^12 bytes)</option>
+                                    <option value="petabit">petabit [Pb]</option>
+                                    <option value="petabyte">petabyte [PB]</option>
+                                    <option value="petabyte (10^15 bytes)">petabyte (10^15 bytes)</option>
+                                    <option value="exabit">exabit [Eb]</option>
+                                    <option value="exabyte">exabyte [EB]</option>
+                                    <option value="exabyte (10^18 bytes)">exabyte (10^18 bytes)</option>
+                                    <option value="floppy disk (3.5%22, DD)">floppy disk (3.5&#34;, DD)</option>
+                                    <option value="floppy disk (3.5%22, HD)">floppy disk (3.5&#34;, HD)</option>
+                                    <option value="floppy disk (3.5%22, ED)">floppy disk (3.5&#34;, ED)</option>
+                                    <option value="floppy disk (5.25%22, DD)">floppy disk (5.25&#34;, DD)</option>
+                                    <option value="floppy disk (5.25%22, HD)">floppy disk (5.25&#34;, HD)</option>
+                                    <option value="Zip 100">Zip 100</option>
+                                    <option value="Zip 250">Zip 250</option>
+                                    <option value="Jaz 1GB">Jaz 1GB</option>
+                                    <option value="Jaz 2GB">Jaz 2GB</option>
+                                    <option value="CD (74 minute)">CD (74 minute)</option>
+                                    <option value="CD (80 minute)">CD (80 minute)</option>
+                                    <option value="DVD (1 layer, 1 side)">DVD (1 layer, 1 side)</option>
+                                    <option value="DVD (2 layer, 1 side)">DVD (2 layer, 1 side)</option>
+                                    <option value="DVD (1 layer, 2 side)">DVD (1 layer, 2 side)</option>
+                                    <option value="DVD (2 layer, 2 side)">DVD (2 layer, 2 side)</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form style="padding:0;margin:0" name="cat=Density" id="density">
+                    <table align="center" style="width:0;font-family:Tahoma;font-size:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=left;base=1"></td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=right"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="left" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="kilogram/cubic meter" selected>kilogram/cubic meter</option>
+                                    <option value="kilogram/cubic centimeter">kilogram/cubic centimeter</option>
+                                    <option value="gram/cubic meter">gram/cubic meter [g/m^3]</option>
+                                    <option value="gram/cubic centimeter">gram/cubic centimeter</option>
+                                    <option value="gram/cubic millimeter">gram/cubic millimeter</option>
+                                    <option value="milligram/cubic meter">milligram/cubic meter</option>
+                                    <option value="milligram/cubic centimeter">milligram/cubic centimeter</option>
+                                    <option value="milligram/cubic millimeter">milligram/cubic millimeter</option>
+                                    <option value="exagram/liter">exagram/liter [Eg/L]</option>
+                                    <option value="petagram/liter">petagram/liter [Pg/L]</option>
+                                    <option value="teragram/liter">teragram/liter [Tg/L]</option>
+                                    <option value="gigagram/liter">gigagram/liter [Gg/L]</option>
+                                    <option value="megagram/liter">megagram/liter [Mg/L]</option>
+                                    <option value="kilogram/liter">kilogram/liter [kg/L]</option>
+                                    <option value="hectogram/liter">hectogram/liter [hg/L]</option>
+                                    <option value="dekagram/liter">dekagram/liter [dag/L]</option>
+                                    <option value="gram/liter">gram/liter [g/L]</option>
+                                    <option value="decigram/liter">decigram/liter [dg/L]</option>
+                                    <option value="centigram/liter">centigram/liter [cg/L]</option>
+                                    <option value="milligram/liter">milligram/liter [mg/L]</option>
+                                    <option value="microgram/liter">microgram/liter [&#181;g/L]</option>
+                                    <option value="nanogram/liter">nanogram/liter [ng/L]</option>
+                                    <option value="picogram/liter">picogram/liter [pg/L]</option>
+                                    <option value="femtogram/liter">femtogram/liter [fg/L]</option>
+                                    <option value="attogram/liter">attogram/liter [ag/L]</option>
+                                    <option value="pound/cubic inch">pound/cubic inch [lb/in^3]</option>
+                                    <option value="pound/cubic foot">pound/cubic foot [lb/ft^3]</option>
+                                    <option value="pound/cubic yard">pound/cubic yard [lb/yd^3]</option>
+                                    <option value="pound/gallon (US)">pound/gallon (US)</option>
+                                    <option value="pound/gallon (UK)">pound/gallon (UK)</option>
+                                    <option value="ounce/cubic inch">ounce/cubic inch [oz/in^3]</option>
+                                    <option value="ounce/cubic foot">ounce/cubic foot [oz/ft^3]</option>
+                                    <option value="ounce/gallon (US)">ounce/gallon (US)</option>
+                                    <option value="ounce/gallon (UK)">ounce/gallon (UK)</option>
+                                    <option value="grain/gallon (US)">grain/gallon (US)</option>
+                                    <option value="grain/gallon (UK)">grain/gallon (UK)</option>
+                                    <option value="grain/cubic foot">grain/cubic foot [gr/ft^3]</option>
+                                    <option value="ton (short)/cubic yard">ton (short)/cubic yard</option>
+                                    <option value="ton (long)/cubic yard">ton (long)/cubic yard</option>
+                                    <option value="slug/cubic foot">slug/cubic foot [slug/ft^3]</option>
+                                    <option value="psi/1000 feet">psi/1000 feet</option>
+                                    <option value="Earth's density (mean)">Earth's density (mean)</option>
+                                </select>
 
-            </div><!-- end div w/id of converterForm-->
+                            </td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="right" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="kilogram/cubic meter" selected>kilogram/cubic meter</option>
+                                    <option value="kilogram/cubic centimeter">kilogram/cubic centimeter</option>
+                                    <option value="gram/cubic meter">gram/cubic meter [g/m^3]</option>
+                                    <option value="gram/cubic centimeter">gram/cubic centimeter</option>
+                                    <option value="gram/cubic millimeter">gram/cubic millimeter</option>
+                                    <option value="milligram/cubic meter">milligram/cubic meter</option>
+                                    <option value="milligram/cubic centimeter">milligram/cubic centimeter</option>
+                                    <option value="milligram/cubic millimeter">milligram/cubic millimeter</option>
+                                    <option value="exagram/liter">exagram/liter [Eg/L]</option>
+                                    <option value="petagram/liter">petagram/liter [Pg/L]</option>
+                                    <option value="teragram/liter">teragram/liter [Tg/L]</option>
+                                    <option value="gigagram/liter">gigagram/liter [Gg/L]</option>
+                                    <option value="megagram/liter">megagram/liter [Mg/L]</option>
+                                    <option value="kilogram/liter">kilogram/liter [kg/L]</option>
+                                    <option value="hectogram/liter">hectogram/liter [hg/L]</option>
+                                    <option value="dekagram/liter">dekagram/liter [dag/L]</option>
+                                    <option value="gram/liter">gram/liter [g/L]</option>
+                                    <option value="decigram/liter">decigram/liter [dg/L]</option>
+                                    <option value="centigram/liter">centigram/liter [cg/L]</option>
+                                    <option value="milligram/liter">milligram/liter [mg/L]</option>
+                                    <option value="microgram/liter">microgram/liter [&#181;g/L]</option>
+                                    <option value="nanogram/liter">nanogram/liter [ng/L]</option>
+                                    <option value="picogram/liter">picogram/liter [pg/L]</option>
+                                    <option value="femtogram/liter">femtogram/liter [fg/L]</option>
+                                    <option value="attogram/liter">attogram/liter [ag/L]</option>
+                                    <option value="pound/cubic inch">pound/cubic inch [lb/in^3]</option>
+                                    <option value="pound/cubic foot">pound/cubic foot [lb/ft^3]</option>
+                                    <option value="pound/cubic yard">pound/cubic yard [lb/yd^3]</option>
+                                    <option value="pound/gallon (US)">pound/gallon (US)</option>
+                                    <option value="pound/gallon (UK)">pound/gallon (UK)</option>
+                                    <option value="ounce/cubic inch">ounce/cubic inch [oz/in^3]</option>
+                                    <option value="ounce/cubic foot">ounce/cubic foot [oz/ft^3]</option>
+                                    <option value="ounce/gallon (US)">ounce/gallon (US)</option>
+                                    <option value="ounce/gallon (UK)">ounce/gallon (UK)</option>
+                                    <option value="grain/gallon (US)">grain/gallon (US)</option>
+                                    <option value="grain/gallon (UK)">grain/gallon (UK)</option>
+                                    <option value="grain/cubic foot">grain/cubic foot [gr/ft^3]</option>
+                                    <option value="ton (short)/cubic yard">ton (short)/cubic yard</option>
+                                    <option value="ton (long)/cubic yard">ton (long)/cubic yard</option>
+                                    <option value="slug/cubic foot">slug/cubic foot [slug/ft^3]</option>
+                                    <option value="psi/1000 feet">psi/1000 feet</option>
+                                    <option value="Earth's density (mean)">Earth's density (mean)</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form style="padding:0;margin:0" name="cat=Fuel_Consumption" id="fuelConsumption">
+                    <table align="center" style="width:0;font-family:Tahoma;font-size:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=left;base=1"></td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=right"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="left" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="meter/liter" selected>meter/liter [m/L]</option>
+                                    <option value="exameter/liter">exameter/liter [Em/L]</option>
+                                    <option value="petameter/liter">petameter/liter [Pm/L]</option>
+                                    <option value="terameter/liter">terameter/liter [Tm/L]</option>
+                                    <option value="gigameter/liter">gigameter/liter [Gm/L]</option>
+                                    <option value="megameter/liter">megameter/liter [Mm/L]</option>
+                                    <option value="kilometer/liter">kilometer/liter [km/L]</option>
+                                    <option value="hectometer/liter">hectometer/liter [hm/L]</option>
+                                    <option value="dekameter/liter">dekameter/liter [dam/L]</option>
+                                    <option value="centimeter/liter">centimeter/liter [cm/L]</option>
+                                    <option value="mile (US)/liter">mile (US)/liter [mi/L]</option>
+                                    <option value="nautical mile/liter">nautical mile/liter [n.mile/L]</option>
+                                    <option value="nautical mile/gallon (US)">nautical mile/gallon (US)</option>
+                                    <option value="kilometer/gallon (US)">kilometer/gallon (US)</option>
+                                    <option value="meter/gallon (US)">meter/gallon (US)</option>
+                                    <option value="meter/gallon (UK)">meter/gallon (UK)</option>
+                                    <option value="mile/gallon (US)">mile/gallon (US)</option>
+                                    <option value="mile/gallon (UK)">mile/gallon (UK)</option>
+                                    <option value="meter/cubic meter">meter/cubic meter [m/m^3]</option>
+                                    <option value="meter/cubic centimeter">meter/cubic centimeter</option>
+                                    <option value="meter/cubic yard">meter/cubic yard [m/yd^3]</option>
+                                    <option value="meter/cubic foot">meter/cubic foot [m/ft^3]</option>
+                                    <option value="meter/cubic inch">meter/cubic inch [m/in^3]</option>
+                                    <option value="meter/quart (US)">meter/quart (US)</option>
+                                    <option value="meter/quart (UK)">meter/quart (UK)</option>
+                                    <option value="meter/pint (US)">meter/pint (US) [m/pt (US)]</option>
+                                    <option value="meter/pint (UK)">meter/pint (UK) [m/pt (UK)]</option>
+                                    <option value="meter/cup (US)">meter/cup (US) [m/cup (US)]</option>
+                                    <option value="meter/cup (UK)">meter/cup (UK) [m/cup (UK)]</option>
+                                    <option value="meter/fluid ounce (US)">meter/fluid ounce (US)</option>
+                                    <option value="meter/fluid ounce (UK)">meter/fluid ounce (UK)</option>
+                                    <option value="liter/meter">liter/meter [L/m]</option>
+                                    <option value="liter/100 km">liter/100 km [L/100 km]</option>
+                                    <option value="gallon (US)/mile">gallon (US)/mile</option>
+                                    <option value="gallon (US)/100 mi">gallon (US)/100 mi</option>
+                                    <option value="gallon (UK)/mile">gallon (UK)/mile</option>
+                                    <option value="gallon (UK)/100 mi">gallon (UK)/100 mi</option>
+                                </select>
+
+                            </td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="right" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="meter/liter" selected>meter/liter [m/L]</option>
+                                    <option value="exameter/liter">exameter/liter [Em/L]</option>
+                                    <option value="petameter/liter">petameter/liter [Pm/L]</option>
+                                    <option value="terameter/liter">terameter/liter [Tm/L]</option>
+                                    <option value="gigameter/liter">gigameter/liter [Gm/L]</option>
+                                    <option value="megameter/liter">megameter/liter [Mm/L]</option>
+                                    <option value="kilometer/liter">kilometer/liter [km/L]</option>
+                                    <option value="hectometer/liter">hectometer/liter [hm/L]</option>
+                                    <option value="dekameter/liter">dekameter/liter [dam/L]</option>
+                                    <option value="centimeter/liter">centimeter/liter [cm/L]</option>
+                                    <option value="mile (US)/liter">mile (US)/liter [mi/L]</option>
+                                    <option value="nautical mile/liter">nautical mile/liter [n.mile/L]</option>
+                                    <option value="nautical mile/gallon (US)">nautical mile/gallon (US)</option>
+                                    <option value="kilometer/gallon (US)">kilometer/gallon (US)</option>
+                                    <option value="meter/gallon (US)">meter/gallon (US)</option>
+                                    <option value="meter/gallon (UK)">meter/gallon (UK)</option>
+                                    <option value="mile/gallon (US)">mile/gallon (US)</option>
+                                    <option value="mile/gallon (UK)">mile/gallon (UK)</option>
+                                    <option value="meter/cubic meter">meter/cubic meter [m/m^3]</option>
+                                    <option value="meter/cubic centimeter">meter/cubic centimeter</option>
+                                    <option value="meter/cubic yard">meter/cubic yard [m/yd^3]</option>
+                                    <option value="meter/cubic foot">meter/cubic foot [m/ft^3]</option>
+                                    <option value="meter/cubic inch">meter/cubic inch [m/in^3]</option>
+                                    <option value="meter/quart (US)">meter/quart (US)</option>
+                                    <option value="meter/quart (UK)">meter/quart (UK)</option>
+                                    <option value="meter/pint (US)">meter/pint (US) [m/pt (US)]</option>
+                                    <option value="meter/pint (UK)">meter/pint (UK) [m/pt (UK)]</option>
+                                    <option value="meter/cup (US)">meter/cup (US) [m/cup (US)]</option>
+                                    <option value="meter/cup (UK)">meter/cup (UK) [m/cup (UK)]</option>
+                                    <option value="meter/fluid ounce (US)">meter/fluid ounce (US)</option>
+                                    <option value="meter/fluid ounce (UK)">meter/fluid ounce (UK)</option>
+                                    <option value="liter/meter">liter/meter [L/m]</option>
+                                    <option value="liter/100 km">liter/100 km [L/100 km]</option>
+                                    <option value="gallon (US)/mile">gallon (US)/mile</option>
+                                    <option value="gallon (US)/100 mi">gallon (US)/100 mi</option>
+                                    <option value="gallon (UK)/mile">gallon (UK)/mile</option>
+                                    <option value="gallon (UK)/100 mi">gallon (UK)/100 mi</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form style="padding:0;margin:0" name="cat=Heat_Density" id="heatDensity">
+                    <table align="center" style="width:0;font-family:Tahoma;font-size:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=left;base=1"></td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=right"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="left" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="joule/square meter" selected>joule/square meter [J/m^2]</option>
+                                    <option value="calorie (th)/square centimeter">calorie (th)/square centimeter</option>
+                                    <option value="langley">langley</option>
+                                    <option value="Btu (IT)/square foot">Btu (IT)/square foot</option>
+                                    <option value="Btu (th)/square foot">Btu (th)/square foot</option>
+                                </select>
+
+                            </td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="right" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="joule/square meter" selected>joule/square meter [J/m^2]</option>
+                                    <option value="calorie (th)/square centimeter">calorie (th)/square centimeter</option>
+                                    <option value="langley">langley</option>
+                                    <option value="Btu (IT)/square foot">Btu (IT)/square foot</option>
+                                    <option value="Btu (th)/square foot">Btu (th)/square foot</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form style="padding:0;margin:0" name="cat=Moment_of_Force" id="momentOfForce">
+                    <table align="center" style="width:0;font-family:Tahoma;font-size:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=left;base=1"></td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=right"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="left" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="newton meter" selected>newton meter [N*m]</option>
+                                    <option value="kilonewton meter">kilonewton meter [kN*m]</option>
+                                    <option value="millinewton meter">millinewton meter [mN*m]</option>
+                                    <option value="micronewton meter">micronewton meter [&#181;N*m]</option>
+                                    <option value="ton-force (short) meter">ton-force (short) meter</option>
+                                    <option value="ton-force (long) meter">ton-force (long) meter</option>
+                                    <option value="ton-force (metric) meter">ton-force (metric) meter</option>
+                                    <option value="kilogram-force meter">kilogram-force meter [kgf*m]</option>
+                                    <option value="gram-force centimeter">gram-force centimeter [gf*cm]</option>
+                                    <option value="pound-force foot">pound-force foot [lbf*ft]</option>
+                                    <option value="poundal foot">poundal foot [pdl*ft]</option>
+                                    <option value="poundal inch">poundal inch [pdl*in]</option>
+                                </select>
+                            </td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="right" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="newton meter" selected>newton meter [N*m]</option>
+                                    <option value="kilonewton meter">kilonewton meter [kN*m]</option>
+                                    <option value="millinewton meter">millinewton meter [mN*m]</option>
+                                    <option value="micronewton meter">micronewton meter [&#181;N*m]</option>
+                                    <option value="ton-force (short) meter">ton-force (short) meter</option>
+                                    <option value="ton-force (long) meter">ton-force (long) meter</option>
+                                    <option value="ton-force (metric) meter">ton-force (metric) meter</option>
+                                    <option value="kilogram-force meter">kilogram-force meter [kgf*m]</option>
+                                    <option value="gram-force centimeter">gram-force centimeter [gf*cm]</option>
+                                    <option value="pound-force foot">pound-force foot [lbf*ft]</option>
+                                    <option value="poundal foot">poundal foot [pdl*ft]</option>
+                                    <option value="poundal inch">poundal inch [pdl*in]</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form style="padding:0;margin:0" name="cat=Moment_of_Inertia" id="momentOfInertia">
+                    <table align="center" style="width:0;font-family:Tahoma;font-size:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=left;base=1"></td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=right"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="left" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="kilogram square meter" selected>kilogram square meter</option>
+                                    <option value="kilogram square centimeter">kilogram square centimeter</option>
+                                    <option value="kilogram square millimeter">kilogram square millimeter</option>
+                                    <option value="gram square centimeter">gram square centimeter</option>
+                                    <option value="gram square millimeter">gram square millimeter</option>
+                                    <option value="ounce square inch">ounce square inch [oz*in^2]</option>
+                                    <option value="ounce-force inch square second">ounce-force inch sq. second</option>
+                                    <option value="pound square foot">pound square foot [lb*ft^2]</option>
+                                    <option value="pound-force foot square second ">pound-force foot sq. second </option>
+                                    <option value="pound square inch">pound square inch [lb*in^2]</option>
+                                    <option value="pound-force inch square second">pound-force inch sq. second</option>
+                                    <option value="slug square foot">slug square foot [slug*ft^2]</option>
+                                </select>
+                            </td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="right" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="kilogram square meter" selected>kilogram square meter</option>
+                                    <option value="kilogram square centimeter">kilogram square centimeter</option>
+                                    <option value="kilogram square millimeter">kilogram square millimeter</option>
+                                    <option value="gram square centimeter">gram square centimeter</option>
+                                    <option value="gram square millimeter">gram square millimeter</option>
+                                    <option value="ounce square inch">ounce square inch [oz*in^2]</option>
+                                    <option value="ounce-force inch square second">ounce-force inch sq. second</option>
+                                    <option value="pound square foot">pound square foot [lb*ft^2]</option>
+                                    <option value="pound-force foot square second ">pound-force foot sq. second </option>
+                                    <option value="pound square inch">pound square inch [lb*in^2]</option>
+                                    <option value="pound-force inch square second">pound-force inch sq. second</option>
+                                    <option value="slug square foot">slug square foot [slug*ft^2]</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form style="padding:0;margin:0" name="cat=Numbers" id="numbers">
+                    <table align="center" style="width:0;font-family:Tahoma;font-size:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=left;base=1"></td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=right"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="left" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="binary" selected>binary</option>
+                                    <option value="octal">octal</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="hexadecimal">hexadecimal</option>
+                                    <option value="base-2">base-2</option>
+                                    <option value="base-3">base-3</option>
+                                    <option value="base-4">base-4</option>
+                                    <option value="base-5">base-5</option>
+                                    <option value="base-6">base-6</option>
+                                    <option value="base-7">base-7</option>
+                                    <option value="base-8">base-8</option>
+                                    <option value="base-9">base-9</option>
+                                    <option value="base-10">base-10</option>
+                                    <option value="base-11">base-11</option>
+                                    <option value="base-12">base-12</option>
+                                    <option value="base-13">base-13</option>
+                                    <option value="base-14">base-14</option>
+                                    <option value="base-15">base-15</option>
+                                    <option value="base-16">base-16</option>
+                                    <option value="base-17">base-17</option>
+                                    <option value="base-18">base-18</option>
+                                    <option value="base-19">base-19</option>
+                                    <option value="base-20">base-20</option>
+                                    <option value="base-21">base-21</option>
+                                    <option value="base-22">base-22</option>
+                                    <option value="base-23">base-23</option>
+                                    <option value="base-24">base-24</option>
+                                    <option value="base-25">base-25</option>
+                                    <option value="base-26">base-26</option>
+                                    <option value="base-27">base-27</option>
+                                    <option value="base-28">base-28</option>
+                                    <option value="base-29">base-29</option>
+                                    <option value="base-30">base-30</option>
+                                    <option value="base-31">base-31</option>
+                                    <option value="base-32">base-32</option>
+                                    <option value="base-33">base-33</option>
+                                    <option value="base-34">base-34</option>
+                                    <option value="base-35">base-35</option>
+                                    <option value="base-36">base-36</option>
+                                </select>
+                            </td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="right" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="binary" selected>binary</option>
+                                    <option value="octal">octal</option>
+                                    <option value="decimal">decimal</option>
+                                    <option value="hexadecimal">hexadecimal</option>
+                                    <option value="base-2">base-2</option>
+                                    <option value="base-3">base-3</option>
+                                    <option value="base-4">base-4</option>
+                                    <option value="base-5">base-5</option>
+                                    <option value="base-6">base-6</option>
+                                    <option value="base-7">base-7</option>
+                                    <option value="base-8">base-8</option>
+                                    <option value="base-9">base-9</option>
+                                    <option value="base-10">base-10</option>
+                                    <option value="base-11">base-11</option>
+                                    <option value="base-12">base-12</option>
+                                    <option value="base-13">base-13</option>
+                                    <option value="base-14">base-14</option>
+                                    <option value="base-15">base-15</option>
+                                    <option value="base-16">base-16</option>
+                                    <option value="base-17">base-17</option>
+                                    <option value="base-18">base-18</option>
+                                    <option value="base-19">base-19</option>
+                                    <option value="base-20">base-20</option>
+                                    <option value="base-21">base-21</option>
+                                    <option value="base-22">base-22</option>
+                                    <option value="base-23">base-23</option>
+                                    <option value="base-24">base-24</option>
+                                    <option value="base-25">base-25</option>
+                                    <option value="base-26">base-26</option>
+                                    <option value="base-27">base-27</option>
+                                    <option value="base-28">base-28</option>
+                                    <option value="base-29">base-29</option>
+                                    <option value="base-30">base-30</option>
+                                    <option value="base-31">base-31</option>
+                                    <option value="base-32">base-32</option>
+                                    <option value="base-33">base-33</option>
+                                    <option value="base-34">base-34</option>
+                                    <option value="base-35">base-35</option>
+                                    <option value="base-36">base-36</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form style="padding:0;margin:0" name="cat=Torque" id="torque">
+                    <table align="center" style="width:0;font-family:Tahoma;font-size:100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=left;base=1"></td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type="text" name="bindid=right"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="left" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="newton meter" selected>newton meter [N*m]</option>
+                                    <option value="newton centimeter">newton centimeter [N*cm]</option>
+                                    <option value="newton millimeter">newton millimeter [N*mm]</option>
+                                    <option value="kilonewton meter">kilonewton meter [kN*m]</option>
+                                    <option value="dyne meter">dyne meter [dyn*m]</option>
+                                    <option value="dyne centimeter">dyne centimeter [dyn*cm]</option>
+                                    <option value="dyne millimeter">dyne millimeter [dyn*mm]</option>
+                                    <option value="kilogram-force meter">kilogram-force meter [kgf*m]</option>
+                                    <option value="kilogram-force centimeter">kilogram-force centimeter</option>
+                                    <option value="kilogram-force millimeter">kilogram-force millimeter</option>
+                                    <option value="gram-force meter">gram-force meter [gf*m]</option>
+                                    <option value="gram-force centimeter">gram-force centimeter</option>
+                                    <option value="gram-force millimeter">gram-force millimeter</option>
+                                    <option value="ounce-force foot">ounce-force foot [ozf*ft]</option>
+                                    <option value="ounce-force inch">ounce-force inch [ozf*in]</option>
+                                    <option value="pound-force foot">pound-force foot [lbf*ft]</option>
+                                    <option value="pound-force inch">pound-force inch [lbf*in]</option>
+                                </select>
+                            </td>
+                            <td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">
+                                <select name="right" size="1" style="font-family:Tahoma;font-size:100%">
+                                    <option value="newton meter" selected>newton meter [N*m]</option>
+                                    <option value="newton centimeter">newton centimeter [N*cm]</option>
+                                    <option value="newton millimeter">newton millimeter [N*mm]</option>
+                                    <option value="kilonewton meter">kilonewton meter [kN*m]</option>
+                                    <option value="dyne meter">dyne meter [dyn*m]</option>
+                                    <option value="dyne centimeter">dyne centimeter [dyn*cm]</option>
+                                    <option value="dyne millimeter">dyne millimeter [dyn*mm]</option>
+                                    <option value="kilogram-force meter">kilogram-force meter [kgf*m]</option>
+                                    <option value="kilogram-force centimeter">kilogram-force centimeter</option>
+                                    <option value="kilogram-force millimeter">kilogram-force millimeter</option>
+                                    <option value="gram-force meter">gram-force meter [gf*m]</option>
+                                    <option value="gram-force centimeter">gram-force centimeter</option>
+                                    <option value="gram-force millimeter">gram-force millimeter</option>
+                                    <option value="ounce-force foot">ounce-force foot [ozf*ft]</option>
+                                    <option value="ounce-force inch">ounce-force inch [ozf*in]</option>
+                                    <option value="pound-force foot">pound-force foot [lbf*ft]</option>
+                                    <option value="pound-force inch">pound-force inch [lbf*in]</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    </form>
+                    <button id="saveRecents" type="button" onclick="recents()">Save conversion to recents</button>
+                    <!-- CURRENT CONVERTER END -->
+
+                    <button id="addFav" onclick="Favorite()">Favorite this</button>
+                    <p id="pConv"></p>
+
+</div><!-- end div w/id of converterForm-->
         </div>
         <div data-role="footer">
             <script src="http://www.unitconversion.org/converter3/converter3.js"></script>
@@ -449,7 +1119,8 @@
         <div data-role="header"></div>
         <h2>Recents Page</h2>
         <div data-role="content">
-            <p>recent stuff</p>
+            <p id="from">recent stuff</p>
+            <p id="to">recent stuff</p>
         </div>
 
         <div data-role="footer">

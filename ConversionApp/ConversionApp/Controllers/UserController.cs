@@ -28,21 +28,16 @@ namespace ConversionApp.Controllers
 
             if (count > 0)
             {
-                //throw new Exception(String.Format("That username is already taken. Try a different one"));
                 HttpResponseMessage httpResponse = new HttpResponseMessage(HttpStatusCode.BadRequest);
                 throw new HttpResponseException(httpResponse);
             }
             else
             {
                 newUser.Id = ObjectId.GenerateNewId().ToString();
-                newUser.FavOptions = new List<Favorites>() { new Favorites { From = "", To = "" } };
-                //newUser.Favorites = new List<List<string>>() { new List<string>() { "From", "To" } };
-                newUser.Recents = new List<List<string>>() { new List<string>() { "From:", "To:" } };
-
-                //BsonArray favs = new BsonArray(newUser.Favorites);
-                BsonArray favs = new BsonArray(newUser.FavOptions);
+                newUser.Favorites = new BsonArray();
+                newUser.Recents = new BsonArray();
+                BsonArray favs = new BsonArray(newUser.Favorites);
                 BsonArray recent = new BsonArray(newUser.Recents);
-
                 IMongoUpdate update = Update
                     .Set("UserName", newUser.UserName)
                     .Set("Password", newUser.Password)
