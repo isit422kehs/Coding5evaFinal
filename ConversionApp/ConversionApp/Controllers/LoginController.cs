@@ -13,7 +13,6 @@ namespace ConversionApp.Controllers
     public class LoginController : ApiController
     {
         MongoDatabase mongoDb;
-        List<Users> userList = new List<Users>();
 
         [AllowAnonymous]
         public IHttpActionResult UserLogin(Users user)  // make sure its string

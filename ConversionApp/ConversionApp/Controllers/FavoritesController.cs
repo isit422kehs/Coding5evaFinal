@@ -18,19 +18,21 @@ namespace ConversionApp.Controllers
         WriteConcernResult result;
 
         [HttpPost]
-        public void AddFavorite(Users favData)
+        public IHttpActionResult UpdateUser(Favorites fav)
         {
-            mongoDb = MongoConnect.GetMongoDb();
             var collection = mongoDb.GetCollection<Users>("Users");
 
-            var tempName = favData.UserName;
-            var tempFav = new BsonArray(favData.Favorites);
-            IMongoQuery query = Query.EQ("UserName", tempName);
-            var userFound = collection.FindOne(query);
-
+            IMongoQuery query = Query.EQ("UserName", fav.User);
+            BsonArray test = new BsonArray
+            {
+                fav.From,
+                fav.To
+            };
             IMongoUpdate update = Update
-                .Push("Favorites", tempFav);
+                .Push("Favorites", test);
             result = collection.Update(query, update);
+
+            return Ok(fav.From + ' ' + fav.To);
         }
     }
 }

@@ -7,8 +7,9 @@ $(document).ready(function () {
     var userId = cookie.substring(userIdIndex + 7);
 
     $('div[data-role="header"]').append(
-        '<h1>User ' + userName + ' signed in</h1>' +
+        //'<h1>User ' + userName + ' signed in</h1>' +
         '<div data-role="navbar"><ul>' +
+        '<p id="logged"></p></br>' +
         '<img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />' +
         '<li><a data-role="button" href="#home-page">Home</a></li>' +
         '<li class="rm"><a data-role="button" id="btnLogin" href="#login-page">Log in</a></li>' +
@@ -29,6 +30,8 @@ $(document).on('pagebeforeshow ', '#home-page', function () {
 $(document).on('pagebeforeshow ', '#login-page', function () {
 
     $('#pLogin').text('');
+    $("#usernameInput").val('').trigger('change');
+    $("#passwordInput").val('').trigger('change');
 
     $("#usernameInput").keydown(function (e) {
         if (e.which === 13) {
@@ -41,8 +44,6 @@ $(document).on('pagebeforeshow ', '#login-page', function () {
             $("#loginBtn").click();
         }
     });
-
-    $('#login-page p').append('');
 });
 
 //sign-up
@@ -96,6 +97,8 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
         $('#numbers').hide();
         $('#torque').hide();
         $('#' + val).show();
+
+        getForm = val;
     });
 });
 
@@ -157,6 +160,7 @@ function Login() {
                 'Password': pw
             },
             success: function (data) {
+                loggedUser = data.UserName;
                 var msg = 'Hello ' + data.UserName + '! Your email is ' + data.Email + '.';
                 window.location = '#home-page';
                 $('#home-page p').text(msg);
@@ -170,51 +174,47 @@ function Login() {
 
                 document.cookie = "user=" + data.UserName;
                 document.cookie = "userId=" + data.Id;
-                window.location.reload();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#pLogin').text((jqXHR.responseText));
             }
-
         });
     }
 }
 
 function Favorite() {
 
-    var username = loggedUser;
-    var select = $("#convSelector").val();
-    var left = $('select[name="left"]').val();
-    var right = $('select[name="right"]').val();
-    var favs = [{ "From": left, "To": right }];
+    let username = loggedUser;
+    let select = $("#convSelector").val();
+    let form = getForm;
+    var left = $('#' + form + ' select[name="left"]').find(':selected').val();
+    var right = $('#' + form + ' select[name="right"]').find(':selected').val();
 
-    //if (username == undefined) {
-    //    $('#pConv').text('This feature is available after logging in.');
-    //} else if (select == '') {
-    //    $('#pConv').text('Please select a category.');
-    //} else if (left == right) {
-    //    $('#pConv').text('Please select two different units.');
-    //} else {
-    $.ajax({
-        type: "POST",
-        url: 'api/favorites',
-        traditional: true,
-        data: {
-            "UserName": username,
-            "Favorites": JSON.stringify(favs)
-        },
-        datatype: 'json',
-        contentType: 'application/json',
-        success: function (data) {
-            $('#convert-page p').text('Successfully added new favorite conversion: ' + left + ' to ' + right);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            $('#convert-page p').text(jqXHR.responseText);
-        }
-
-    });
-    //$('#pConv').text('favorite this hi');
-    //}
+    if (username == undefined) {
+        $('#pConv').text('This feature is available after logging in.');
+    } else if (select == '') {
+        $('#pConv').text('Please select a category.');
+    } else if (left == right) {
+        $('#pConv').text('Are you sure you want the same units?');
+    } else {
+        $.ajax({
+            type: "POST",
+            url: 'api/favorites',
+            traditional: true,
+            data: {
+                "From": left,
+                "To": right,
+                "user": username
+            },
+            datatype: 'json',
+            success: function (data) {
+                $('#pConv').text('Successfully added new favorite conversion: ' + left + ' to ' + right);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#pConv').text(jqXHR.responseText);
+            }
+        });
+    }
 }
 
 // log out
@@ -357,6 +357,5 @@ function recents() {
     else {
         window.alert("Please log in if you want to save to recents.");
     }
-
 }
 

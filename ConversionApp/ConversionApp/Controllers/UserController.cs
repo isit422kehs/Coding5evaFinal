@@ -36,13 +36,13 @@ namespace ConversionApp.Controllers
                 newUser.Id = ObjectId.GenerateNewId().ToString();
                 newUser.Favorites = new BsonArray();
                 newUser.Recents = new BsonArray();
-                BsonArray favs = new BsonArray(newUser.Favorites);
                 BsonArray recent = new BsonArray(newUser.Recents);
+
                 IMongoUpdate update = Update
                     .Set("UserName", newUser.UserName)
                     .Set("Password", newUser.Password)
                     .Set("Email", newUser.Email)
-                    .Set("Favorites", favs)
+                    .Set("Favorites", newUser.Favorites)
                     .Set("Recents", recent);
                 result = collection.Insert<Users>(newUser);
             }

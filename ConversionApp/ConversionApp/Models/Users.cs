@@ -24,11 +24,9 @@ namespace ConversionApp.Models
 
     public class Favorites
     {
-        [BsonId]
         public string From { get; set; }
         public string To { get; set; }
-        public string user { get; set; }
-
+        public string User { get; set; }
     }
 
     public class Recents
