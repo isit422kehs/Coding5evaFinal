@@ -51,7 +51,7 @@ $(document).on('pagebeforeshow ', '#signup-page', function () {
 
     $('#signup-page p').append('<strong> sign up</strong>');
 });
-
+var getForm;
 //convert
 $(document).on('pagebeforeshow ', '#convert-page', function () {
 
@@ -60,8 +60,47 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
 
     $('#convert-page form').hide();
     $('#a').hide();
+    $('#converterForm select').change(function () {
+
+        var cookie = document.cookie;
+        var userIdIndex = cookie.indexOf("userId=");
+        var userId = cookie.substring(userIdIndex + 7);
+
+        
+        var right = $('#' + getForm + ' select[name="right"]').val()
+        var left = $('#' + getForm + ' select[name="left"]').val();
+        let username = loggedUser;
+        
+            if (left != right && document.cookie.indexOf('userId') > -1) {
+                $.ajax({
+                    type: "POST",
+                    url: 'api/recents',
+                    traditional: true,
+                    data: {
+                        "From": left,
+                        "To": right,
+                        "user": username
+                    },
+                    success: function (data) {
+                        $('#pRec').text('Successfully added recent conversion: ' + left + ' to ' + right);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#pRec').text(jqXHR.responseText);
+                    }
+
+                });
+            }
+        
+        else {
+            window.alert("Please log in if you want to save to recents.");
+        }
+        
+    });
     $('#convSelector').change(function () {
         let val = $(this).val();
+        getForm = val;
+        let select = $("#convSelector").val(); 
+      
         $('#weight').hide();
         $('#length').hide();
         $('#currency').hide();
@@ -314,48 +353,5 @@ function getCountry() {
 
     return countryName;
 }
-function getForm() {
 
-}
-function recents() {
-    var cookie = document.cookie;
-    var userIdIndex = cookie.indexOf("userId=");
-    var userId = cookie.substring(userIdIndex + 7);
-
-    /* a = document.body.appendChild(
-       document.createElement("a"));*/
-    if (document.cookie.indexOf('userId') > -1) {
-        //a.recents = "index.html";
-        //a.href = "data:text/html," + document.getElementById("content").innerHTML;
-        //a.click();
-        /*$('<a />').attr({
-            recents: '#recents-page',
-            href: "data:text/html," + $('#content').html()
-        })[0].click()*/
-        let form = getForm();
-
-        var left = $('#' + form + ' select[name="left"]').find(':selected').val();
-        var right = $('#' + form + ' select[name="right"]').find(':selected').val();
-        $.ajax({
-            type: "POST",
-            url: 'api/recents',
-            traditional: true,
-            data: {
-                "From": left,
-                "To": right,
-                "user": username
-            },
-            success: function (data) {
-                $('#convert-page p').text('Successfully added recent conversion: ' + left + ' to ' + right);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                $('#convert-page p').text(jqXHR.responseText);
-            }
-
-        });
-    }
-    else {
-        window.alert("Please log in if you want to save to recents.");
-    }
-}
 
