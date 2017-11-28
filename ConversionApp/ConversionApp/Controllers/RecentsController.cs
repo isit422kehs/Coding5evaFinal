@@ -16,7 +16,7 @@ namespace ConversionApp.Controllers
 
         MongoDatabase mongoDb = MongoConnect.GetMongoDb();
 
-[HttpPost]
+        [HttpPost]
         public IHttpActionResult updateRecents(Recents rec)
         {
             var collection = mongoDb.GetCollection<Users>("Users");
@@ -31,11 +31,11 @@ namespace ConversionApp.Controllers
                 .Push("Recents", test);
 
             result = collection.Update(query, update);
-            
+
             return Ok(rec.From);
         }
-
+        
+       
     }
-
 }
 

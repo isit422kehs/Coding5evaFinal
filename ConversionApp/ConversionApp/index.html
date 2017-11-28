@@ -13,6 +13,7 @@
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
+    <script type="text/javascript" src="scripts/Tests.js"></script>
 </head>
 <body>
    
@@ -55,6 +56,7 @@
             Email : <input type="text" id="email" /><br />
 
             <input type="button" data-icon="plus" data-theme="c" id="addBtn" value="Sign Up" onclick="signUp()" />
+            <button id="signupTest" type="button" onclick="signTest()">Sign Up Teset</button>
             <p id="addUsers" />
         </div>
 
@@ -1119,8 +1121,8 @@
         <div data-role="header"></div>
         <h2>Recents Page</h2>
         <div data-role="content">
-            <p id="from">recent stuff</p>
-            <p id="to">recent stuff</p>
+            <h2></h2>
+            <p id="recentConversions"></p>
         </div>
 
         <div data-role="footer">

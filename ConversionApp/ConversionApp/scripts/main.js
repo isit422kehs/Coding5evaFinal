@@ -143,8 +143,8 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
 
 //recents
 $(document).on('pagebeforeshow ', '#recents-page', function () {
-
-    $('#recents-page p').append('<strong> recents</strong>');
+    $('#recents-page p').append('<strong> </strong>');
+    getRecentConv();
 });
 
 //favorites
@@ -353,5 +353,27 @@ function getCountry() {
 
     return countryName;
 }
-
+var uri='api/rec'
+function getRecentConv() {
+    let username = loggedUser;
+    
+    $.ajax({
+        url: uri,
+        type: 'POST',
+        dataType: "json",
+        data: {
+            "UserName": username
+        },
+        success: function (data) {
+            $('#recentConversions').empty();
+            $.each(data, function (key, record) {
+                $('#recentConversions').append(' <li>' + record["From"] + ' =>' + record["To"] + ' </li>');
+            });
+        },
+        error: function (status) {
+            $('#recentConversions').html('Unable to Retrieve Data');
+        }
+    });
+   
+}
 
