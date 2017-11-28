@@ -7,7 +7,6 @@ $(document).ready(function () {
     var userId = cookie.substring(userIdIndex + 7);
 
     $('div[data-role="header"]').append(
-        //'<h1>User ' + userName + ' signed in</h1>' +
         '<div data-role="navbar"><ul>' +
         '<p id="logged"></p></br>' +
         '<img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />' +
@@ -15,16 +14,16 @@ $(document).ready(function () {
         '<li class="rm"><a data-role="button" id="btnLogin" href="#login-page">Log in</a></li>' +
         '<li class="rm"><a data-role="button" id="btnSignup" href="#signup-page">Sign up</a></li>' +
         '<li><a data-role="button" href="#convert-page">Convert</a></li>' +
-        '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
-        '<li><a data-role="button" href="#favorites-page">Favorites</a></li>' +
         '</ul></div>'
-        );
+    );
 });
 
 //home
 $(document).on('pagebeforeshow ', '#home-page', function () {
     getDetails();
 });
+
+let loggedUser, left, right, parm, cat, key;
 
 //login
 $(document).on('pagebeforeshow ', '#login-page', function () {
@@ -51,67 +50,118 @@ $(document).on('pagebeforeshow ', '#signup-page', function () {
 
     $('#signup-page p').append('<strong> sign up</strong>');
 });
-
+var getForm;
 //convert
 $(document).on('pagebeforeshow ', '#convert-page', function () {
 
-    $('#pConv').text('');
-    $("#convSelector").val('').trigger('change');
-
     $('#convert-page form').hide();
     $('#a').hide();
-    $('#convSelector').change(function () {
-        let val = $(this).val();
-        $('#weight').hide();
-        $('#length').hide();
-        $('#currency').hide();
-        $('#volume').hide();
-        $('#volume-dry').hide();
-        $('#temperature').hide();
-        $('#area').hide();
-        $('#pressure').hide();
-        $('#energy').hide();
-        $('#power').hide();
-        $('#force').hide();
-        $('#time').hide();
-        $('#velocity').hide();
+    
+    if (key > 0) {
 
-        $('#heat-transfer-coefficient').hide();
-        $('#flow').hide();
-        $('#flow-mass').hide();
-        $('#flow-molar').hide();
-        $('#surface-tension').hide();
-        $('#permeability').hide();
-        $('#sound').hide();
-        $('#digital-image-resolution').hide();
-        $('#charge').hide();
-        $('#current').hide();
-        $('#acceleration').hide();
-        $('#angle').hide();
-        $('#dataStorage').hide();
-        $('#density').hide();
-        $('#fuelConsumption').hide();
-        $('#heatDensity').hide();
-        $('#momentOfForce').hide();
-        $('#momentOfInertia').hide();
-        $('#numbers').hide();
-        $('#torque').hide();
-        $('#' + val).show();
+        $("#convSelector").val(cat).change();
+        $('#' + cat).show();
 
-        getForm = val;
-    });
+        $('#' + cat + ' select[name="left"]').val(left).change();
+        $('#' + cat + ' select[name="right"]').val(right).change();
+
+    } else if (key === undefined) {
+        $('#pConv').text('');
+        $("#convSelector").val('').trigger('change');
+
+        $('#converterForm select').change(function () {
+
+            var cookie = document.cookie;
+            var userIdIndex = cookie.indexOf("userId=");
+            var userId = cookie.substring(userIdIndex + 7);
+
+            right = $('#' + getForm + ' select[name="right"]').val();
+            left = $('#' + getForm + ' select[name="left"]').val();
+            let username = loggedUser;
+
+            if (left != right && document.cookie.indexOf('userId') > -1) {
+
+                $.ajax({
+                    type: "POST",
+                    url: 'api/recents',
+                    traditional: true,
+                    data: {
+                        "From": left,
+                        "To": right,
+                        "user": username
+                    },
+                    success: function (data) {
+                        $('#pRec').text('Successfully added recent conversion: ' + left + ' to ' + right);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#pRec').text(jqXHR.responseText);
+                    }
+
+                });
+            }
+
+            else {
+                //window.alert("Please log in if you want to save to recents.");
+            }
+        });
+
+        $('#convSelector').change(function () {
+            let val = $(this).val();
+            getForm = val;
+            let select = $("#convSelector").val();
+
+            $('#weight').hide();
+            $('#length').hide();
+            $('#currency').hide();
+            $('#volume').hide();
+            $('#volume-dry').hide();
+            $('#temperature').hide();
+            $('#area').hide();
+            $('#pressure').hide();
+            $('#energy').hide();
+            $('#power').hide();
+            $('#force').hide();
+            $('#time').hide();
+            $('#velocity').hide();
+
+            $('#heat-transfer-coefficient').hide();
+            $('#flow').hide();
+            $('#flow-mass').hide();
+            $('#flow-molar').hide();
+            $('#surface-tension').hide();
+            $('#permeability').hide();
+            $('#sound').hide();
+            $('#digital-image-resolution').hide();
+            $('#charge').hide();
+            $('#current').hide();
+            $('#acceleration').hide();
+            $('#angle').hide();
+            $('#dataStorage').hide();
+            $('#density').hide();
+            $('#fuelConsumption').hide();
+            $('#heatDensity').hide();
+            $('#momentOfForce').hide();
+            $('#momentOfInertia').hide();
+            $('#numbers').hide();
+            $('#torque').hide();
+            $('#' + val).show();
+
+            getForm = val;
+        });
+    }
 });
 
 //recents
 $(document).on('pagebeforeshow ', '#recents-page', function () {
-
-    $('#recents-page p').append('<strong> recents</strong>');
+    $('#recents-page p').append('<strong> </strong>');
+    getRecentConv();
 });
 
 //favorites
 $(document).on('pagebeforeshow ', '#favorites-page', function () {
 
-    $('#favorites-page p').append('<strong> favorites</strong>');
+    ShowFavs();
+    $("#favorites").listview('refresh');
 });
 
 //add users
@@ -120,7 +170,7 @@ function signUp() {
     var username = $('#username').val();
     var password = $('#password').val();
     var email = $('#email').val();
-    
+
     $.ajax({
         type: "POST",
         url: 'api/user',
@@ -134,7 +184,7 @@ function signUp() {
         },
         error: function (status) {
             $('#signUp').text(status);
-          alert("This username is already taken. Try a different one");
+            alert("This username is already taken. Try a different one");
         }
 
     });
@@ -144,14 +194,13 @@ function signUp() {
 
 }
 
-var loggedUser;
 // log in
 function Login() {
 
     var username = $('#usernameInput').val().trim();
     var pw = $('#passwordInput').val().trim();
 
-    if (username !== '' && pw !== '') {
+    if (username === 'admin' && pw === 'test') {
         $.ajax({
             url: 'api/login',
             type: 'POST',
@@ -160,7 +209,39 @@ function Login() {
                 'Password': pw
             },
             success: function (data) {
+
                 loggedUser = data.UserName;
+                window.location = '#tests-page';
+
+                $('.rm').remove();
+                $('#btnSignup').remove();
+                $('#btnLogin').remove();
+                $('ul').append(
+                    '<li><a data-role="button" href="#tests-page">Tests</a></li>' +
+                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>'
+                );
+
+                document.cookie = "user=" + data.UserName;
+                document.cookie = "userId=" + data.Id;
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#pLogin').text(jqXHR.responseText);
+            }
+        });
+    }
+
+    if (username !== '' && pw !== '' && username !== 'admin') {
+        $.ajax({
+            url: 'api/login',
+            type: 'POST',
+            data: {
+                'UserName': username,
+                'Password': pw
+            },
+            success: function (data) {
+
+                loggedUser = data.UserName;
+
                 var msg = 'Hello ' + data.UserName + '! Your email is ' + data.Email + '.';
                 window.location = '#home-page';
                 $('#home-page p').text(msg);
@@ -169,14 +250,16 @@ function Login() {
                 $('#btnSignup').remove();
                 $('#btnLogin').remove();
                 $('ul').append(
-                    '<li><a data-role="button" id="btnLogout" href="#logout" onclick="logout()">Logout</a></li>'
+                    '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
+                    '<li><a data-role="button" href="#favorites-page">Favorites</a></li>' +
+                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>'
                 );
 
                 document.cookie = "user=" + data.UserName;
                 document.cookie = "userId=" + data.Id;
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $('#pLogin').text((jqXHR.responseText));
+                $('#pLogin').text(jqXHR.responseText);
             }
         });
     }
@@ -190,11 +273,11 @@ function Favorite() {
     var left = $('#' + form + ' select[name="left"]').find(':selected').val();
     var right = $('#' + form + ' select[name="right"]').find(':selected').val();
 
-    if (username == undefined) {
+    if (username === undefined) {
         $('#pConv').text('This feature is available after logging in.');
-    } else if (select == '') {
+    } else if (select === '') {
         $('#pConv').text('Please select a category.');
-    } else if (left == right) {
+    } else if (left === right) {
         $('#pConv').text('Are you sure you want the same units?');
     } else {
         $.ajax({
@@ -202,9 +285,10 @@ function Favorite() {
             url: 'api/favorites',
             traditional: true,
             data: {
+                "Category": form,
                 "From": left,
                 "To": right,
-                "user": username
+                "User": username
             },
             datatype: 'json',
             success: function (data) {
@@ -224,6 +308,7 @@ function logout(req, res) {
     document.cookie = 'userId=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
     window.location.reload();
+    window.location = '#home-page';
 }
 
 function light() {
@@ -314,48 +399,61 @@ function getCountry() {
 
     return countryName;
 }
-function getForm() {
 
-}
-function recents() {
-    var cookie = document.cookie;
-    var userIdIndex = cookie.indexOf("userId=");
-    var userId = cookie.substring(userIdIndex + 7);
+function ShowFavs() {
 
-    /* a = document.body.appendChild(
-       document.createElement("a"));*/
-    if (document.cookie.indexOf('userId') > -1) {
-        //a.recents = "index.html";
-        //a.href = "data:text/html," + document.getElementById("content").innerHTML;
-        //a.click();
-        /*$('<a />').attr({
-            recents: '#recents-page',
-            href: "data:text/html," + $('#content').html()
-        })[0].click()*/
-        let form = getForm();
+    let username = loggedUser;
+    let form = getForm;
 
-        var left = $('#' + form + ' select[name="left"]').find(':selected').val();
-        var right = $('#' + form + ' select[name="right"]').find(':selected').val();
-        $.ajax({
-            type: "POST",
-            url: 'api/recents',
-            traditional: true,
-            data: {
-                "From": left,
-                "To": right,
-                "user": username
-            },
-            success: function (data) {
-                $('#convert-page p').text('Successfully added recent conversion: ' + left + ' to ' + right);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                $('#convert-page p').text(jqXHR.responseText);
-            }
+    $('#favorites').empty();
 
-        });
-    }
-    else {
-        window.alert("Please log in if you want to save to recents.");
-    }
+    $.ajax({
+        type: "POST",
+        url: 'api/getfavs',
+        data: {
+            "user": username
+        },
+        success: function (data) {
+
+            $.each(data, function (key, record) {
+                $('#favorites').append('<li><a data-transition="pop" data-parm="' + data[key] + '" href="#convert-page" class="ui-btn ui-btn-icon-right ui-icon-carat-r">[ ' + record[1] + ' ] From: ' + record[2] + ' => To: ' + record[3] + '</a></li>');
+            });
+
+            $("a").on("click", function (event) {
+                parm = $(this).attr("data-parm");
+                var strArr = parm.split(',');
+
+                key = strArr[0];
+                cat = strArr[1];
+                left = strArr[2];
+                right = strArr[3];
+            });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#pFav').text(jqXHR.responseText);
+        }
+    });
 }
 
+var uri = 'api/rec'
+function getRecentConv() {
+    let username = loggedUser;
+
+    $.ajax({
+        url: uri,
+        type: 'POST',
+        dataType: "json",
+        data: {
+            "UserName": username
+        },
+        success: function (data) {
+            $('#recentConversions').empty();
+            $.each(data, function (key, record) {
+                $('#recentConversions').append(' <li>' + record["From"] + ' =>' + record["To"] + ' </li>');
+            });
+        },
+        error: function (status) {
+            $('#recentConversions').html('Unable to Retrieve Data');
+        }
+    });
+}
