@@ -5,6 +5,11 @@
 
 }
 
+// tests
+$(document).on('pagebeforeshow ', '#tests-page', function () {
+    $('#pTests').text('');
+});
+
 // testing favorites
 function FavTest() {
     let username = loggedUser;
