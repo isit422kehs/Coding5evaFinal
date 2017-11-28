@@ -13,28 +13,47 @@ namespace ConversionApp.Controllers
     public class LoginController : ApiController
     {
         MongoDatabase mongoDb;
+        bool testing = false;
+        List<Users> userList = new List<Users>();
+
+        public LoginController(List<Users> fakeUser) {
+            userList = fakeUser;
+            testing = true;
+        }
 
         [AllowAnonymous]
         public IHttpActionResult UserLogin(Users user)  // make sure its string
         {
-            mongoDb = MongoConnect.GetMongoDb();
-            var collection = mongoDb.GetCollection<Users>("Users");
+            
+            if (testing) {
+                var testFake = userList.FirstOrDefault((u) => u.UserName == user.UserName);
 
-            var tempName = user.UserName;
-            IMongoQuery query = Query.EQ("UserName", tempName);
-            var userFound = collection.FindOne(query);
-            var badlogin = "Username/password not found, please try again.";
+                if (testFake == null) {
+                    return NotFound();
+                }
+                return Ok(testFake);
 
-            if (userFound == null)
-            {
-                return Content(HttpStatusCode.BadRequest, badlogin);
+            } else {
+                mongoDb = MongoConnect.GetMongoDb();
+                var collection = mongoDb.GetCollection<Users>("Users");
+
+                var tempName = user.UserName;
+                IMongoQuery query = Query.EQ("UserName", tempName);
+                var userFound = collection.FindOne(query);
+                var badlogin = "Username/password not found, please try again.";
+
+                if (userFound == null)
+                {
+                    return Content(HttpStatusCode.BadRequest, badlogin);
+                }
+                else if (userFound.Password == user.Password)
+                {
+                    return Ok(userFound);
+                }
+                else { return Content(HttpStatusCode.BadRequest, badlogin); }
             }
-            else if (userFound.Password == user.Password)
-            {
-                return Ok(userFound);
-            }
-            else
-                return Content(HttpStatusCode.BadRequest, badlogin);
+            
+
         }
     }
 }
