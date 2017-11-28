@@ -16,12 +16,9 @@ namespace ConversionApp.Controllers
         bool testing = false;
         List<Users> userList = new List<Users>();
 
-        public LoginController(List<Users> fakeUser) {
-            userList = fakeUser;
-            testing = true;
-        }
+        
 
-        [AllowAnonymous]
+        [HttpPost]
         public IHttpActionResult UserLogin(Users user)  // make sure its string
         {
             
@@ -55,5 +52,16 @@ namespace ConversionApp.Controllers
             
 
         }
+
+        public LoginController() {
+
+        }
+
+        public LoginController(List<Users> fakeUser)
+        {
+            userList = fakeUser;
+            testing = true;
+        }
+        
     }
 }
