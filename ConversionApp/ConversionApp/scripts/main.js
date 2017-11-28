@@ -90,7 +90,7 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
         var userIdIndex = cookie.indexOf("userId=");
         var userId = cookie.substring(userIdIndex + 7);
 
-        right = $('#' + getForm + ' select[name="right"]').val()
+        right = $('#' + getForm + ' select[name="right"]').val();
         left = $('#' + getForm + ' select[name="left"]').val();
         let username = loggedUser;
 
@@ -122,8 +122,8 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
     $('#convSelector').change(function () {
         let val = $(this).val();
         getForm = val;
-        let select = $("#convSelector").val(); 
-      
+        let select = $("#convSelector").val();
+
         $('#weight').hide();
         $('#length').hide();
         $('#currency').hide();
@@ -173,7 +173,7 @@ $(document).on('pagebeforeshow ', '#recents-page', function () {
 //favorites
 $(document).on('pagebeforeshow ', '#favorites-page', function () {
 
-    showFavs();
+    ShowFavs();
     $("#favorites").listview('refresh');
 });
 
@@ -183,7 +183,7 @@ function signUp() {
     var username = $('#username').val();
     var password = $('#password').val();
     var email = $('#email').val();
-    
+
     $.ajax({
         type: "POST",
         url: 'api/user',
@@ -197,7 +197,7 @@ function signUp() {
         },
         error: function (status) {
             $('#signUp').text(status);
-          alert("This username is already taken. Try a different one");
+            alert("This username is already taken. Try a different one");
         }
 
     });
@@ -213,7 +213,7 @@ function Login() {
     var username = $('#usernameInput').val().trim();
     var pw = $('#passwordInput').val().trim();
 
-    if (username !== '' && pw !== '') {
+    if (username === 'admin' && pw === 'test') {
         $.ajax({
             url: 'api/login',
             type: 'POST',
@@ -222,7 +222,39 @@ function Login() {
                 'Password': pw
             },
             success: function (data) {
+
                 loggedUser = data.UserName;
+                window.location = '#tests-page';
+
+                $('.rm').remove();
+                $('#btnSignup').remove();
+                $('#btnLogin').remove();
+                $('ul').append(
+                    '<li><a data-role="button" href="#tests-page">Tests</a></li>' +
+                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>'
+                );
+
+                document.cookie = "user=" + data.UserName;
+                document.cookie = "userId=" + data.Id;
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#pLogin').text(jqXHR.responseText);
+            }
+        });
+    }
+
+    if (username !== '' && pw !== '' && username !== 'admin') {
+        $.ajax({
+            url: 'api/login',
+            type: 'POST',
+            data: {
+                'UserName': username,
+                'Password': pw
+            },
+            success: function (data) {
+
+                loggedUser = data.UserName;
+
                 var msg = 'Hello ' + data.UserName + '! Your email is ' + data.Email + '.';
                 window.location = '#home-page';
                 $('#home-page p').text(msg);
@@ -240,7 +272,7 @@ function Login() {
                 document.cookie = "userId=" + data.Id;
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $('#pLogin').text((jqXHR.responseText));
+                $('#pLogin').text(jqXHR.responseText);
             }
         });
     }
@@ -254,11 +286,11 @@ function Favorite() {
     var left = $('#' + form + ' select[name="left"]').find(':selected').val();
     var right = $('#' + form + ' select[name="right"]').find(':selected').val();
 
-    if (username == undefined) {
+    if (username === undefined) {
         $('#pConv').text('This feature is available after logging in.');
-    } else if (select == '') {
+    } else if (select === '') {
         $('#pConv').text('Please select a category.');
-    } else if (left == right) {
+    } else if (left === right) {
         $('#pConv').text('Are you sure you want the same units?');
     } else {
         $.ajax({
@@ -381,7 +413,7 @@ function getCountry() {
     return countryName;
 }
 
-function showFavs() {
+function ShowFavs() {
 
     let username = loggedUser;
     let form = getForm;
@@ -395,25 +427,21 @@ function showFavs() {
             "user": username
         },
         success: function (data) {
-            var arr = [];
+            //var arr = [];
 
             $.each(data, function (key, record) {
-                //arr.push(data[key]);
                 $('#favorites').append('<li><a data-transition="pop" data-parm=' + data[key] + ' href="#convert-page" class="ui-btn ui-btn-icon-right ui-icon-carat-r">[ ' + record[1] + ' ] From: ' + record[2] + ' => To: ' + record[3] + '</a></li>');
-                arr.push(data[key]);
+                //arr.push(data[key]);
             });
 
             $("a").on("click", function (event) {
                 parm = $(this).attr("data-parm");
-                var strArr = parm.split(', ');
-                $.each(arr, function (i) {
-                    alert(arr[i]);
-                });
+                var strArr = parm.split(',');
 
-                key = arr[0];
-                cat = arr[1];
-                left = arr[2];
-                right = arr[3];
+                key = strArr[0];
+                cat = strArr[1];
+                left = strArr[2];
+                right = strArr[3];
 
                 alert('key ' + key + ' cat ' + cat + ' left ' + left + ' right ' + right);
             });
@@ -424,10 +452,10 @@ function showFavs() {
     });
 }
 
-var uri='api/rec'
+var uri = 'api/rec'
 function getRecentConv() {
     let username = loggedUser;
-    
+
     $.ajax({
         url: uri,
         type: 'POST',
@@ -445,5 +473,5 @@ function getRecentConv() {
             $('#recentConversions').html('Unable to Retrieve Data');
         }
     });
-   
+
 }
