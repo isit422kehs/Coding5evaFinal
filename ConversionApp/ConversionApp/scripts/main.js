@@ -95,6 +95,7 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
         let username = loggedUser;
 
         if (left != right && document.cookie.indexOf('userId') > -1) {
+            
             $.ajax({
                 type: "POST",
                 url: 'api/recents',
@@ -115,7 +116,7 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
         }
 
         else {
-            window.alert("Please log in if you want to save to recents.");
+            //window.alert("Please log in if you want to save to recents.");
         }
     });
 

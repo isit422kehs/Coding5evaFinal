@@ -36,3 +36,9 @@ function FavTest() {
         }
     });
 }
+
+function adminTestConversion() {
+    
+    $('#testerForm').show();
+
+}
