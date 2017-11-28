@@ -160,6 +160,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\FavoritesController.cs" />
+    <Compile Include="Controllers\GetFavsController.cs" />
     <Compile Include="Controllers\RecController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RecentsController.cs" />

@@ -15,16 +15,16 @@ $(document).ready(function () {
         '<li class="rm"><a data-role="button" id="btnLogin" href="#login-page">Log in</a></li>' +
         '<li class="rm"><a data-role="button" id="btnSignup" href="#signup-page">Sign up</a></li>' +
         '<li><a data-role="button" href="#convert-page">Convert</a></li>' +
-        '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
-        '<li><a data-role="button" href="#favorites-page">Favorites</a></li>' +
         '</ul></div>'
-        );
+    );
 });
 
 //home
 $(document).on('pagebeforeshow ', '#home-page', function () {
     getDetails();
 });
+
+let loggedUser, left, right, parm, key, cat;
 
 //login
 $(document).on('pagebeforeshow ', '#login-page', function () {
@@ -55,47 +55,70 @@ var getForm;
 //convert
 $(document).on('pagebeforeshow ', '#convert-page', function () {
 
+    $('#convert-page form').hide();
+    $('#a').hide();
+
+
+    $('#pConv').text('key ' + key + ' cat ' + cat + ' left ' + left + ' right ' + right);
+    //let form = getForm;
+    //alert('left: ' + left + ' right: ' + right);
+
+    //var fromId = $('select[name="left"] option:selected').val(left).closest('form').attr('id');
+    //var toId = $('select[name="right"] option:selected').val(right).closest('form').attr('id');
+
+    //alert(fromId + ' ' + toId);
+
+    //if (fromId == toId) {
+    //    $("#convSelector").val(from);
+    //}
+
+    //var rightform = $('#' + getForm + ' select[name="right"].has(right)');
+    //var leftform = $('#' + getForm + ' select[name="left"]').val(left);
+
+    //alert(rightform + '<-rightform leftform->' + leftform);
+
+    //var formLefttId = $('select[name="left"] option:'+left+'').closest('form').attr('id'); // table row ID 
+    //var formRightId = $('select[name="right"]').find(':selected').val(right).closest('form').attr('id'); // table row ID
+    //alert('left: ' + formLefttId + ' right: ' + formRightId);
+    //} else {
     $('#pConv').text('');
     $("#convSelector").val('').trigger('change');
 
-    $('#convert-page form').hide();
-    $('#a').hide();
     $('#converterForm select').change(function () {
 
         var cookie = document.cookie;
         var userIdIndex = cookie.indexOf("userId=");
         var userId = cookie.substring(userIdIndex + 7);
 
-        
-        var right = $('#' + getForm + ' select[name="right"]').val()
-        var left = $('#' + getForm + ' select[name="left"]').val();
+        right = $('#' + getForm + ' select[name="right"]').val()
+        left = $('#' + getForm + ' select[name="left"]').val();
         let username = loggedUser;
-        
-            if (left != right && document.cookie.indexOf('userId') > -1) {
-                $.ajax({
-                    type: "POST",
-                    url: 'api/recents',
-                    traditional: true,
-                    data: {
-                        "From": left,
-                        "To": right,
-                        "user": username
-                    },
-                    success: function (data) {
-                        $('#pRec').text('Successfully added recent conversion: ' + left + ' to ' + right);
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        $('#pRec').text(jqXHR.responseText);
-                    }
 
-                });
-            }
-        
+        if (left != right && document.cookie.indexOf('userId') > -1) {
+            $.ajax({
+                type: "POST",
+                url: 'api/recents',
+                traditional: true,
+                data: {
+                    "From": left,
+                    "To": right,
+                    "user": username
+                },
+                success: function (data) {
+                    $('#pRec').text('Successfully added recent conversion: ' + left + ' to ' + right);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#pRec').text(jqXHR.responseText);
+                }
+
+            });
+        }
+
         else {
             window.alert("Please log in if you want to save to recents.");
         }
-        
     });
+
     $('#convSelector').change(function () {
         let val = $(this).val();
         getForm = val;
@@ -150,7 +173,8 @@ $(document).on('pagebeforeshow ', '#recents-page', function () {
 //favorites
 $(document).on('pagebeforeshow ', '#favorites-page', function () {
 
-    $('#favorites-page p').append('<strong> favorites</strong>');
+    showFavs();
+    $("#favorites").listview('refresh');
 });
 
 //add users
@@ -183,7 +207,6 @@ function signUp() {
 
 }
 
-var loggedUser;
 // log in
 function Login() {
 
@@ -208,7 +231,9 @@ function Login() {
                 $('#btnSignup').remove();
                 $('#btnLogin').remove();
                 $('ul').append(
-                    '<li><a data-role="button" id="btnLogout" href="#logout" onclick="logout()">Logout</a></li>'
+                    '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
+                    '<li><a data-role="button" href="#favorites-page">Favorites</a></li>' +
+                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>'
                 );
 
                 document.cookie = "user=" + data.UserName;
@@ -241,9 +266,10 @@ function Favorite() {
             url: 'api/favorites',
             traditional: true,
             data: {
+                "Category": form,
                 "From": left,
                 "To": right,
-                "user": username
+                "User": username
             },
             datatype: 'json',
             success: function (data) {
@@ -263,6 +289,7 @@ function logout(req, res) {
     document.cookie = 'userId=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
     window.location.reload();
+    window.location = '#home-page';
 }
 
 function light() {
@@ -353,6 +380,50 @@ function getCountry() {
 
     return countryName;
 }
+
+function showFavs() {
+
+    let username = loggedUser;
+    let form = getForm;
+
+    $('#favorites').empty();
+
+    $.ajax({
+        type: "POST",
+        url: 'api/getfavs',
+        data: {
+            "user": username
+        },
+        success: function (data) {
+            var arr = [];
+
+            $.each(data, function (key, record) {
+                //arr.push(data[key]);
+                $('#favorites').append('<li><a data-transition="pop" data-parm=' + data[key] + ' href="#convert-page" class="ui-btn ui-btn-icon-right ui-icon-carat-r">[ ' + record[1] + ' ] From: ' + record[2] + ' => To: ' + record[3] + '</a></li>');
+                arr.push(data[key]);
+            });
+
+            $("a").on("click", function (event) {
+                parm = $(this).attr("data-parm");
+                var strArr = parm.split(', ');
+                $.each(arr, function (i) {
+                    alert(arr[i]);
+                });
+
+                key = arr[0];
+                cat = arr[1];
+                left = arr[2];
+                right = arr[3];
+
+                alert('key ' + key + ' cat ' + cat + ' left ' + left + ' right ' + right);
+            });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#pFav').text(jqXHR.responseText);
+        }
+    });
+}
+
 var uri='api/rec'
 function getRecentConv() {
     let username = loggedUser;
@@ -376,4 +447,3 @@ function getRecentConv() {
     });
    
 }
-

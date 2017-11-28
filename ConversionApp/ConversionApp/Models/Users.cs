@@ -12,18 +12,18 @@ namespace ConversionApp.Models
     {
         [BsonId]
         public string Id { get; set; }
-
         public string UserName { get; set; }
-
         public string Password { get; set; }
-
         public string Email { get; set; }
-        public BsonArray Recents { get; set; }
         public BsonArray Favorites { get; set; }
+        public BsonArray Recents { get; set; }
     }
 
     public class Favorites
     {
+        [BsonId]
+        public int Id { get; set; }
+        public string Category { get; set; }
         public string From { get; set; }
         public string To { get; set; }
         public string User { get; set; }
