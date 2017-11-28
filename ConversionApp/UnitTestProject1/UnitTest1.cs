@@ -13,8 +13,9 @@ namespace UnitTestProject1
     [TestClass]
     public class TestUsersController
     {
-        public List<Users> GenerateFakeList() {
-            
+        public List<Users> GenerateFakeList()
+        {
+
             List<Users> filledList = new List<Users>() {
                 new Users() {
                     Id = "skafjaskfasdfsdfasdf",
@@ -24,7 +25,6 @@ namespace UnitTestProject1
                     Favorites = {},
                     Recents = {}
                 }
-
             };
 
             return filledList;
@@ -46,10 +46,22 @@ namespace UnitTestProject1
             Assert.AreEqual(fakeList[0].UserName, returnedResult.Content.UserName);
         }
 
+        [TestMethod]
+        // test local logic, using fake data
+        // fails to return a user that doesn't exist
+        public void GetFakeUser_ShouldReturnNotFound()
+        {
+            List<Users> testUser = GenerateFakeList();
+            var controller = new LoginController(testUser); // use 1 of 2 constructors
 
+            Users one = new Users
+            {
+                UserName = "silvia"
+            };
+            IHttpActionResult result = controller.UserLogin(one);
 
-
-
+            Assert.IsInstanceOfType(result, typeof(NotFoundResult));
+        }
     }
     /*
     public class UnitTest1

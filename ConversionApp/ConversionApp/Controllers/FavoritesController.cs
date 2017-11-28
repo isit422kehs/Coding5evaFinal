@@ -29,7 +29,7 @@ namespace ConversionApp.Controllers
             var res = cursor.Favorites.Select(p => p.AsBsonArray);
             var favCount = res.Count();
             fav.Id = favCount + 1;
-            fav.Category = fav.Category.First().ToString().ToUpper() + fav.Category.Substring(1);
+            //fav.Category = fav.Category.First().ToString().ToUpper() + fav.Category.Substring(1);
             BsonArray test = new BsonArray
             {
                 fav.Id,

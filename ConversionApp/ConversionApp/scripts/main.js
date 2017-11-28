@@ -7,7 +7,6 @@ $(document).ready(function () {
     var userId = cookie.substring(userIdIndex + 7);
 
     $('div[data-role="header"]').append(
-        //'<h1>User ' + userName + ' signed in</h1>' +
         '<div data-role="navbar"><ul>' +
         '<p id="logged"></p></br>' +
         '<img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />' +
@@ -24,7 +23,7 @@ $(document).on('pagebeforeshow ', '#home-page', function () {
     getDetails();
 });
 
-let loggedUser, left, right, parm, key, cat;
+let loggedUser, left, right, parm, cat, key;
 
 //login
 $(document).on('pagebeforeshow ', '#login-page', function () {
@@ -57,112 +56,99 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
 
     $('#convert-page form').hide();
     $('#a').hide();
+    
+    if (key > 0) {
 
+        $("#convSelector").val(cat).change();
+        $('#' + cat).show();
 
-    $('#pConv').text('key ' + key + ' cat ' + cat + ' left ' + left + ' right ' + right);
-    //let form = getForm;
-    //alert('left: ' + left + ' right: ' + right);
+        $('#' + cat + ' select[name="left"]').val(left).change();
+        $('#' + cat + ' select[name="right"]').val(right).change();
 
-    //var fromId = $('select[name="left"] option:selected').val(left).closest('form').attr('id');
-    //var toId = $('select[name="right"] option:selected').val(right).closest('form').attr('id');
+    } else if (key === undefined) {
+        $('#pConv').text('');
+        $("#convSelector").val('').trigger('change');
 
-    //alert(fromId + ' ' + toId);
+        $('#converterForm select').change(function () {
 
-    //if (fromId == toId) {
-    //    $("#convSelector").val(from);
-    //}
+            var cookie = document.cookie;
+            var userIdIndex = cookie.indexOf("userId=");
+            var userId = cookie.substring(userIdIndex + 7);
 
-    //var rightform = $('#' + getForm + ' select[name="right"].has(right)');
-    //var leftform = $('#' + getForm + ' select[name="left"]').val(left);
+            right = $('#' + getForm + ' select[name="right"]').val();
+            left = $('#' + getForm + ' select[name="left"]').val();
+            let username = loggedUser;
 
-    //alert(rightform + '<-rightform leftform->' + leftform);
+            if (left != right && document.cookie.indexOf('userId') > -1) {
 
-    //var formLefttId = $('select[name="left"] option:'+left+'').closest('form').attr('id'); // table row ID 
-    //var formRightId = $('select[name="right"]').find(':selected').val(right).closest('form').attr('id'); // table row ID
-    //alert('left: ' + formLefttId + ' right: ' + formRightId);
-    //} else {
-    $('#pConv').text('');
-    $("#convSelector").val('').trigger('change');
+                $.ajax({
+                    type: "POST",
+                    url: 'api/recents',
+                    traditional: true,
+                    data: {
+                        "From": left,
+                        "To": right,
+                        "user": username
+                    },
+                    success: function (data) {
+                        $('#pRec').text('Successfully added recent conversion: ' + left + ' to ' + right);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#pRec').text(jqXHR.responseText);
+                    }
 
-    $('#converterForm select').change(function () {
+                });
+            }
 
-        var cookie = document.cookie;
-        var userIdIndex = cookie.indexOf("userId=");
-        var userId = cookie.substring(userIdIndex + 7);
+            else {
+                //window.alert("Please log in if you want to save to recents.");
+            }
+        });
 
-        right = $('#' + getForm + ' select[name="right"]').val();
-        left = $('#' + getForm + ' select[name="left"]').val();
-        let username = loggedUser;
+        $('#convSelector').change(function () {
+            let val = $(this).val();
+            getForm = val;
+            let select = $("#convSelector").val();
 
-        if (left != right && document.cookie.indexOf('userId') > -1) {
-            
-            $.ajax({
-                type: "POST",
-                url: 'api/recents',
-                traditional: true,
-                data: {
-                    "From": left,
-                    "To": right,
-                    "user": username
-                },
-                success: function (data) {
-                    $('#pRec').text('Successfully added recent conversion: ' + left + ' to ' + right);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    $('#pRec').text(jqXHR.responseText);
-                }
+            $('#weight').hide();
+            $('#length').hide();
+            $('#currency').hide();
+            $('#volume').hide();
+            $('#volume-dry').hide();
+            $('#temperature').hide();
+            $('#area').hide();
+            $('#pressure').hide();
+            $('#energy').hide();
+            $('#power').hide();
+            $('#force').hide();
+            $('#time').hide();
+            $('#velocity').hide();
 
-            });
-        }
+            $('#heat-transfer-coefficient').hide();
+            $('#flow').hide();
+            $('#flow-mass').hide();
+            $('#flow-molar').hide();
+            $('#surface-tension').hide();
+            $('#permeability').hide();
+            $('#sound').hide();
+            $('#digital-image-resolution').hide();
+            $('#charge').hide();
+            $('#current').hide();
+            $('#acceleration').hide();
+            $('#angle').hide();
+            $('#dataStorage').hide();
+            $('#density').hide();
+            $('#fuelConsumption').hide();
+            $('#heatDensity').hide();
+            $('#momentOfForce').hide();
+            $('#momentOfInertia').hide();
+            $('#numbers').hide();
+            $('#torque').hide();
+            $('#' + val).show();
 
-        else {
-            //window.alert("Please log in if you want to save to recents.");
-        }
-    });
-
-    $('#convSelector').change(function () {
-        let val = $(this).val();
-        getForm = val;
-        let select = $("#convSelector").val();
-
-        $('#weight').hide();
-        $('#length').hide();
-        $('#currency').hide();
-        $('#volume').hide();
-        $('#volume-dry').hide();
-        $('#temperature').hide();
-        $('#area').hide();
-        $('#pressure').hide();
-        $('#energy').hide();
-        $('#power').hide();
-        $('#force').hide();
-        $('#time').hide();
-        $('#velocity').hide();
-
-        $('#heat-transfer-coefficient').hide();
-        $('#flow').hide();
-        $('#flow-mass').hide();
-        $('#flow-molar').hide();
-        $('#surface-tension').hide();
-        $('#permeability').hide();
-        $('#sound').hide();
-        $('#digital-image-resolution').hide();
-        $('#charge').hide();
-        $('#current').hide();
-        $('#acceleration').hide();
-        $('#angle').hide();
-        $('#dataStorage').hide();
-        $('#density').hide();
-        $('#fuelConsumption').hide();
-        $('#heatDensity').hide();
-        $('#momentOfForce').hide();
-        $('#momentOfInertia').hide();
-        $('#numbers').hide();
-        $('#torque').hide();
-        $('#' + val).show();
-
-        getForm = val;
-    });
+            getForm = val;
+        });
+    }
 });
 
 //recents
@@ -428,11 +414,9 @@ function ShowFavs() {
             "user": username
         },
         success: function (data) {
-            //var arr = [];
 
             $.each(data, function (key, record) {
-                $('#favorites').append('<li><a data-transition="pop" data-parm=' + data[key] + ' href="#convert-page" class="ui-btn ui-btn-icon-right ui-icon-carat-r">[ ' + record[1] + ' ] From: ' + record[2] + ' => To: ' + record[3] + '</a></li>');
-                //arr.push(data[key]);
+                $('#favorites').append('<li><a data-transition="pop" data-parm="' + data[key] + '" href="#convert-page" class="ui-btn ui-btn-icon-right ui-icon-carat-r">[ ' + record[1] + ' ] From: ' + record[2] + ' => To: ' + record[3] + '</a></li>');
             });
 
             $("a").on("click", function (event) {
@@ -443,8 +427,6 @@ function ShowFavs() {
                 cat = strArr[1];
                 left = strArr[2];
                 right = strArr[3];
-
-                alert('key ' + key + ' cat ' + cat + ' left ' + left + ' right ' + right);
             });
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -474,5 +456,4 @@ function getRecentConv() {
             $('#recentConversions').html('Unable to Retrieve Data');
         }
     });
-
 }
