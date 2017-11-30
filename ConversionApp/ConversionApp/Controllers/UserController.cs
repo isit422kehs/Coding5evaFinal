@@ -17,15 +17,7 @@ namespace ConversionApp.Controllers
     public class UserController : ApiController
     {
         MongoDatabase mongoDb = MongoConnect.GetMongoDb();
-        bool testing = false;
-        List<Users> userList = new List<Users>();
-        private List<Users> fakeList;
-        public UserController(List<Users> fakeList)
-        {
-            this.fakeList = fakeList;
-            testing = true;
-        }
-
+       
         [HttpPost]
         public void SignUp(Users newUser)
         {
@@ -57,33 +49,6 @@ namespace ConversionApp.Controllers
                 result = collection.Insert<Users>(newUser);
             }
         }
-        public IEnumerable<Users> GetAllUsers()
-
-        {
-            if (testing)
-            {
-                MongoDatabase mongoDb = MongoConnect.GetMongoDb();
-
-                try
-                {
-                    var mongoList = mongoDb.GetCollection("TestCollection").FindAll().AsEnumerable();
-                    userList = (from users in mongoList
-                                select new Users
-                                {
-                                    Id = users["_id"].AsString,
-                                    UserName = users["UserName"].AsString,
-                                    Password = users["Password"].AsString,
-                                    Email = users["Email"].AsString,
-
-                                }).ToList();
-                }
-                catch (Exception)
-                {
-                    throw new ApplicationException("failed to get data from Mongo");
-                }
-            }
-            return userList;
-        }
-
+        
     }
 }

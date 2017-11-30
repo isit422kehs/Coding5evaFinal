@@ -67,7 +67,7 @@ namespace UnitTestProject1
         public void RetrieveAllFakeUsers()
         {
             List<Users> fakeList = GenerateFakeList();
-            var controller = new UserController(fakeList);
+            var controller = new SignupTestController(fakeList);
 
             var result = controller.GetAllUsers() as List<Users>;
             Assert.AreEqual(fakeList.Count, result.Count);
