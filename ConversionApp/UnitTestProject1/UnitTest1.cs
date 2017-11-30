@@ -62,16 +62,16 @@ namespace UnitTestProject1
 
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));
         }
-    }
-    /*
-    public class UnitTest1
-    {
 
         [TestMethod]
-        public void ShouldGetAllUsersFake()
+        public void RetrieveAllFakeUsers()
         {
+            List<Users> fakeList = GenerateFakeList();
+            var controller = new UserController(fakeList);
 
+            var result = controller.GetAllUsers() as List<Users>;
+            Assert.AreEqual(fakeList.Count, result.Count);
         }
     }
-    */
+   
 }
