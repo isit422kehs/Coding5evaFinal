@@ -18,6 +18,8 @@
         },
         error: function (status) {
             $('#suTest').text(status);
+            alert("This username is already taken. Try a different one");
+
         }
 
     });
