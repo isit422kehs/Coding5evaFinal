@@ -20,42 +20,43 @@ namespace ConversionApp.Controllers
         bool testing = false;
         List<Users> userList = new List<Users>();
         private List<Users> fakeList;
-       /* public UserController(List<Users> fakeList)
+        public UserController(List<Users> fakeList)
         {
             this.fakeList = fakeList;
             testing = true;
-        }*/
+        }
+
         [HttpPost]
         public void SignUp(Users newUser)
         {
-                var collection = mongoDb.GetCollection<Users>("TestCollection"); //testing
-                //var collection = mongoDb.GetCollection<Users>("Users");
-                WriteConcernResult result;
 
-                var count = collection.Find(Query.EQ("UserName", newUser.UserName)).Count();
+            var collection = mongoDb.GetCollection<Users>("TestCollection"); //testing
+            //var collection = mongoDb.GetCollection<Users>("Users");
+            WriteConcernResult result;
 
-                if (count > 0)
-                {
-                    HttpResponseMessage httpResponse = new HttpResponseMessage(HttpStatusCode.BadRequest);
-                    throw new HttpResponseException(httpResponse);
-                }
-                else
-                {
-                    newUser.Id = ObjectId.GenerateNewId().ToString();
-                    newUser.Favorites = new BsonArray();
-                    newUser.Recents = new BsonArray();
-                    BsonArray recent = new BsonArray(newUser.Recents);
+            var count = collection.Find(Query.EQ("UserName", newUser.UserName)).Count();
 
-                    IMongoUpdate update = Update
-                        .Set("UserName", newUser.UserName)
-                        .Set("Password", newUser.Password)
-                        .Set("Email", newUser.Email)
-                        .Set("Favorites", newUser.Favorites)
-                        .Set("Recents", recent);
-                    result = collection.Insert<Users>(newUser);
-                }
+            if (count > 0)
+            {
+                HttpResponseMessage httpResponse = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                throw new HttpResponseException(httpResponse);
             }
+            else
+            {
+                newUser.Id = ObjectId.GenerateNewId().ToString();
+                newUser.Favorites = new BsonArray();
+                newUser.Recents = new BsonArray();
+                BsonArray recent = new BsonArray(newUser.Recents);
 
+                IMongoUpdate update = Update
+                    .Set("UserName", newUser.UserName)
+                    .Set("Password", newUser.Password)
+                    .Set("Email", newUser.Email)
+                    .Set("Favorites", newUser.Favorites)
+                    .Set("Recents", recent);
+                result = collection.Insert<Users>(newUser);
+            }
+        }
         public IEnumerable<Users> GetAllUsers()
 
         {
@@ -82,12 +83,6 @@ namespace ConversionApp.Controllers
                 }
             }
             return userList;
-        }
-
-        public UserController(List<Users> fakeList)
-        {
-            userList = fakeList;
-            testing = true;
         }
 
     }
