@@ -17,23 +17,12 @@ namespace ConversionApp.Controllers
     public class UserController : ApiController
     {
         MongoDatabase mongoDb = MongoConnect.GetMongoDb();
-        /*bool testing = false;
-        BsonArray userList = new BsonArray();
-        public UserController()
-        {
-            testing = false;
-        }
-        public UserController(BsonArray FakeUsers){
-            userList = FakeUsers;
-            testing = true;
-            }*/
+       
         [HttpPost]
         public void SignUp(Users newUser)
         {
-            //if (!testing)
-            //{
-                //var collection = mongoDb.GetCollection<Users>("TestCollection"); //testing
-                var collection = mongoDb.GetCollection<Users>("Users");
+                var collection = mongoDb.GetCollection<Users>("TestCollection"); //testing
+                //var collection = mongoDb.GetCollection<Users>("Users");
                 WriteConcernResult result;
 
                 var count = collection.Find(Query.EQ("UserName", newUser.UserName)).Count();
@@ -59,6 +48,6 @@ namespace ConversionApp.Controllers
                     result = collection.Insert<Users>(newUser);
                 }
             }
-        //}
+
     }
 }

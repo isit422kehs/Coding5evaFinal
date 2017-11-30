@@ -180,10 +180,10 @@ function signUp() {
             "Email": email
         },
         success: function () {
-            $('#signUp').text('Successfully added new user ' + username);
+            $('#addUsers').text('Successfully added new user ' + username);
         },
         error: function (status) {
-            $('#signUp').text(status);
+            $('#addUsers').text(status);
             alert("This username is already taken. Try a different one");
         }
 
