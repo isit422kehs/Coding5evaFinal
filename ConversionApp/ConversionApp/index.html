@@ -25,14 +25,14 @@
             <h3></h3>
             <div data-role="navbar" class="ui-navbar" role="navigation">
                 <ul>
-                    <li><a href="#home-page" data-role="button" data-icon="home" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-a">Home</a></li>
+                    <li><a href="#home-page" data-role="button" data-icon="home" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active">Home</a></li>
                     <li class="rm"><a href="#login-page" data-role="button" id="btnLogin" data-icon="user" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b">Log in</a></li>
                     <li><a href="#convert-page" data-role="button" data-icon="search" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c">Convert</a></li>
                 </ul>
             </div>
             <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
         </div>
-        <div data-role="content">
+        <div data-role="content" class="ui-content">
             <p id="apiDetails"></p>
             <p id="mongoDetails"></p>
         </div>
@@ -55,7 +55,7 @@
             <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
         </div>
         <h2>Log in</h2>
-        <div data-role="content">
+        <div data-role="content" class="ui-content">
             Username : <input type="text" id="usernameInput" autofocus/><br />
             Password : <input type="password" id="passwordInput" /><br />
 
@@ -81,7 +81,7 @@
             <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
         </div>
         <h2>Sign up</h2>
-        <div data-role="content">
+        <div data-role="content" class="ui-content">
             Username : <input type="text" id="username" /><br />
             Password : <input type="text" id="password" /><br />
             Email : <input type="text" id="email" /><br />
@@ -108,7 +108,7 @@
             <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
         </div>
         <h2>Convert</h2>
-        <div data-role="content">
+        <div data-role="content" class="ui-content">
             <div>
                 <select id="convSelector" name="select" size=1 style="font-family:Tahoma;font-size:100%">
                     <option value="" selected>Please select:</option>
@@ -1168,7 +1168,7 @@
             <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
         </div>
         <h2>Recents</h2>
-        <div data-role="content">
+        <div data-role="content" class="ui-content">
             <h2></h2>
             <p id="recentConversions"></p>
         </div>
@@ -1191,7 +1191,7 @@
             <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
         </div>
         <h2>Favorites</h2>
-        <div data-role="content">
+        <div data-role="content" class="ui-content">
             <div>
                 <ul data-role="listview" data-autodividers="true" data-theme="b" id="favorites"></ul>
             </div>
@@ -1216,7 +1216,7 @@
             <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
         </div>
         <h2>Tests</h2>
-        <div data-role="content">
+        <div data-role="content" class="ui-content">
             <p id="pTests"></p>
             <button id="testFav" onclick="FavTest()">Test: adding favorite</button>
             <button type="button" onclick="signTest()">Sign Up Test</button>

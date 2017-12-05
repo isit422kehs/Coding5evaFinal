@@ -23,7 +23,21 @@ $(document).on('pagebeforeshow ', '#home-page', function () {
     getDetails();
 });
 
-let loggedUser, left, right, parm, cat, key;
+let loggedUser, left, right, parm, cat, key, currPage;
+
+
+$(document).on("pagecontainerchange", function () {
+    currPage = $(".ui-page-active").prop("id");
+    // Remove active class from nav buttons
+    $("[data-role='navbar'] a.ui-btn-active").removeClass("ui-btn-active");
+    // Add active class to current nav button
+    $("[data-role='navbar'] a").each(function () {
+        let href = $(this).prop("href");
+        if (href.indexOf(currPage, href.length - currPage.length) !== -1) {
+            $(this).addClass("ui-btn-active");
+        }
+    });
+});
 
 //login
 $(document).on('pagebeforeshow ', '#login-page', function () {
