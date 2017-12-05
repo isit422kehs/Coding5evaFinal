@@ -13,7 +13,8 @@
 }
 
 .dark div {
-    background-color: gray;
+    color: #F5FFFA;
+    background: linear-gradient(#191970, #4682B4, #B0C4DE);
 }
 
 #lightBtn {
