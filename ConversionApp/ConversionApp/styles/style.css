@@ -4,7 +4,7 @@
 }
 
 .light div {
-    background-color:white;
+    background: linear-gradient(#87CEFA, #F0F8FF, #FFFAFA);
 }
 
 .dark {
@@ -14,7 +14,7 @@
 
 .dark div {
     color: #F5FFFA;
-    background: linear-gradient(#191970, #4682B4, #B0C4DE);
+    background: linear-gradient(black, black, #191970, #00008B);
 }
 
 #lightBtn {
