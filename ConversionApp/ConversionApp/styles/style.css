@@ -3,18 +3,18 @@
     background-color:aliceblue;
 }
 
-    .light div {
-        background-color:white;
-    }
+.light div {
+    background-color:white;
+}
 
 .dark {
     color:gainsboro;
     background-color: black;
 }
 
-    .dark div {
-        background-color: gray;
-    }
+.dark div {
+    background-color: gray;
+}
 
 #lightBtn {
     background: url(../images/sun.png) no-repeat;
@@ -36,4 +36,8 @@
 
 .hide {
     display: none;
+}
+
+h2 {
+    margin-left: 20px;
 }

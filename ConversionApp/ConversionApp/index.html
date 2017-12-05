@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+    <link rel="stylesheet"
+          href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="styles/style.css" />
 
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -17,11 +19,19 @@
 </head>
 <body>
    
-
     <!-- HOME/DETAILS -->
     <div data-role="page" id="home-page" class="light">
-        <div data-role="header"></div>
-        <h2>Home Page with/for details</h2>
+        <div data-role="header" data-position="fixed" data-id="main-header" id="menu">
+            <h3></h3>
+            <div data-role="navbar" class="ui-navbar" role="navigation">
+                <ul>
+                    <li><a href="#home-page" data-role="button" data-icon="home" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-a">Home</a></li>
+                    <li class="rm"><a href="#login-page" data-role="button" id="btnLogin" data-icon="user" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b">Log in</a></li>
+                    <li><a href="#convert-page" data-role="button" data-icon="search" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c">Convert</a></li>
+                </ul>
+            </div>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
         <div data-role="content">
             <p id="apiDetails"></p>
             <p id="mongoDetails"></p>
@@ -33,14 +43,25 @@
     </div>
 
     <div data-role="page" id="login-page" class="light">
-        <div data-role="header"></div>
-        <h2>Log in Page</h2>
+        <div data-role="header" data-position="fixed" data-id="main-header" id="menu">
+            <h3></h3>
+            <div data-role="navbar" class="ui-navbar" role="navigation">
+                <ul>
+                    <li><a href="#home-page" data-role="button" data-icon="home" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-a">Home</a></li>
+                    <li class="rm"><a href="#login-page" data-role="button" id="btnLogin" data-icon="user" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b">Log in</a></li>
+                    <li><a href="#convert-page" data-role="button" data-icon="search" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c">Convert</a></li>
+                </ul>
+            </div>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Log in</h2>
         <div data-role="content">
             Username : <input type="text" id="usernameInput" autofocus/><br />
             Password : <input type="password" id="passwordInput" /><br />
 
             <input type="button" data-theme="c" id="loginBtn" value="Log in" onclick="Login()" />
             <p id="pLogin"></p>
+            <a href="#signup-page">Don't have an account?</a>
         </div>
         <div data-role="footer">
             <h1>copyright Coding5eva 2017</h1>
@@ -48,8 +69,18 @@
     </div>
 
     <div data-role="page" id="signup-page" class="light">
-        <div data-role="header"></div>
-        <h2>Sign up Page</h2>
+        <div data-role="header" data-position="fixed" data-id="main-header" id="menu">
+            <h3></h3>
+            <div data-role="navbar" class="ui-navbar" role="navigation">
+                <ul>
+                    <li><a href="#home-page" data-role="button" data-icon="home" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-a">Home</a></li>
+                    <li class="rm"><a href="#login-page" data-role="button" id="btnLogin" data-icon="user" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b">Log in</a></li>
+                    <li><a href="#convert-page" data-role="button" data-icon="search" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c">Convert</a></li>
+                </ul>
+            </div>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Sign up</h2>
         <div data-role="content">
             Username : <input type="text" id="username" /><br />
             Password : <input type="text" id="password" /><br />
@@ -65,11 +96,19 @@
     </div>
 
     <div data-role="page" id="convert-page" class="light">
-        <div data-role="header"></div>
-        <h2>Convert Page</h2>
+        <div data-role="header" data-position="fixed" data-id="main-header" id="menu">
+            <h3></h3>
+            <div data-role="navbar" class="ui-navbar" role="navigation">
+                <ul>
+                    <li><a href="#home-page" data-role="button" data-icon="home" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-a">Home</a></li>
+                    <li class="rm"><a href="#login-page" data-role="button" id="btnLogin" data-icon="user" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b">Log in</a></li>
+                    <li><a href="#convert-page" data-role="button" data-icon="search" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c">Convert</a></li>
+                </ul>
+            </div>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Convert</h2>
         <div data-role="content">
-            <p>convert stuffs</p>
-
             <div>
                 <select id="convSelector" name="select" size=1 style="font-family:Tahoma;font-size:100%">
                     <option value="" selected>Please select:</option>
@@ -1104,7 +1143,7 @@
                     <!--<button id="saveRecents" type="button" onclick="recents()">Save conversion to recents</button>-->
                     <!-- CURRENT CONVERTER END -->
 
-                    <button id="addFav" onclick="Favorite()">Favorite this</button>
+                    <button id="addFav" onclick="Favorite()">Add to favorites</button>
                     <p id="pConv"></p>
                     <p id="pRec"></p>
         </div><!-- end div w/id of converterForm-->
@@ -1117,8 +1156,18 @@
     </div>
 
     <div data-role="page" id="recents-page" class="light">
-        <div data-role="header"></div>
-        <h2>Recents Page</h2>
+        <div data-role="header" data-position="fixed" data-id="main-header" id="menu">
+            <h3></h3>
+            <div data-role="navbar" class="ui-navbar" role="navigation">
+                <ul>
+                    <li><a href="#home-page" data-role="button" data-icon="home" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-a">Home</a></li>
+                    <li class="rm"><a href="#login-page" data-role="button" id="btnLogin" data-icon="user" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b">Log in</a></li>
+                    <li><a href="#convert-page" data-role="button" data-icon="search" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c">Convert</a></li>
+                </ul>
+            </div>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Recents</h2>
         <div data-role="content">
             <h2></h2>
             <p id="recentConversions"></p>
@@ -1130,8 +1179,18 @@
     </div>
 
     <div data-role="page" id="favorites-page" class="light">
-        <div data-role="header"></div>
-        <h2>Favorites Page</h2>
+        <div data-role="header" data-position="fixed" data-id="main-header" id="menu">
+            <h3></h3>
+            <div data-role="navbar" class="ui-navbar" role="navigation">
+                <ul>
+                    <li><a href="#home-page" data-role="button" data-icon="home" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-a">Home</a></li>
+                    <li class="rm"><a href="#login-page" data-role="button" id="btnLogin" data-icon="user" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b">Log in</a></li>
+                    <li><a href="#convert-page" data-role="button" data-icon="search" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c">Convert</a></li>
+                </ul>
+            </div>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Favorites</h2>
         <div data-role="content">
             <div>
                 <ul data-role="listview" data-autodividers="true" data-theme="b" id="favorites"></ul>
@@ -1145,8 +1204,18 @@
     </div>
 
     <div data-role="page" id="tests-page" class="light">
-        <div data-role="header"></div>
-        <h2>Tests Page</h2>
+        <div data-role="header" data-position="fixed" data-id="main-header" id="menu">
+            <h3></h3>
+            <div data-role="navbar" class="ui-navbar" role="navigation">
+                <ul>
+                    <li><a href="#home-page" data-role="button" data-icon="home" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-a">Home</a></li>
+                    <li class="rm"><a href="#login-page" data-role="button" id="btnLogin" data-icon="user" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b">Log in</a></li>
+                    <li><a href="#convert-page" data-role="button" data-icon="search" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c">Convert</a></li>
+                </ul>
+            </div>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Tests</h2>
         <div data-role="content">
             <p id="pTests"></p>
             <button id="testFav" onclick="FavTest()">Test: adding favorite</button>

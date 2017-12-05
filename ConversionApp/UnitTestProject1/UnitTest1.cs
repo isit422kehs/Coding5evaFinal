@@ -73,5 +73,4 @@ namespace UnitTestProject1
             Assert.AreEqual(fakeList.Count, result.Count);
         }
     }
-   
 }

@@ -6,16 +6,16 @@ $(document).ready(function () {
     var userName = cookie.substring(5, cookie.indexOf("; "));
     var userId = cookie.substring(userIdIndex + 7);
 
-    $('div[data-role="header"]').append(
-        '<div data-role="navbar"><ul>' +
-        '<p id="logged"></p></br>' +
-        '<img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />' +
-        '<li><a data-role="button" href="#home-page">Home</a></li>' +
-        '<li class="rm"><a data-role="button" id="btnLogin" href="#login-page">Log in</a></li>' +
-        '<li class="rm"><a data-role="button" id="btnSignup" href="#signup-page">Sign up</a></li>' +
-        '<li><a data-role="button" href="#convert-page">Convert</a></li>' +
-        '</ul></div>'
-    );
+    //$('div[data-role="header"]').append(
+    //    '<div data-role="navbar" class="ui-navbar" role="navigation"><ul>' +
+    //    '<p id="logged"></p></br>' +
+    //    '<li class="active"><a href="#home-page" data-role="button" data-icon="home" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline">Home</a></li>' +
+    //    //'<span class="ui-btn-inner"><span class=ui-btn-text">Home</span></a></li>' +
+    //    '<li class="rm"><a href="#login-page" data-role="button" id="btnLogin" data-icon="user" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline">Log in</a></li>' +
+    //    '<li><a href="#convert-page" data-role="button" data-icon="search" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline">Convert</a></li>' +
+    //    '</ul></div>' +
+    //    '<img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />'
+    //);
 });
 
 //home
@@ -48,7 +48,7 @@ $(document).on('pagebeforeshow ', '#login-page', function () {
 //sign-up
 $(document).on('pagebeforeshow ', '#signup-page', function () {
 
-    $('#signup-page p').append('<strong> sign up</strong>');
+    $('#signup-page p').append('<strong></strong>');
 });
 var getForm;
 //convert
@@ -56,6 +56,12 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
 
     $('#convert-page form').hide();
     $('#a').hide();
+
+    if (loggedUser === undefined) {
+        $('#addFav').hide();
+    } else {
+        $('#addFav').show();
+    }
     
     if (key > 0) {
 
@@ -67,7 +73,7 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
 
     } else if (key === undefined) {
         $('#pConv').text('');
-        $("#convSelector").val('').trigger('change');
+        $('#convSelector').val('').trigger('change');
 
         $('#converterForm select').change(function () {
 
@@ -75,8 +81,9 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
             var userIdIndex = cookie.indexOf("userId=");
             var userId = cookie.substring(userIdIndex + 7);
 
-            right = $('#' + getForm + ' select[name="right"]').val();
             left = $('#' + getForm + ' select[name="left"]').val();
+            right = $('#' + getForm + ' select[name="right"]').val();
+            
             let username = loggedUser;
 
             if (left != right && document.cookie.indexOf('userId') > -1) {
@@ -96,12 +103,7 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
                     error: function (jqXHR, textStatus, errorThrown) {
                         $('#pRec').text(jqXHR.responseText);
                     }
-
                 });
-            }
-
-            else {
-                //window.alert("Please log in if you want to save to recents.");
             }
         });
 
@@ -244,15 +246,15 @@ function Login() {
 
                 var msg = 'Hello ' + data.UserName + '! Your email is ' + data.Email + '.';
                 window.location = '#home-page';
-                $('#home-page p').text(msg);
+                $('h3').text(msg);
 
                 $('.rm').remove();
                 $('#btnSignup').remove();
                 $('#btnLogin').remove();
-                $('ul').append(
-                    '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
-                    '<li><a data-role="button" href="#favorites-page">Favorites</a></li>' +
-                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>'
+                $('#menu ul').append(
+                    '<li><a href="#recents-page" data-role="button" data-icon="grid" data-iconpos="top" class="ui-btn ui-btn-inline">Recents</a></li>' +
+                    '<li><a href="#favorites-page" data-role="button" data-icon="star" data-iconpos="top" class="ui-btn ui-btn-inline">Favorites</a></li>' +
+                    '<li><a href="#logout" data-role="button" data-icon="info" data-iconpos="top" class="ui-btn ui-btn-inline" onclick="logout()">Logout</a></li>'
                 );
 
                 document.cookie = "user=" + data.UserName;
@@ -308,7 +310,7 @@ function logout(req, res) {
     document.cookie = 'userId=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
     window.location.reload();
-    window.location = '#home-page';
+    window.location = '';
 }
 
 function light() {
