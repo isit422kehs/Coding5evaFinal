@@ -438,7 +438,7 @@ function ShowFavs() {
         success: function (data) {
 
             $.each(data, function (key, record) {
-                $('#favList').append('<li><a data-transition="pop" data-parm="' + data[key] + '" href="#convert" data-theme="a" class="ui-btn ui-btn-icon-right ui-icon-carat-r">[ ' + record[1].substr(0, 1).toUpperCase() + record[1].substr(1) + ' ] ' + record[2].substr(0, 1).toUpperCase() + record[2].substr(1) + ' => ' + record[3].substr(0, 1).toUpperCase() + record[3].substr(1) + '</a></li>');
+                $('#favList').append('<li><a data-transition="pop" data-parm="' + data[key] + '" href="#convert" data-theme="a" class="ui-btn ui-btn-icon-right ui-icon-carat-r">' + record[1].substr(0, 1).toUpperCase() + record[1].substr(1) + ' | ' + record[2].substr(0, 1).toUpperCase() + record[2].substr(1) + ' => ' + record[3].substr(0, 1).toUpperCase() + record[3].substr(1) + '</a></li>');
             });
 
             $("a").on("click", function (event) {
