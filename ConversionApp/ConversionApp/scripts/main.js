@@ -24,7 +24,7 @@ $(document).on("pagecontainerchange", function () {
 
 //home
 $(document).on('pagebeforeshow ', '#home', function () {
-    //getDetails();
+    getDetails();
 });
 
 //login
@@ -159,7 +159,6 @@ $(document).on('pagebeforeshow ', '#convert', function () {
 $(document).on('pagebeforeshow ', '#recents', function () {
     $('#recents p').append('<strong> </strong>');
     getRecentConv();
-    //$('#recentsTable').DataTable();
 });
 
 //favorites
