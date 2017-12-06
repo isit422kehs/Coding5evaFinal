@@ -153,6 +153,7 @@
     <Content Include="images\recent.png" />
     <Content Include="images\search.png" />
     <Content Include="images\sun.png" />
+    <Content Include="images\test.png" />
     <Content Include="images\user.png" />
     <Content Include="index.html" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />

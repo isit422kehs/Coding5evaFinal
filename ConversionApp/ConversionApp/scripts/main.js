@@ -22,38 +22,7 @@ $(document).on("pagecontainerchange", function () {
     });
 });
 
-//home
-$(document).on('pagebeforeshow ', '#home', function () {
-    getDetails();
-});
-
-//login
-$(document).on('pagebeforeshow ', '#login', function () {
-
-    $('#pLogin').text('');
-    $("#usernameInput").val('').trigger('change');
-    $("#passwordInput").val('').trigger('change');
-
-    $("#usernameInput").keydown(function (e) {
-        if (e.which === 13) {
-            $("#loginBtn").click();
-        }
-    });
-
-    $("#passwordInput").keydown(function (e) {
-        if (e.which === 13) {
-            $("#loginBtn").click();
-        }
-    });
-});
-
-//sign-up
-$(document).on('pagebeforeshow ', '#signup', function () {
-
-    $('#signup p').append('<strong></strong>');
-});
-
-//convert
+// convert / home
 $(document).on('pagebeforeshow ', '#convert', function () {
 
     $('#convert form').hide();
@@ -64,7 +33,7 @@ $(document).on('pagebeforeshow ', '#convert', function () {
     } else {
         $('#addFav').show();
     }
-    
+
     if (key > 0) {
 
         $("#convSelector").val(cat).change();
@@ -85,7 +54,7 @@ $(document).on('pagebeforeshow ', '#convert', function () {
 
             left = $('#' + getForm + ' select[name="left"]').val();
             right = $('#' + getForm + ' select[name="right"]').val();
-            
+
             let username = loggedUser;
 
             if (left !== right && document.cookie.indexOf('userId') > -1) {
@@ -100,7 +69,7 @@ $(document).on('pagebeforeshow ', '#convert', function () {
                         "user": username
                     },
                     success: function (data) {
-                        
+
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         $('#pRec').text(jqXHR.responseText);
@@ -153,6 +122,37 @@ $(document).on('pagebeforeshow ', '#convert', function () {
             getForm = val;
         });
     }
+});
+
+// details
+$(document).on('pagebeforeshow ', '#details', function () {
+    //getDetails();
+});
+
+//login
+$(document).on('pagebeforeshow ', '#login', function () {
+
+    $('#pLogin').text('');
+    $("#usernameInput").val('').trigger('change');
+    $("#passwordInput").val('').trigger('change');
+
+    $("#usernameInput").keydown(function (e) {
+        if (e.which === 13) {
+            $("#loginBtn").click();
+        }
+    });
+
+    $("#passwordInput").keydown(function (e) {
+        if (e.which === 13) {
+            $("#loginBtn").click();
+        }
+    });
+});
+
+//sign-up
+$(document).on('pagebeforeshow ', '#signup', function () {
+
+    $('#signup p').append('<strong></strong>');
 });
 
 //recents
@@ -223,8 +223,8 @@ function Login() {
                 $('#btnSignup').remove();
                 $('#btnLogin').remove();
                 $('ul').append(
-                    '<li><a data-role="button" href="#tests">Tests</a></li>' +
-                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>'
+                    '<li><a href="#tests" data-role="button" data-iconpos="top" class="ui-btn ui-btn-inline"><img class="icon" src="images/test.png"/>Tests</a></li>' +
+                    '<li><a href="#logout" data-role="button" data-iconpos="top" class="ui-btn ui-btn-inline" onclick="logout()"><img class="icon" src="images/logout.png"/>Logout</a></li>'
                 );
 
                 document.cookie = "user=" + data.UserName;
@@ -249,7 +249,7 @@ function Login() {
                 loggedUser = data.UserName;
                 var msg = 'Logged in as ' + loggedUser;
                 $('#user').html(msg);
-                window.location = '#home';
+                window.location = '#convert';
 
                 $('.rm').remove();
                 $('#btnSignup').remove();
@@ -317,7 +317,7 @@ function logout(req, res) {
     document.cookie = 'userId=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
     window.location.reload();
-    window.location = '';
+    window.location = '#convert';
 }
 
 function light() {
