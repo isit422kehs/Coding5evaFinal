@@ -8,69 +8,113 @@
 
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+    <link rel="stylesheet"
+          href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    
     <link rel="stylesheet" href="styles/style.css" />
-
+    
+    
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/Tests.js"></script>
 </head>
 <body>
    
-
     <!-- HOME/DETAILS -->
-    <div data-role="page" id="home-page" class="light">
-        <div data-role="header"></div>
-        <h2>Home Page with/for details</h2>
-        <div data-role="content">
-            <p id="apiDetails"></p>
+    <div data-role="page" id="home" class="light">
+        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+            <div data-role="navbar" class="ui-navbar">
+                <ul>
+                    <li><a href="#home" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/home.png" />Home</a></li>
+                    <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
+                    <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c"><img class="icon" src="images/search.png" />Convert</a></li>
+                </ul>
+            </div>
+            <span id="user">You are a Guest</span>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Location Info</h2>
+        <div data-role="content" class="ui-content">
+            <div id="apiDetails"><table></table></div>
             <p id="mongoDetails"></p>
         </div>
 
-        <div data-role="footer">
+        <div data-role="footer" data-fullscreen="true" data-position="fixed">
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
-    <div data-role="page" id="login-page" class="light">
-        <div data-role="header"></div>
-        <h2>Log in Page</h2>
-        <div data-role="content">
+    <div data-role="page" id="login" class="light">
+        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+            <div data-role="navbar" class="ui-navbar">
+                <ul>
+                    <li><a href="#home" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/home.png" />Home</a></li>
+                    <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
+                    <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c"><img class="icon" src="images/search.png" />Convert</a></li>
+                </ul>
+            </div>
+            <span id="user">You are a Guest</span>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Log in</h2>
+        <div data-role="content" class="ui-content">
             Username : <input type="text" id="usernameInput" autofocus/><br />
             Password : <input type="password" id="passwordInput" /><br />
 
-            <input type="button" data-theme="c" id="loginBtn" value="Log in" onclick="Login()" />
+            <button type="button" id="loginBtn" onclick="Login()">Log In</button>
             <p id="pLogin"></p>
+            <a href="#signup">Don't have an account?</a>
         </div>
-        <div data-role="footer">
+        <div data-role="footer" data-fullscreen="true" data-position="fixed">
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
-    <div data-role="page" id="signup-page" class="light">
-        <div data-role="header"></div>
-        <h2>Sign up Page</h2>
-        <div data-role="content">
+    <div data-role="page" id="signup" class="light">
+        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+            <div data-role="navbar" class="ui-navbar">
+                <ul>
+                    <li><a href="#home" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/home.png" />Home</a></li>
+                    <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
+                    <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c"><img class="icon" src="images/search.png" />Convert</a></li>
+                </ul>
+            </div>
+            <span id="user">You are a Guest</span>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Sign up</h2>
+        <div data-role="content" class="ui-content">
             Username : <input type="text" id="username" /><br />
             Password : <input type="text" id="password" /><br />
             Email : <input type="text" id="email" /><br />
 
-            <input type="button" data-icon="plus" data-theme="c" id="addBtn" value="Sign Up" onclick="signUp()" />
-            <button id="signupTest" type="button" onclick="signTest()">Sign Up Teset</button>
-            <p id="addUsers" />
+            <input type="button" data-icon="plus" id="addBtn" value="Sign Up" onclick="signUp()" />
+            <p id="addUsers"></p>
         </div>
 
-        <div data-role="footer">
+        <div data-role="footer" data-fullscreen="true" data-position="fixed">
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
-    <div data-role="page" id="convert-page" class="light">
-        <div data-role="header"></div>
-        <h2>Convert Page</h2>
-        <div data-role="content">
-            <p>convert stuffs</p>
-
+    <div data-role="page" id="convert" class="light">
+        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+            <div data-role="navbar" class="ui-navbar">
+                <ul>
+                    <li><a href="#home" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/home.png" />Home</a></li>
+                    <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
+                    <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c"><img class="icon" src="images/search.png" />Convert</a></li>
+                </ul>
+            </div>
+            <span id="user">You are a Guest</span>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Convert</h2>
+        <div data-role="content" class="ui-content">
             <div>
                 <select id="convSelector" name="select" size=1 style="font-family:Tahoma;font-size:100%">
                     <option value="" selected>Please select:</option>
@@ -1105,56 +1149,99 @@
                     <!--<button id="saveRecents" type="button" onclick="recents()">Save conversion to recents</button>-->
                     <!-- CURRENT CONVERTER END -->
 
-                    <button id="addFav" onclick="Favorite()">Favorite this</button>
+                    <button id="addFav" data-icon="plus" data-iconpos="left" onclick="Favorite()">Add to favorites</button>
                     <p id="pConv"></p>
                     <p id="pRec"></p>
         </div><!-- end div w/id of converterForm-->
         </div>
-        <div data-role="footer">
+        <div data-role="footer" data-fullscreen="true" data-position="fixed">
             
             <a id="a" href="http://www.unitconversion.org/">UnitConversion.org</a>
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
-    <div data-role="page" id="recents-page" class="light">
-        <div data-role="header"></div>
-        <h2>Recents Page</h2>
-        <div data-role="content">
+    <div data-role="page" id="recents" class="light">
+        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+            <div data-role="navbar" class="ui-navbar">
+                <ul>
+                    <li><a href="#home" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/home.png" />Home</a></li>
+                    <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
+                    <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c"><img class="icon" src="images/search.png" />Convert</a></li>
+                </ul>
+            </div>
+            <span id="user">You are a Guest</span>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Recents</h2>
+        <div data-role="content" class="ui-content" id="recentsContent">
             <h2></h2>
-            <p id="recentConversions"></p>
+            <div id="recentsList">
+                <table id="recentsTable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="recentsTh">Recents from newest to oldest</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                </table>
+                <ul data-role="listview" data-autodividers="true" id="recentConversions"></ul>
+            </div>
         </div>
 
-        <div data-role="footer">
+        <div data-role="footer" data-fullscreen="true" data-position="fixed">
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
-    <div data-role="page" id="favorites-page" class="light">
-        <div data-role="header"></div>
-        <h2>Favorites Page</h2>
-        <div data-role="content">
+    <div data-role="page" id="favorites" class="light">
+        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+            <div data-role="navbar" class="ui-navbar">
+                <ul>
+                    <li><a href="#home" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/home.png" />Home</a></li>
+                    <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
+                    <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c"><img class="icon" src="images/search.png" />Convert</a></li>
+                </ul>
+            </div>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <span id="user">You are a Guest</span>
+        <h2>Favorites</h2>
+        <div data-role="content" class="ui-content">
             <div>
-                <ul data-role="listview" data-autodividers="true" data-theme="b" id="favorites"></ul>
+                <ul data-role="listview" data-autodividers="true" data-theme="a" data-inset="true" id="favList"></ul>
             </div>
             <p id="pFav"></p>
         </div>
 
-        <div data-role="footer">
+        <div data-role="footer" data-fullscreen="true" data-position="fixed">
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
-    <div data-role="page" id="tests-page" class="light">
-        <div data-role="header"></div>
-        <h2>Tests Page</h2>
-        <div data-role="content">
+    <div data-role="page" id="tests" class="light">
+        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+            <h3></h3>
+            <div data-role="navbar" class="ui-navbar">
+                <ul>
+                    <li><a href="#home" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/home.png" />Home</a></li>
+                    <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
+                    <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-c"><img class="icon" src="images/search.png" />Convert</a></li>
+                </ul>
+            </div>
+            <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+        </div>
+        <h2>Tests</h2>
+        <div data-role="content" class="ui-content">
             <p id="pTests"></p>
             <button id="testFav" onclick="FavTest()">Test: adding favorite</button>
-
+            <button type="button" onclick="signTest()">Sign Up Test</button>
             <div>
                 <h3>Test that 1kg is equal to 1000g</h3>
                 <button onclick="adminTestConversion()">Show Form</button>
+                
+                <p id="suTest"></p>
                 <form style="padding:0;margin:0" name="cat=Weight" id="testerForm" class="hide">
                     <table align=center style="width:0;font-family:Tahoma;font-size:100%" border=0 cellpadding=0 cellspacing=0>
                         <tr><td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">From:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type=text name="bindid=left;base=1"></td><td style="padding:1.2ex 1.5ex;width:50%;font-family:Tahoma;font-size:87%">To:<br><input style="width:100%;font-family:Tahoma;font-size:100%" type=text name="bindid=right"></td></tr>
@@ -1172,7 +1259,7 @@
 
         </div>
 
-        <div data-role="footer">
+        <div data-role="footer" data-fullscreen="true" data-position="fixed">
             <h1>copyright Coding5eva 2017</h1>
             <script src="http://www.unitconversion.org/converter3/converter3.js"></script>
         </div>

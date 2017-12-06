@@ -5,28 +5,30 @@ $(document).ready(function () {
     var userIdIndex = cookie.indexOf("userId=");
     var userName = cookie.substring(5, cookie.indexOf("; "));
     var userId = cookie.substring(userIdIndex + 7);
+});
 
-    $('div[data-role="header"]').append(
-        '<div data-role="navbar"><ul>' +
-        '<p id="logged"></p></br>' +
-        '<img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />' +
-        '<li><a data-role="button" href="#home-page">Home</a></li>' +
-        '<li class="rm"><a data-role="button" id="btnLogin" href="#login-page">Log in</a></li>' +
-        '<li class="rm"><a data-role="button" id="btnSignup" href="#signup-page">Sign up</a></li>' +
-        '<li><a data-role="button" href="#convert-page">Convert</a></li>' +
-        '</ul></div>'
-    );
+let loggedUser, left, right, parm, cat, key, getForm, currPage;
+
+$(document).on("pagecontainerchange", function () {
+    currPage = $(".ui-page-active").prop("id");
+    // Remove active class from nav buttons
+    $("[data-role='navbar'] a.ui-btn-active").removeClass("ui-btn-active");
+    // Add active class to current nav button
+    $("[data-role='navbar'] a").each(function () {
+        let href = $(this).prop("href");
+        if (href.indexOf(currPage, href.length - currPage.length) !== -1) {
+            $(this).addClass("ui-btn-active");
+        }
+    });
 });
 
 //home
-$(document).on('pagebeforeshow ', '#home-page', function () {
+$(document).on('pagebeforeshow ', '#home', function () {
     getDetails();
 });
 
-let loggedUser, left, right, parm, cat, key;
-
 //login
-$(document).on('pagebeforeshow ', '#login-page', function () {
+$(document).on('pagebeforeshow ', '#login', function () {
 
     $('#pLogin').text('');
     $("#usernameInput").val('').trigger('change');
@@ -46,16 +48,22 @@ $(document).on('pagebeforeshow ', '#login-page', function () {
 });
 
 //sign-up
-$(document).on('pagebeforeshow ', '#signup-page', function () {
+$(document).on('pagebeforeshow ', '#signup', function () {
 
-    $('#signup-page p').append('<strong> sign up</strong>');
+    $('#signup p').append('<strong></strong>');
 });
-var getForm;
-//convert
-$(document).on('pagebeforeshow ', '#convert-page', function () {
 
-    $('#convert-page form').hide();
+//convert
+$(document).on('pagebeforeshow ', '#convert', function () {
+
+    $('#convert form').hide();
     $('#a').hide();
+
+    if (loggedUser === undefined) {
+        $('#addFav').hide();
+    } else {
+        $('#addFav').show();
+    }
     
     if (key > 0) {
 
@@ -67,7 +75,7 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
 
     } else if (key === undefined) {
         $('#pConv').text('');
-        $("#convSelector").val('').trigger('change');
+        $('#convSelector').val('').trigger('change');
 
         $('#converterForm select').change(function () {
 
@@ -75,11 +83,12 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
             var userIdIndex = cookie.indexOf("userId=");
             var userId = cookie.substring(userIdIndex + 7);
 
-            right = $('#' + getForm + ' select[name="right"]').val();
             left = $('#' + getForm + ' select[name="left"]').val();
+            right = $('#' + getForm + ' select[name="right"]').val();
+            
             let username = loggedUser;
 
-            if (left != right && document.cookie.indexOf('userId') > -1) {
+            if (left !== right && document.cookie.indexOf('userId') > -1) {
 
                 $.ajax({
                     type: "POST",
@@ -91,17 +100,12 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
                         "user": username
                     },
                     success: function (data) {
-                        $('#pRec').text('Successfully added recent conversion: ' + left + ' to ' + right);
+                        
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         $('#pRec').text(jqXHR.responseText);
                     }
-
                 });
-            }
-
-            else {
-                //window.alert("Please log in if you want to save to recents.");
             }
         });
 
@@ -152,16 +156,16 @@ $(document).on('pagebeforeshow ', '#convert-page', function () {
 });
 
 //recents
-$(document).on('pagebeforeshow ', '#recents-page', function () {
-    $('#recents-page p').append('<strong> </strong>');
+$(document).on('pagebeforeshow ', '#recents', function () {
+    $('#recents p').append('<strong> </strong>');
     getRecentConv();
 });
 
 //favorites
-$(document).on('pagebeforeshow ', '#favorites-page', function () {
+$(document).on('pagebeforeshow ', '#favorites', function () {
 
     ShowFavs();
-    $("#favorites").listview('refresh');
+    $("#favList").listview('refresh');
 });
 
 //add users
@@ -180,10 +184,10 @@ function signUp() {
             "Email": email
         },
         success: function () {
-            $('#signUp').text('Successfully added new user ' + username);
+            $('#addUsers').text('Successfully added new user ' + username);
         },
         error: function (status) {
-            $('#signUp').text(status);
+            $('#addUsers').text(status);
             alert("This username is already taken. Try a different one");
         }
 
@@ -211,13 +215,15 @@ function Login() {
             success: function (data) {
 
                 loggedUser = data.UserName;
-                window.location = '#tests-page';
+                var msg = 'Logged in as ' + loggedUser;
+                $('#user').html(msg);
+                window.location = '#tests';
 
                 $('.rm').remove();
                 $('#btnSignup').remove();
                 $('#btnLogin').remove();
                 $('ul').append(
-                    '<li><a data-role="button" href="#tests-page">Tests</a></li>' +
+                    '<li><a data-role="button" href="#tests">Tests</a></li>' +
                     '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>'
                 );
 
@@ -241,19 +247,22 @@ function Login() {
             success: function (data) {
 
                 loggedUser = data.UserName;
-
-                var msg = 'Hello ' + data.UserName + '! Your email is ' + data.Email + '.';
-                window.location = '#home-page';
-                $('#home-page p').text(msg);
+                var msg = 'Logged in as ' + loggedUser;
+                $('#user').html(msg);
+                window.location = '#home';
 
                 $('.rm').remove();
                 $('#btnSignup').remove();
                 $('#btnLogin').remove();
-                $('ul').append(
-                    '<li><a data-role="button" href="#recents-page">Recents</a></li>' +
-                    '<li><a data-role="button" href="#favorites-page">Favorites</a></li>' +
-                    '<li><a data-role="button" href="#logout" onclick="logout()">Logout</a></li>'
-                );
+                $('#menu ul').append(
+                    '<li><a href="#recents" data-role="button" data-iconpos="top" class="ui-btn ui-btn-inline"><img class="icon" src="images/recent.png"/>Recents</a></li>' +
+                    '<li><a href="#favorites" data-role="button" data-iconpos="top" class="ui-btn ui-btn-inline"><img class="icon" src="images/fav2.png"/>Favorites</a></li>' +
+                    '<li><a href="#logout" data-role="button" data-iconpos="top" class="ui-btn ui-btn-inline" onclick="logout()"><img class="icon" src="images/logout.png"/>Logout</a></li>'
+                )
+
+                $('#menu ul li').css('width', '20%');
+                $('#menu ul li').css('float', 'left');
+                $('#menu ul li').css('min-height', '100%');
 
                 document.cookie = "user=" + data.UserName;
                 document.cookie = "userId=" + data.Id;
@@ -308,7 +317,7 @@ function logout(req, res) {
     document.cookie = 'userId=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
     window.location.reload();
-    window.location = '#home-page';
+    window.location = '';
 }
 
 function light() {
@@ -336,11 +345,10 @@ function getDetails() {
             let volts = processVolts(voltsArr);
             let plugs = processPlugs(plugsArr);
 
-            $('#mongoDetails').html('Your Volt(s) are : ' + volts +
-                '<br />Here are your Plug(s) :<br/ >' + plugs);
+            $('#apiDetails table').append('<tr><th colspan="2">Here are your Plug(s) Info</th></tr>' + volts + plugs);
         },
         error: function (status) {
-            $('#mongoDetails').html('Unable to Retrieve Data');
+            $('#mongoDetails').html('Unable to Retrieve Plugs Data from Mongo');
         }
     });
 }
@@ -350,14 +358,14 @@ function processPlugs(plugsArr) {
 
     $.each(plugsArr, function (index, val) {
         val = val.trim();
-        returnString += 'Type : ' + val + '<br /><img src="images/plugs/' + val + '.jpg" /><br />';
+        returnString += '<tr><td>Type : ' + val + '</td><td><img src="images/plugs/' + val + '.jpg" /></td></tr>';
     });
 
     return returnString;
 }
 
 function processVolts(voltsArr) {
-    let returnString = '';
+    let returnString = '<tr><td>Your Volt(s)</td><td>';
 
     $.each(voltsArr, function (index, val) {
         const reg = new RegExp(/vV/, 'g');
@@ -365,6 +373,7 @@ function processVolts(voltsArr) {
         returnString += val + 'V ';
     });
 
+    returnString += '</td></tr>';
     return returnString;
 }
 
@@ -381,18 +390,18 @@ function getCountry() {
     });
 
     $.ajax({
-        url: 'http://usercountry.com/v1.0/json/' + ip,
+        url: 'https://usercountry.com/v1.0/json/' + ip,
         dataType: 'json',
         async: false,
         success: function (result) {
-            $('#apiDetails').html('I see you in ' + result.country.name +
-                '<br /> Continent Name : ' + result.continent.name +
-                '<br /> Currency Symbol : ' + result.currency.symbol +
-                '<br /> Currency Name : ' + result.currency.name +
-                '<br /> Currency Code : ' + result.currency.code +
-                '<br /> Language Name : ' + result.language.name +
-                '<br /> Timezone Name : ' + result.timezone.name +
-                '<br /> Timezone Code : ' + result.timezone.code);
+            $('#apiDetails table').html('<tr><th colspan="2">I see you in ' + result.country.name + '</th></tr>' +
+                '<tr><td>Continent Name</td><td>' + result.continent.name + '</td></tr>' +
+                '<tr><td>Currency Symbol</td><td>' + result.currency.symbol + '</td></tr>' +
+                '<tr><td>Currency Name</td><td>' + result.currency.name + '</td></tr>' +
+                '<tr><td>Currency Code</td><td>' + result.currency.code + '</td></tr>' +
+                '<tr><td>Language Name</td><td>' + result.language.name + '</td></tr>' +
+                '<tr><td>Timezone Name</td><td>' + result.timezone.name + '</td></tr>' +
+                '<tr><td>Timezone Code</td><td>' + result.timezone.code + '</td></tr>');
             countryName = result.country.name;
         }
     });
@@ -405,7 +414,7 @@ function ShowFavs() {
     let username = loggedUser;
     let form = getForm;
 
-    $('#favorites').empty();
+    $('#favList').empty();
 
     $.ajax({
         type: "POST",
@@ -416,7 +425,7 @@ function ShowFavs() {
         success: function (data) {
 
             $.each(data, function (key, record) {
-                $('#favorites').append('<li><a data-transition="pop" data-parm="' + data[key] + '" href="#convert-page" class="ui-btn ui-btn-icon-right ui-icon-carat-r">[ ' + record[1] + ' ] From: ' + record[2] + ' => To: ' + record[3] + '</a></li>');
+                $('#favList').append('<li><a data-transition="pop" data-parm="' + data[key] + '" href="#convert" data-theme="a" class="ui-btn ui-btn-icon-right ui-icon-carat-r">[ ' + record[1].substr(0, 1).toUpperCase() + record[1].substr(1) + ' ] ' + record[2].substr(0, 1).toUpperCase() + record[2].substr(1) + ' => ' + record[3].substr(0, 1).toUpperCase() + record[3].substr(1) + '</a></li>');
             });
 
             $("a").on("click", function (event) {
@@ -435,7 +444,7 @@ function ShowFavs() {
     });
 }
 
-var uri = 'api/rec'
+var uri = 'api/rec';
 function getRecentConv() {
     let username = loggedUser;
 
@@ -449,11 +458,12 @@ function getRecentConv() {
         success: function (data) {
             $('#recentConversions').empty();
             $.each(data, function (key, record) {
-                $('#recentConversions').append(' <li>' + record["From"] + ' =>' + record["To"] + ' </li>');
+                $('#recentsTable').prepend('<tr><td>' + record["From"].substr(0, 1).toUpperCase() + record["From"].substr(1) + ' => ' + record["To"].substr(0, 1).toUpperCase() + record["To"].substr(1) + '</td></tr>');
             });
+            $('#recentsTable').DataTable();
         },
         error: function (status) {
-            $('#recentConversions').html('Unable to Retrieve Data');
+            $('#recentConversions').html('Unable to retrieve data.');
         }
     });
 }

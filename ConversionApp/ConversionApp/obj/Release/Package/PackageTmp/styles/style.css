@@ -1,20 +1,89 @@
-﻿.light {
-    color: black;
-    background-color:aliceblue;
+﻿/* start of sil */
+
+div[data-role="content"] {
+    max-width: 95%;
+    margin: auto;
 }
 
-    .light div {
-        background-color:white;
-    }
+#apiDetails table {
+    min-width: 400px;
+    width: 90%;
+    margin: auto;
+}
+
+#apiDetails img {
+    display: block;
+    margin: auto;
+}
+
+#apiDetails td, #apiDetails tr {
+    border: solid 1px black;
+}
+
+#apiDetails td {
+    padding: 10px;
+    width: 50%;
+}
+
+#convSelector {
+    padding: 10px;
+}
+
+#convSelector option, #converterForm option {
+    padding: 10px;
+}
+
+#convSelector option:not(:first-child):hover {
+    padding-left: 25px;
+    font-weight: bold;
+}
+
+#convSelector option:first-child {
+    color: gray;
+}
+
+#converterForm option:hover {
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+#linkRec, #linkFav, #linkOut {
+    display: none;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin: auto;
+}
+
+#lightBtn, #darkBtn, #user {
+    float: right;
+}
+
+#user {
+    margin: 15px 10px;
+}
+/* end of sil */
+
+#menu, h2 {
+    clear:both;
+}
+
+h2 {
+    margin-left: 20px;
+}
+
+.light {
+    color: black;
+    background: linear-gradient(#87CEFA, #F0F8FF, #FFFAFA);
+}
 
 .dark {
-    color:gainsboro;
-    background-color: black;
+    color: gainsboro;
+    background: linear-gradient(black, black, #191970, #00008B);
 }
-
-    .dark div {
-        background-color: gray;
-    }
 
 #lightBtn {
     background: url(../images/sun.png) no-repeat;
@@ -36,4 +105,20 @@
 
 .hide {
     display: none;
+}
+
+#favList li {
+    padding: 1px;
+}
+
+.ui-navbar {
+    border-bottom: 3px solid black;
+}
+
+.navbar-default {
+    border-color: black !important;
+}
+
+#recentsContent {
+    min-height: 700px;
 }

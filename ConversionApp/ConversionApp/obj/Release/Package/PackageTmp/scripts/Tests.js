@@ -1,8 +1,28 @@
 ﻿function signTest() {
-    var username = $('#username').val();
-    var password = $('#password').val();
-    var email = $('#email').val();
+    var username = 'userTest';
+    var password = 'pwTest';
+    var email = 'test@test.com';
 
+    $.ajax({
+        type: "POST",
+        url: 'api/user',
+        data: {
+            "UserName": username,
+            "Password": password,
+            "Email": email
+        },
+        datatype: 'json',
+        success: function () {
+            //$('#suTest').text('Successfully added new user ' + username);
+            $("#suTest").text('Successfully added user ' + username + ' with password ' + password + ' and email ' + email);
+        },
+        error: function (status) {
+            $('#suTest').text(status);
+            alert("This username is already taken. Try a different one");
+
+        }
+
+    });
 }
 
 // tests
