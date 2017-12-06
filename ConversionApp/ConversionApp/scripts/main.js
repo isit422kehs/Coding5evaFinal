@@ -38,8 +38,10 @@ $(document).on('pagebeforeshow ', '#convert', function () {
 
         $("#convSelector").val(cat).change();
         $('#' + cat).show();
-
+        
+        alert('key: ' + key + ' cat: ' + cat + ' left: ' + left + ' right: ' + right);
         $('#' + cat + ' select[name="left"]').val(left).change();
+        alert('key: ' + key + ' cat: ' + cat + ' left: ' + left + ' right: ' + right);
         $('#' + cat + ' select[name="right"]').val(right).change();
 
     } else if (key === undefined) {
@@ -126,7 +128,7 @@ $(document).on('pagebeforeshow ', '#convert', function () {
 
 // details
 $(document).on('pagebeforeshow ', '#details', function () {
-    //getDetails();
+    getDetails();
 });
 
 //login
