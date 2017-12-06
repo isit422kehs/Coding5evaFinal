@@ -16,8 +16,6 @@ namespace ConversionApp.Controllers
         bool testing = false;
         List<Users> userList = new List<Users>();
 
-        
-
         [HttpPost]
         public IHttpActionResult UserLogin(Users user)  // make sure its string
         {
@@ -49,8 +47,6 @@ namespace ConversionApp.Controllers
                 }
                 else { return Content(HttpStatusCode.BadRequest, badlogin); }
             }
-            
-
         }
 
         public LoginController() {
@@ -62,6 +58,5 @@ namespace ConversionApp.Controllers
             userList = fakeUser;
             testing = true;
         }
-        
     }
 }

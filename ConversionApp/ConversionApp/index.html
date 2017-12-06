@@ -10,10 +10,15 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
     <link rel="stylesheet"
           href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    
     <link rel="stylesheet" href="styles/style.css" />
-
+    
+    
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/Tests.js"></script>
 </head>
@@ -32,10 +37,11 @@
             <span id="user">You are a Guest</span>
             <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
         </div>
-        <div data-role="content" class="ui-content">
+        <h2>Location Info</h2>
+        <!--<div data-role="content" class="ui-content">
             <div id="apiDetails"><table></table></div>
             <p id="mongoDetails"></p>
-        </div>
+        </div>-->
 
         <div data-role="footer" data-fullscreen="true" data-position="fixed">
             <h1>copyright Coding5eva 2017</h1>
@@ -1168,9 +1174,18 @@
             <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
         </div>
         <h2>Recents</h2>
-        <div data-role="content" class="ui-content">
+        <div data-role="content" class="ui-content" id="recentsContent">
             <h2></h2>
-            <div>
+            <div id="recentsList">
+                <table id="recentsTable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="recentsTh">Recents from newest to oldest</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                </table>
                 <ul data-role="listview" data-autodividers="true" id="recentConversions"></ul>
             </div>
         </div>
@@ -1195,7 +1210,7 @@
         <h2>Favorites</h2>
         <div data-role="content" class="ui-content">
             <div>
-                <ul data-role="listview" data-autodividers="true" id="favList"></ul>
+                <ul data-role="listview" data-autodividers="true" data-theme="a" data-inset="true" id="favList"></ul>
             </div>
             <p id="pFav"></p>
         </div>

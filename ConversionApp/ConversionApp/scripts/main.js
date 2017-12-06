@@ -5,19 +5,6 @@ $(document).ready(function () {
     var userIdIndex = cookie.indexOf("userId=");
     var userName = cookie.substring(5, cookie.indexOf("; "));
     var userId = cookie.substring(userIdIndex + 7);
-
-    //$(function () {
-    //    $('[data-role="footer"]').css('height', $(window).height() - $('html').height() + 'px');
-    //});
-
-    //$(window).resize(function () {
-    //    var footerHeight = $('[data-role="footer"]').outerHeight();
-    //    var stickFooterPush = $('.push').height(footerHeight);
-
-    //    $('.wrapper').css({ 'marginBottom': '-' + footerHeight + 'px' });
-    //});
-
-    //$(window).resize();
 });
 
 let loggedUser, left, right, parm, cat, key, getForm, currPage;
@@ -37,7 +24,7 @@ $(document).on("pagecontainerchange", function () {
 
 //home
 $(document).on('pagebeforeshow ', '#home', function () {
-    getDetails();
+    //getDetails();
 });
 
 //login
@@ -113,7 +100,7 @@ $(document).on('pagebeforeshow ', '#convert', function () {
                         "user": username
                     },
                     success: function (data) {
-                        $('#pRec').text('Successfully added recent conversion: ' + left + ' to ' + right);
+                        
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         $('#pRec').text(jqXHR.responseText);
@@ -172,6 +159,7 @@ $(document).on('pagebeforeshow ', '#convert', function () {
 $(document).on('pagebeforeshow ', '#recents', function () {
     $('#recents p').append('<strong> </strong>');
     getRecentConv();
+    //$('#recentsTable').DataTable();
 });
 
 //favorites
@@ -228,6 +216,8 @@ function Login() {
             success: function (data) {
 
                 loggedUser = data.UserName;
+                var msg = 'Logged in as ' + loggedUser;
+                $('#user').html(msg);
                 window.location = '#tests';
 
                 $('.rm').remove();
@@ -258,11 +248,9 @@ function Login() {
             success: function (data) {
 
                 loggedUser = data.UserName;
-
-                var msg = 'Logged in as ' + data.UserName;
+                var msg = 'Logged in as ' + loggedUser;
                 $('#user').html(msg);
                 window.location = '#home';
-                $('h3').text(msg);
 
                 $('.rm').remove();
                 $('#btnSignup').remove();
@@ -361,7 +349,6 @@ function getDetails() {
             $('#apiDetails table').append('<tr><th colspan="2">Here are your Plug(s) Info</th></tr>' + volts + plugs);
         },
         error: function (status) {
-            $('#mongoDetails').html('Unable to Retrieve Data');
             $('#mongoDetails').html('Unable to Retrieve Plugs Data from Mongo');
         }
     });
@@ -404,7 +391,7 @@ function getCountry() {
     });
 
     $.ajax({
-        url: 'http://usercountry.com/v1.0/json/' + ip,
+        url: 'https://usercountry.com/v1.0/json/' + ip,
         dataType: 'json',
         async: false,
         success: function (result) {
@@ -439,7 +426,7 @@ function ShowFavs() {
         success: function (data) {
 
             $.each(data, function (key, record) {
-                $('#favList').append('<li><a data-transition="pop" data-parm="' + data[key] + '" href="#convert" class="ui-btn ui-btn-icon-right ui-icon-carat-r">[ ' + record[1].substr(0, 1).toUpperCase() + record[1].substr(1) + ' ] ' + record[2].substr(0, 1).toUpperCase() + record[2].substr(1) + ' => ' + record[3].substr(0, 1).toUpperCase() + record[3].substr(1) + '</a></li>');
+                $('#favList').append('<li><a data-transition="pop" data-parm="' + data[key] + '" href="#convert" data-theme="a" class="ui-btn ui-btn-icon-right ui-icon-carat-r">[ ' + record[1].substr(0, 1).toUpperCase() + record[1].substr(1) + ' ] ' + record[2].substr(0, 1).toUpperCase() + record[2].substr(1) + ' => ' + record[3].substr(0, 1).toUpperCase() + record[3].substr(1) + '</a></li>');
             });
 
             $("a").on("click", function (event) {
@@ -472,8 +459,9 @@ function getRecentConv() {
         success: function (data) {
             $('#recentConversions').empty();
             $.each(data, function (key, record) {
-                $('#recentConversions').append('<li>' + record["From"].substr(0, 1).toUpperCase() + record["From"].substr(1) + ' => ' + record["To"].substr(0, 1).toUpperCase() + record["To"].substr(1) + ' </li>');
+                $('#recentsTable').prepend('<tr><td>' + record["From"].substr(0, 1).toUpperCase() + record["From"].substr(1) + ' => ' + record["To"].substr(0, 1).toUpperCase() + record["To"].substr(1) + '</td></tr>');
             });
+            $('#recentsTable').DataTable();
         },
         error: function (status) {
             $('#recentConversions').html('Unable to retrieve data.');

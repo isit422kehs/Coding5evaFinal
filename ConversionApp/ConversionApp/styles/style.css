@@ -1,10 +1,14 @@
 ﻿/* start of sil */
 
+div[data-role="content"] {
+    max-width: 95%;
+    margin: auto;
+}
+
 #apiDetails table {
     min-width: 400px;
     width: 90%;
     margin: auto;
-    border: solid 2px black;
 }
 
 #apiDetails img {
@@ -63,6 +67,14 @@
 }
 /* end of sil */
 
+#menu, h2 {
+    clear:both;
+}
+
+h2 {
+    margin-left: 20px;
+}
+
 .light {
     color: black;
     background: linear-gradient(#87CEFA, #F0F8FF, #FFFAFA);
@@ -95,26 +107,18 @@
     display: none;
 }
 
-h2 {
-    margin-left: 20px;
-}
-
 #favList li {
-    padding: 5px;
-    -webkit-box-shadow: 3px 3px 4px 0px rgba(255,255,255,.1);
-    -moz-box-shadow: 3px 3px 4px 0px rgba(255,255,255,.1);
-    box-shadow: 3px 3px 4px 0px rgba(255,255,255,.1);
+    padding: 1px;
 }
 
-#favList li a {
-    font-size: 18px;
-    letter-spacing: 0px;
-    word-spacing: 0px;
-    color: inherit;
-    font-weight: normal;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    background-color: rgba(8, 126, 189, 0.5);
+.ui-navbar {
+    border-bottom: 3px solid black;
+}
+
+.navbar-default {
+    border-color: black !important;
+}
+
+#recentsContent {
+    min-height: 700px;
 }
