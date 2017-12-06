@@ -1,6 +1,6 @@
 ﻿body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    text-shadow: none !important;
+    
 }
 
 /* start of sil */
@@ -114,6 +114,10 @@ h2 {
     display: none;
 }
 
+.custom-navbar ul {
+    margin-bottom: 15px;
+}
+
 .custom-navbar ul li a {
     background: #F06E73; /* Old browsers */
     background: linear-gradient(#E89494, #F06E73) repeat scroll 0 0 #F06E73 !important;
@@ -123,14 +127,14 @@ h2 {
     background: -ms-linear-gradient(#E89494, #F06E73) repeat scroll 0 0 #F06E73 !important; /* IE10+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E89494', endColorstr='#F06E73',GradientType=0 ); /* IE6-9 */
     font-family: inherit !important;
-    color: white !important;
-    font-size: 18px !important;
-    font-weight: bold !important;
+    color: #333 !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
     text-decoration: none !important;
     font-style: normal !important;
     font-variant: normal !important;
     text-transform: none !important;
-    text-shadow: none !important;
+    text-shadow: 0 2px 0 #eee;
     border-bottom: 2px solid black;
     border-color: black !important;
 }
@@ -143,6 +147,9 @@ h2 {
     background: -o-linear-gradient(#EB8888, #E8AFAF) repeat scroll 0 0 #E8AFAF !important; /* Opera 11.10+ */
     background: -ms-linear-gradient(#EB8888, #E8AFAF) repeat scroll 0 0 #E8AFAF !important; /* IE10+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EB8888', endColorstr='#E8AFAF',GradientType=0 ); /* IE6-9 */
+    color: white !important;
+    font-weight: 700 !important;
+    text-shadow: 2px 2px 2px #000;
 }
 
 .ui-btn.ui-corner-all, .ui-corner-all {
