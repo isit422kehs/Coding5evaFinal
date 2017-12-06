@@ -229,7 +229,7 @@ function Login() {
 
                 loggedUser = data.UserName;
                 var msg = 'Logged in as ' + loggedUser;
-                $('#user').html(msg);
+                $('.user').html(msg);
                 window.location = '#tests';
 
                 $('.rm').remove();
@@ -261,7 +261,7 @@ function Login() {
 
                 loggedUser = data.UserName;
                 var msg = 'Logged in as ' + loggedUser;
-                $('#user').html(msg);
+                $('.user').html(msg);
                 window.location = '#convert';
 
                 $('.rm').remove();

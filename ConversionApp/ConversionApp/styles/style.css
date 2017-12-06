@@ -1,6 +1,5 @@
 ﻿body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
 }
 
 /* start of sil */
@@ -34,23 +33,23 @@ div[data-role="content"] {
     padding: 10px;
 }
 
-    #convSelector option, #converterForm option {
-        padding: 10px;
-    }
+#convSelector option, #converterForm option {
+    padding: 10px;
+}
 
-        #convSelector option:not(:first-child):hover {
-            padding-left: 25px;
-            font-weight: bold;
-        }
+#convSelector option:not(:first-child):hover {
+    padding-left: 25px;
+    font-weight: bold;
+}
 
-        #convSelector option:first-child {
-            color: gray;
-        }
+#convSelector option:first-child {
+    color: gray;
+}
 
-        #converterForm option:hover {
-            padding-left: 15px;
-            font-weight: bold;
-        }
+#converterForm option:hover {
+    padding-left: 15px;
+    font-weight: bold;
+}
 
 #linkRec, #linkFav, #linkOut {
     display: none;
@@ -63,11 +62,14 @@ div[data-role="content"] {
     margin: auto;
 }
 
-#lightBtn, #darkBtn, #user {
+.daynight {
+    display:flex;
+    align-items:center;
     float: right;
+    margin-right: 10px;
 }
 
-#user {
+.user {
     margin: 15px 10px;
 }
 /* end of sil */
