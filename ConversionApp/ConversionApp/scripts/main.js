@@ -7,7 +7,7 @@ $(document).ready(function () {
     var userId = cookie.substring(userIdIndex + 7);
 });
 
-let loggedUser, left, right, parm, cat, key, getForm, currPage;
+let loggedUser, left, right, parm, cat, key, getForm, currPage, table;
 
 $(document).on("pagecontainerchange", function () {
     currPage = $(".ui-page-active").prop("id");
@@ -34,18 +34,18 @@ $(document).on('pagebeforeshow ', '#convert', function () {
         $('#addFav').show();
     }
 
-    if (key > 0) {
+    if (key > 0 && loggedUser !== undefined) {
 
+        $('#pRec').text('');
         $("#convSelector").val(cat).change();
         $('#' + cat).show();
-        
-        alert('key: ' + key + ' cat: ' + cat + ' left: ' + left + ' right: ' + right);
+
         $('#' + cat + ' select[name="left"]').val(left).change();
-        alert('key: ' + key + ' cat: ' + cat + ' left: ' + left + ' right: ' + right);
         $('#' + cat + ' select[name="right"]').val(right).change();
 
-    } else if (key === undefined) {
-        $('#pConv').text('');
+    } else if (key === undefined && loggedUser !== undefined) {
+
+        $('#pRec').text('');
         $('#convSelector').val('').trigger('change');
 
         $('#converterForm select').change(function () {
@@ -54,20 +54,19 @@ $(document).on('pagebeforeshow ', '#convert', function () {
             var userIdIndex = cookie.indexOf("userId=");
             var userId = cookie.substring(userIdIndex + 7);
 
-            left = $('#' + getForm + ' select[name="left"]').val();
-            right = $('#' + getForm + ' select[name="right"]').val();
-
             let username = loggedUser;
+            let leftSelect = $('#' + getForm + ' select[name="left"]').val();
+            let rightSelect = $('#' + getForm + ' select[name="right"]').val();
 
-            if (left !== right && document.cookie.indexOf('userId') > -1) {
+            if (leftSelect !== rightSelect && document.cookie.indexOf('userId') > -1) {
 
                 $.ajax({
                     type: "POST",
                     url: 'api/recents',
                     traditional: true,
                     data: {
-                        "From": left,
-                        "To": right,
+                        "From": leftSelect,
+                        "To": rightSelect,
                         "user": username
                     },
                     success: function (data) {
@@ -80,49 +79,13 @@ $(document).on('pagebeforeshow ', '#convert', function () {
             }
         });
 
-        $('#convSelector').change(function () {
-            let val = $(this).val();
-            getForm = val;
-            let select = $("#convSelector").val();
+        ConvertForm();
 
-            $('#weight').hide();
-            $('#length').hide();
-            $('#currency').hide();
-            $('#volume').hide();
-            $('#volume-dry').hide();
-            $('#temperature').hide();
-            $('#area').hide();
-            $('#pressure').hide();
-            $('#energy').hide();
-            $('#power').hide();
-            $('#force').hide();
-            $('#time').hide();
-            $('#velocity').hide();
+    } else {
+        $('#pRec').text('');
+        $('#convSelector').val('').trigger('change');
 
-            $('#heat-transfer-coefficient').hide();
-            $('#flow').hide();
-            $('#flow-mass').hide();
-            $('#flow-molar').hide();
-            $('#surface-tension').hide();
-            $('#permeability').hide();
-            $('#sound').hide();
-            $('#digital-image-resolution').hide();
-            $('#charge').hide();
-            $('#current').hide();
-            $('#acceleration').hide();
-            $('#angle').hide();
-            $('#dataStorage').hide();
-            $('#density').hide();
-            $('#fuelConsumption').hide();
-            $('#heatDensity').hide();
-            $('#momentOfForce').hide();
-            $('#momentOfInertia').hide();
-            $('#numbers').hide();
-            $('#torque').hide();
-            $('#' + val).show();
-
-            getForm = val;
-        });
+        ConvertForm();
     }
 });
 
@@ -169,6 +132,54 @@ $(document).on('pagebeforeshow ', '#favorites', function () {
     ShowFavs();
     $("#favList").listview('refresh');
 });
+
+// collapses form
+function ConvertForm() {
+
+    $('#convSelector').change(function () {
+        let val = $(this).val();
+        getForm = val;
+        let select = $("#convSelector").val();
+
+        $('#weight').hide();
+        $('#length').hide();
+        $('#currency').hide();
+        $('#volume').hide();
+        $('#volume-dry').hide();
+        $('#temperature').hide();
+        $('#area').hide();
+        $('#pressure').hide();
+        $('#energy').hide();
+        $('#power').hide();
+        $('#force').hide();
+        $('#time').hide();
+        $('#velocity').hide();
+
+        $('#heat-transfer-coefficient').hide();
+        $('#flow').hide();
+        $('#flow-mass').hide();
+        $('#flow-molar').hide();
+        $('#surface-tension').hide();
+        $('#permeability').hide();
+        $('#sound').hide();
+        $('#digital-image-resolution').hide();
+        $('#charge').hide();
+        $('#current').hide();
+        $('#acceleration').hide();
+        $('#angle').hide();
+        $('#dataStorage').hide();
+        $('#density').hide();
+        $('#fuelConsumption').hide();
+        $('#heatDensity').hide();
+        $('#momentOfForce').hide();
+        $('#momentOfInertia').hide();
+        $('#numbers').hide();
+        $('#torque').hide();
+        $('#' + val).show();
+
+        getForm = val;
+    });
+}
 
 //add users
 function signUp() {
@@ -281,14 +292,14 @@ function Favorite() {
     let username = loggedUser;
     let select = $("#convSelector").val();
     let form = getForm;
-    var left = $('#' + form + ' select[name="left"]').find(':selected').val();
-    var right = $('#' + form + ' select[name="right"]').find(':selected').val();
+    let leftSelect = $('#' + form + ' select[name="left"]').find(':selected').val();
+    let rightRight = $('#' + form + ' select[name="right"]').find(':selected').val();
 
     if (username === undefined) {
         $('#pConv').text('This feature is available after logging in.');
     } else if (select === '') {
         $('#pConv').text('Please select a category.');
-    } else if (left === right) {
+    } else if (leftSelect === rightRight) {
         $('#pConv').text('Are you sure you want the same units?');
     } else {
         $.ajax({
@@ -297,13 +308,13 @@ function Favorite() {
             traditional: true,
             data: {
                 "Category": form,
-                "From": left,
-                "To": right,
+                "From": leftSelect,
+                "To": rightRight,
                 "User": username
             },
             datatype: 'json',
             success: function (data) {
-                $('#pConv').text('Successfully added new favorite conversion: ' + left + ' to ' + right);
+                $('#pConv').text('Successfully added new favorite conversion: ' + leftSelect + ' to ' + rightRight);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#pConv').text(jqXHR.responseText);

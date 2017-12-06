@@ -1,4 +1,9 @@
-﻿/* start of sil */
+﻿body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-shadow: none !important;
+}
+
+/* start of sil */
 
 div[data-role="content"] {
     max-width: 95%;
@@ -78,11 +83,13 @@ h2 {
 .light {
     color: black;
     background: linear-gradient(#87CEFA, #F0F8FF, #FFFAFA);
+    border-bottom-color: black !important;
 }
 
 .dark {
     color: gainsboro;
     background: linear-gradient(black, black, #191970, #00008B);
+    border-bottom-color: white !important;
 }
 
 #lightBtn {
@@ -121,4 +128,29 @@ h2 {
 
 #recentsContent {
     min-height: 700px;
+}
+
+#recentsTable, tr, th, td, tbody, thead, tfoot,
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate,
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    background-color: inherit !important;
+    color: inherit !important;
+    font-size: 18px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    font-style: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+}
+
+table.dataTable thead th, table.dataTable.no-footer {
+    border-bottom: 2px solid #111;
+    border-bottom-color: inherit !important;
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    text-shadow: none !important;
 }
