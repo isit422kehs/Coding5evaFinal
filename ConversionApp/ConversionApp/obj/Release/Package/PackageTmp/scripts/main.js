@@ -228,7 +228,7 @@ function Login() {
             success: function (data) {
 
                 loggedUser = data.UserName;
-                var msg = 'Logged in as ' + loggedUser;
+                var msg = 'Hello, ' + loggedUser + '!';
                 $('.user').html(msg);
                 window.location = '#tests';
 
@@ -260,7 +260,7 @@ function Login() {
             success: function (data) {
 
                 loggedUser = data.UserName;
-                var msg = 'Logged in as ' + loggedUser;
+                var msg = 'Hello, ' + loggedUser + '!';
                 $('.user').html(msg);
                 window.location = '#convert';
 
@@ -473,7 +473,11 @@ function getRecentConv() {
             $.each(data, function (key, record) {
                 $('#recentsTable').prepend('<tr><td>' + record["From"].substr(0, 1).toUpperCase() + record["From"].substr(1) + ' => ' + record["To"].substr(0, 1).toUpperCase() + record["To"].substr(1) + '</td></tr>');
             });
-            $('#recentsTable').DataTable();
+            $('#recentsTable').DataTable({
+                // disable initial sort
+                "order": [],
+                "bDestroy": true
+            });
         },
         error: function (status) {
             $('#recentConversions').html('Unable to retrieve data.');
