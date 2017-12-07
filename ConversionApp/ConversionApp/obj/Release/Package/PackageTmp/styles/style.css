@@ -4,21 +4,16 @@
 
 /* start of sil */
 
-div[data-role="content"] {
-    max-width: 95%;
-    margin: auto;
-}
-
 #apiDetails table {
     min-width: 400px;
     width: 90%;
     margin: auto;
 }
 
-#apiDetails img {
+/*#apiDetails img {
     display: block;
     margin: auto;
-}
+}*/
 
 #apiDetails td, #apiDetails tr {
     border: solid 1px black;
@@ -116,10 +111,6 @@ h2 {
     display: none;
 }
 
-.custom-navbar ul {
-    margin-bottom: 15px;
-}
-
 .custom-navbar ul li a {
     background: #F06E73; /* Old browsers */
     background: linear-gradient(#E89494, #F06E73) repeat scroll 0 0 #F06E73 !important;
@@ -142,7 +133,7 @@ h2 {
 }
 
 .custom-navbar ul li a.ui-btn-active {
-    background: linear-gradient(#EB8888, #E8AFAF) repeat scroll 0 0 #5393C5 !important;
+    background: linear-gradient(#EB8888, #E8AFAF) repeat scroll 0 0 #E8AFAF !important;
     background: #E8AFAF; /* Old browsers */
     background: linear-gradient(#EB8888, #E8AFAF) repeat scroll 0 0 #E8AFAF !important; /* FF3.6+ */
     background: -webkit-linear-gradient(#EB8888, #E8AFAF) repeat scroll 0 0 #E8AFAF !important; /* Chrome10+,Safari5.1+ */
@@ -164,6 +155,7 @@ h2 {
 
 .ui-page-theme-a .ui-bar-inherit {
     border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
     background: #F06E73; /* Old browsers */
     background: linear-gradient(#E89494, #F06E73) repeat scroll 0 0 #F06E73 !important;
     background: -moz-linear-gradient(#E89494, #F06E73) repeat scroll 0 0 #F06E73 !important; /* FF3.6+ */
@@ -171,10 +163,6 @@ h2 {
     background: -o-linear-gradient(#E89494, #F06E73) repeat scroll 0 0 #F06E73 !important; /* Opera 11.10+ */
     background: -ms-linear-gradient(#E89494, #F06E73) repeat scroll 0 0 #F06E73 !important; /* IE10+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E89494', endColorstr='#F06E73',GradientType=0 ); /* IE6-9 */
-}
-
-#recentsContent, .ui-content {
-    min-height: 700px;
 }
 
 #recentsTable, tr, th, td, tbody, thead, tfoot,

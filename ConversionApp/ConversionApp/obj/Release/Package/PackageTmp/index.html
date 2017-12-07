@@ -25,8 +25,9 @@
 <body>
 
     <!-- HOME/DETAILS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <div data-role="page" id="convert" class="light">
-        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+        <div data-role="header" class="ui-header" data-position="fixed" data-tap-toggle="false" data-id="main-header" id="menu">
             <div data-role="navbar" class="custom-navbar">
                 <ul>
                     <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/search.png" />Convert</a></li>
@@ -34,13 +35,14 @@
                     <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
                 </ul>
             </div>
+        </div>
+        
+        <div data-role="main" class="ui-content">
             <div class="daynight">
                 <span class="user">Hello, Guest!</span>
                 <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
             </div>
-        </div>
-        <h2>Convert</h2>
-        <div data-role="content" class="ui-content">
+            <h2>Convert</h2>
             <div>
                 <select id="convSelector" name="select" size=1 style="font-family:Tahoma;font-size:100%">
                     <option value="" selected>Select category:</option>
@@ -1080,15 +1082,16 @@
                 <p id="pRec"></p>
             </div><!-- end div w/id of converterForm-->
         </div>
-        <div data-role="footer" data-fullscreen="true" data-position="fixed">
+        <div data-role="footer" class="ui-footer" data-position="fixed" data-tap-toggle="false">
 
             <a id="a" href="http://www.unitconversion.org/">UnitConversion.org</a>
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <div data-role="page" id="login" class="light">
-        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+        <div data-role="header" class="ui-header" data-position="fixed" data-tap-toggle="false" data-id="main-header" id="menu">
             <div data-role="navbar" class="custom-navbar">
                 <ul>
                     <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/search.png" />Convert</a></li>
@@ -1096,13 +1099,14 @@
                     <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
                 </ul>
             </div>
+        </div>
+        
+        <div data-role="main" class="ui-content">
             <div class="daynight">
                 <span class="user">Hello, Guest!</span>
                 <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
             </div>
-        </div>
-        <h2>Log in</h2>
-        <div data-role="content" class="ui-content">
+            <h2>Log in</h2>
             Username : <input type="text" id="usernameInput" autofocus /><br />
             Password : <input type="password" id="passwordInput" /><br />
 
@@ -1110,13 +1114,14 @@
             <p id="pLogin"></p>
             <a href="#signup">Don't have an account?</a>
         </div>
-        <div data-role="footer" data-fullscreen="true" data-position="fixed">
+        <div data-role="footer" class="ui-footer" data-position="fixed" data-tap-toggle="false">
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <div data-role="page" id="details" class="light">
-        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+        <div data-role="header" class="ui-header" data-position="fixed" data-tap-toggle="false" data-id="main-header" id="menu">
             <div data-role="navbar" class="custom-navbar">
                 <ul>
                     <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/search.png" />Convert</a></li>
@@ -1124,24 +1129,26 @@
                     <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
                 </ul>
             </div>
+        </div>
+        
+        <div data-role="main" class="ui-content">
             <div class="daynight">
                 <span class="user">Hello, Guest!</span>
                 <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
             </div>
-        </div>
-        <h2>Location Info</h2>
-        <div data-role="content" class="ui-content">
+            <h2>Location Info</h2>
             <div id="apiDetails"><table></table></div>
             <p id="mongoDetails"></p>
         </div>
 
-        <div data-role="footer" data-fullscreen="true" data-position="fixed">
+        <div data-role="footer" class="ui-footer" data-position="fixed" data-tap-toggle="false">
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <div data-role="page" id="signup" class="light">
-        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+        <div data-role="header" class="ui-header" data-position="fixed" data-tap-toggle="false" data-id="main-header" id="menu">
             <div data-role="navbar" class="custom-navbar">
                 <ul>
                     <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/search.png" />Convert</a></li>
@@ -1149,13 +1156,14 @@
                     <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
                 </ul>
             </div>
+        </div>
+        
+        <div data-role="main" class="ui-content">
             <div class="daynight">
                 <span class="user">Hello, Guest!</span>
                 <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
             </div>
-        </div>
-        <h2>Sign up</h2>
-        <div data-role="content" class="ui-content">
+            <h2>Sign up</h2>
             Username : <input type="text" id="username" /><br />
             Password : <input type="text" id="password" /><br />
             Email : <input type="text" id="email" /><br />
@@ -1164,13 +1172,14 @@
             <p id="addUsers"></p>
         </div>
 
-        <div data-role="footer" data-fullscreen="true" data-position="fixed">
+        <div data-role="footer" class="ui-footer" data-position="fixed" data-tap-toggle="false">
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <div data-role="page" id="recents" class="light">
-        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+        <div data-role="header" class="ui-header" data-position="fixed" data-tap-toggle="false" data-id="main-header" id="menu">
             <div data-role="navbar" class="custom-navbar">
                 <ul>
                     <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/search.png" />Convert</a></li>
@@ -1178,13 +1187,14 @@
                     <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
                 </ul>
             </div>
+        </div>
+        
+        <div data-role="main" class="ui-content" id="recentsContent">
             <div class="daynight">
                 <span class="user">Hello, Guest!</span>
                 <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
             </div>
-        </div>
-        <h2>Recents</h2>
-        <div data-role="content" class="ui-content" id="recentsContent">
+            <h2>Recents</h2>
             <h2></h2>
             <div id="recentsList">
                 <table id="recentsTable" class="display" cellspacing="0" width="100%">
@@ -1199,13 +1209,14 @@
             </div>
         </div>
 
-        <div data-role="footer" data-fullscreen="true" data-position="fixed">
+        <div data-role="footer" class="ui-footer" data-position="fixed" data-tap-toggle="false">
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <div data-role="page" id="favorites" class="light">
-        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+        <div data-role="header" class="ui-header" data-position="fixed" data-tap-toggle="false" data-id="main-header" id="menu">
             <div data-role="navbar" class="custom-navbar">
                 <ul>
                     <li><a href="#convert" data-role="button" data-iconpos="top" data-inline="true" class="ui-btn-inline ui-btn-up-a ui-btn-active"><img class="icon" src="images/search.png" />Convert</a></li>
@@ -1213,26 +1224,28 @@
                     <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
                 </ul>
             </div>
+        </div>
+        
+        <div data-role="main" class="ui-content">
             <div class="daynight">
                 <span class="user">Hello, Guest!</span>
                 <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
             </div>
-        </div>
-        <h2>Favorites</h2>
-        <div data-role="content" class="ui-content">
+            <h2>Favorites</h2>
             <div>
                 <ul data-role="listview" data-autodividers="true" data-theme="a" data-inset="true" id="favList"></ul>
             </div>
             <p id="pFav"></p>
         </div>
 
-        <div data-role="footer" data-fullscreen="true" data-position="fixed">
+        <div data-role="footer" class="ui-footer" data-position="fixed" data-tap-toggle="false">
             <h1>copyright Coding5eva 2017</h1>
         </div>
     </div>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <div data-role="page" id="tests" class="light">
-        <div data-role="none" data-fullscreen="true" data-position="fixed" data-id="main-header" id="menu">
+        <div data-role="header" class="ui-header" data-position="fixed" data-tap-toggle="false" data-id="main-header" id="menu">
             <div data-role="navbar" class="custom-navbar">
                 <div data-role="navbar" class="custom-navbar">
                     <ul>
@@ -1241,14 +1254,15 @@
                         <li class="rm"><a href="#login" data-role="button" id="btnLogin" data-iconpos="top" data-inline="true" class="ui-btn ui-btn-inline ui-btn-up-b"><img class="icon" src="images/user.png" />Log in</a></li>
                     </ul>
                 </div>
-                <div class="daynight">
-                    <span class="user">Hello, Guest!</span>
-                    <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
-                </div>
             </div>
         </div>
-        <h2>Tests</h2>
-        <div data-role="content" class="ui-content">
+        
+        <div data-role="main" class="ui-content">
+            <div class="daynight">
+                <span class="user">Hello, Guest!</span>
+                <img src="images/sun.png" id="lightBtn" onclick="light()" /><img src="images/moon.png" id="darkBtn" onclick="dark()" />
+            </div>
+            <h2>Tests</h2>
             <p id="pTests"></p>
             <button id="testFav" onclick="FavTest()">Test: adding favorite</button>
             <button type="button" onclick="signTest()">Sign Up Test</button>
@@ -1274,7 +1288,7 @@
 
         </div>
 
-        <div data-role="footer" data-fullscreen="true" data-position="fixed">
+        <div data-role="footer" class="ui-footer" data-position="fixed" data-tap-toggle="false">
             <h1>copyright Coding5eva 2017</h1>
             <script src="http://www.unitconversion.org/converter3/converter3.js"></script>
         </div>
